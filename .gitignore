@@ -1,0 +1,17 @@
+# Visual Studio
+.vs/
+.root
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Temporary/Cache
+bin/
+obj/
+_ReSharper*/
+
+# OS files
+Thumbs.db
+ehthumbs.db
+Desktop.ini

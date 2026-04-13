@@ -1,0 +1,282 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Manrope:wght@200..800&display=swap');
+
+:root {
+    --primary: #8B7355;
+    --secondary: #F5F5DC;
+    --accent: #D4AF37;
+    --text-color: #333333;
+    --background: #FFFFFF;
+    --light: #FAF9F6;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    color: var(--text-color);
+    background-color: var(--background);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.7;
+}
+
+body.admin-shell {
+    background:
+        radial-gradient(circle at top left, rgba(37, 99, 235, 0.20), transparent 30%),
+        radial-gradient(circle at top right, rgba(14, 165, 233, 0.16), transparent 28%),
+        radial-gradient(circle at bottom right, rgba(99, 102, 241, 0.10), transparent 26%),
+        linear-gradient(180deg, #eaf2ff 0%, #f7fbff 42%, #eff6ff 100%);
+    color: #0f172a;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.font-serif {
+    font-family: 'Manrope', sans-serif;
+    letter-spacing: -0.02em;
+}
+
+body.admin-shell h1,
+body.admin-shell h2,
+body.admin-shell h3,
+body.admin-shell h4,
+body.admin-shell h5,
+body.admin-shell h6,
+body.admin-shell .font-serif {
+    font-family: 'Manrope', sans-serif;
+    letter-spacing: -0.035em;
+}
+
+p,
+li,
+td,
+th,
+label,
+input,
+select,
+textarea,
+button {
+    font-family: 'Inter', sans-serif;
+}
+
+/* Tailwind base overrides or additions */
+.btn-primary {
+    background-color: #8B7355;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #7a654a;
+}
+
+.text-primary {
+    color: var(--primary);
+}
+
+.bg-primary {
+    background-color: var(--primary);
+}
+
+.admin-sidebar {
+    background: linear-gradient(180deg, #08162f 0%, #12316b 52%, #0f172a 100%);
+}
+
+.admin-nav-link {
+    border-radius: 1rem;
+    transition: all 0.2s ease;
+}
+
+.admin-nav-link.active,
+.admin-nav-link:hover {
+    background: rgba(255, 255, 255, 0.10);
+    color: #ffffff;
+    transform: translateX(2px);
+}
+
+.admin-nav-link i {
+    color: rgba(255, 255, 255, 0.72);
+}
+
+.admin-nav-link.active i,
+.admin-nav-link:hover i {
+    color: #93c5fd;
+}
+
+.admin-surface {
+    background: rgba(255, 255, 255, 0.94);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(191, 219, 254, 0.7);
+    box-shadow: 0 20px 50px rgba(15, 23, 42, 0.08);
+}
+
+.admin-topbar {
+    background: linear-gradient(180deg, #0f1f3d 0%, #1a2942 100%);
+    color: #ffffff;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.admin-topbar .text-gray-400,
+.admin-topbar .text-gray-300 {
+    color: rgba(255, 255, 255, 0.82) !important;
+}
+
+.admin-topbar .text-text-dark {
+    color: #ffffff !important;
+}
+
+.admin-topbar .btn,
+.admin-topbar a,
+.admin-topbar button,
+.admin-topbar .fa-power-off {
+    color: #ffffff;
+}
+
+.admin-card {
+    border-radius: 1.5rem;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(219, 234, 254, 0.78) 100%);
+    border: 1px solid rgba(191, 219, 254, 0.75);
+    box-shadow: 0 18px 35px rgba(15, 23, 42, 0.06);
+}
+
+.admin-card:hover {
+    box-shadow: 0 28px 60px rgba(15, 23, 42, 0.10);
+}
+
+.admin-stat-icon {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 1rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.16), rgba(14, 165, 233, 0.10));
+    color: #1d4ed8;
+}
+
+.admin-table thead th {
+    background: rgba(239, 246, 255, 0.85);
+}
+
+.admin-table tbody tr:hover {
+    background: rgba(239, 246, 255, 0.7);
+}
+
+/* Admin-wide typography upgrade (also covers Bootstrap-based admin pages) */
+body.admin-shell,
+body.admin-shell .card,
+body.admin-shell .card-body,
+body.admin-shell .table,
+body.admin-shell .table th,
+body.admin-shell .table td,
+body.admin-shell .form-label,
+body.admin-shell .form-text,
+body.admin-shell .form-control,
+body.admin-shell .form-select,
+body.admin-shell .btn,
+body.admin-shell .alert,
+body.admin-shell .nav-link {
+    font-family: 'Inter', sans-serif;
+}
+
+body.admin-shell .card-header,
+body.admin-shell .card-title,
+body.admin-shell .table thead th,
+body.admin-shell .nav-tabs .nav-link,
+body.admin-shell .badge,
+body.admin-shell .btn {
+    letter-spacing: 0.04em;
+    font-weight: 700;
+}
+
+body.admin-shell .card-header,
+body.admin-shell .table thead th {
+    text-transform: uppercase;
+    font-size: 0.72rem;
+    color: #64748b;
+}
+
+body.admin-shell .card {
+    border-radius: 1rem;
+    border: 1px solid rgba(191, 219, 254, 0.65);
+    box-shadow: 0 12px 28px rgba(15, 23, 42, 0.06);
+}
+
+body.admin-shell .form-control,
+body.admin-shell .form-select {
+    border-color: #bfdbfe;
+    border-radius: 0.75rem;
+}
+
+body.admin-shell .form-control:focus,
+body.admin-shell .form-select:focus {
+    border-color: #60a5fa;
+    box-shadow: 0 0 0 0.2rem rgba(59, 130, 246, 0.15);
+}
+
+.sidebar-toggle-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 0.9rem;
+    background: rgba(37, 99, 235, 0.12);
+    color: #1d4ed8;
+}
+
+.sidebar-drawer {
+    transform: translateX(-100%);
+    transition: transform 0.28s ease;
+    will-change: transform;
+}
+
+.sidebar-drawer.open {
+    transform: translateX(0);
+}
+
+.sidebar-overlay {
+    background: rgba(15, 23, 42, 0.52);
+    backdrop-filter: blur(2px);
+}
+
+@media (min-width: 1024px) {
+    .sidebar-drawer {
+        transform: translateX(0) !important;
+    }
+
+    .sidebar-overlay {
+        display: none !important;
+    }
+}
+
+.bg-light {
+    background-color: var(--light);
+}
+
+/* Custom animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.8s ease-out forwards;
+}
+
+/* Mega menu styles if needed */
+.mega-menu {
+    display: none;
+}
+
+.group:hover .mega-menu {
+    display: block;
+}

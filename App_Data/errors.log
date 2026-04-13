@@ -1,0 +1,805 @@
+=== 2026-04-10 01:44:18Z | d21b26ea06b84fad97f16d17d47573af | 500 ===
+URL: http://localhost:64705/default.aspx
+MESSAGE: Exception of type 'System.Web.HttpUnhandledException' was thrown.
+STACK:    at System.Web.UI.Page.HandleError(Exception e)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest()
+   at System.Web.UI.Page.ProcessRequest(HttpContext context)
+   at ASP.default_aspx.ProcessRequest(HttpContext context) in c:\Users\Sumana\AppData\Local\Temp\Temporary ASP.NET Files\vs\34eadf56\f821f397\App_Web_jjk41hwu.9.cs:line 0
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+
+=== 2026-04-10 10:13:30Z | 021ad3f5fdea4284877af958127ea0ab | 500 ===
+URL: http://localhost:64705/default.aspx
+MESSAGE: Exception of type 'System.Web.HttpUnhandledException' was thrown.
+STACK:    at System.Web.UI.Page.HandleError(Exception e)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest()
+   at System.Web.UI.Page.ProcessRequest(HttpContext context)
+   at ASP.default_aspx.ProcessRequest(HttpContext context) in c:\Users\Sumana\AppData\Local\Temp\Temporary ASP.NET Files\vs\34eadf56\f821f397\App_Web_jjk41hwu.9.cs:line 0
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+
+=== 2026-04-10 10:21:56Z | a39a16ec32e8451da5df531b70e4c30f | 500 ===
+URL: http://localhost:64705/default.aspx
+MESSAGE: Exception of type 'System.Web.HttpUnhandledException' was thrown.
+STACK:    at System.Web.UI.Page.HandleError(Exception e)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest()
+   at System.Web.UI.Page.ProcessRequest(HttpContext context)
+   at ASP.default_aspx.ProcessRequest(HttpContext context) in c:\Users\Sumana\AppData\Local\Temp\Temporary ASP.NET Files\vs\34eadf56\f821f397\App_Web_m4dxki5t.13.cs:line 0
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+
+=== 2026-04-10 10:24:40Z | ba9a6e04faa749bb99b919ad16358a85 | 500 ===
+URL: http://localhost:64705/default.aspx
+MESSAGE: Exception of type 'System.Web.HttpUnhandledException' was thrown.
+STACK:    at System.Web.UI.Page.HandleError(Exception e)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest()
+   at System.Web.UI.Page.ProcessRequest(HttpContext context)
+   at ASP.default_aspx.ProcessRequest(HttpContext context) in c:\Users\Sumana\AppData\Local\Temp\Temporary ASP.NET Files\vs\34eadf56\f821f397\App_Web_m4dxki5t.13.cs:line 0
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+
+=== 2026-04-12 13:55:16Z | 524da49d902848a38b4d5ceecc0d88f0 | 500 ===
+URL: http://localhost:64705/Account/Profile.aspx
+MESSAGE: Exception of type 'System.Web.HttpUnhandledException' was thrown.
+STACK:    at System.Web.UI.Page.HandleError(Exception e)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest()
+   at System.Web.UI.Page.ProcessRequest(HttpContext context)
+   at ASP.account_profile_aspx.ProcessRequest(HttpContext context) in c:\Users\Admin\AppData\Local\Temp\Temporary ASP.NET Files\vs\7f8e1ad2\526ea849\App_Web_4sb0carj.2.cs:line 0
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+
+=== 2026-04-12 13:55:22Z | 1bcb18b7a49841d8a5c1b825390a36d5 | 500 ===
+URL: http://localhost:64705/Account/Profile.aspx
+MESSAGE: Exception of type 'System.Web.HttpUnhandledException' was thrown.
+STACK:    at System.Web.UI.Page.HandleError(Exception e)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest()
+   at System.Web.UI.Page.ProcessRequest(HttpContext context)
+   at ASP.account_profile_aspx.ProcessRequest(HttpContext context) in c:\Users\Admin\AppData\Local\Temp\Temporary ASP.NET Files\vs\7f8e1ad2\526ea849\App_Web_4sb0carj.2.cs:line 0
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+
+=== 2026-04-12 13:55:34Z | 595e879b4f5e4961aed4de381e76280e | 500 ===
+URL: http://localhost:64705/Account/Profile.aspx
+MESSAGE: Exception of type 'System.Web.HttpUnhandledException' was thrown.
+STACK:    at System.Web.UI.Page.HandleError(Exception e)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest()
+   at System.Web.UI.Page.ProcessRequest(HttpContext context)
+   at ASP.account_profile_aspx.ProcessRequest(HttpContext context) in c:\Users\Admin\AppData\Local\Temp\Temporary ASP.NET Files\vs\7f8e1ad2\526ea849\App_Web_4sb0carj.2.cs:line 0
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+
+=== 2026-04-12 13:56:13Z | b14e7c94e3234fc18b45a196589d35dd | 500 ===
+URL: http://localhost:64705/Account/Profile.aspx
+MESSAGE: Exception of type 'System.Web.HttpUnhandledException' was thrown.
+STACK:    at System.Web.UI.Page.HandleError(Exception e)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest()
+   at System.Web.UI.Page.ProcessRequest(HttpContext context)
+   at ASP.account_profile_aspx.ProcessRequest(HttpContext context) in c:\Users\Admin\AppData\Local\Temp\Temporary ASP.NET Files\vs\7f8e1ad2\526ea849\App_Web_4sb0carj.2.cs:line 0
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+
+=== 2026-04-12 14:01:33Z | 75cccd4bfc6e4a5187e4b7fe71ef51f9 | 500 ===
+URL: http://localhost:64705/Account/Profile.aspx
+MESSAGE: Exception of type 'System.Web.HttpUnhandledException' was thrown.
+STACK:    at System.Web.UI.Page.HandleError(Exception e)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest()
+   at System.Web.UI.Page.ProcessRequest(HttpContext context)
+   at ASP.account_profile_aspx.ProcessRequest(HttpContext context) in c:\Users\Admin\AppData\Local\Temp\Temporary ASP.NET Files\vs\7f8e1ad2\526ea849\App_Web_mzo3oee0.6.cs:line 0
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+
+=== 2026-04-12 16:28:58Z | e648cd49118d4639b8ec62a8359b01e1 | 500 ===
+URL: http://localhost:64705/Catalog.aspx?cat=5&sort=name_asc&page=1
+MESSAGE: Exception of type 'System.Web.HttpUnhandledException' was thrown.
+STACK:    at System.Web.UI.Page.HandleError(Exception e)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest()
+   at System.Web.UI.Page.ProcessRequest(HttpContext context)
+   at ASP.catalog_aspx.ProcessRequest(HttpContext context) in c:\Users\Admin\AppData\Local\Temp\Temporary ASP.NET Files\vs\7f8e1ad2\526ea849\App_Web_zsnc153e.0.cs:line 0
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+
+=== 2026-04-12 16:29:53Z | 42d5e6a6159f4ef09f0a92171fe97529 | 500 ===
+URL: http://localhost:64705/Catalog.aspx?cat=3&sort=name_asc&page=1
+MESSAGE: Exception of type 'System.Web.HttpUnhandledException' was thrown.
+STACK:    at System.Web.UI.Page.HandleError(Exception e)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest()
+   at System.Web.UI.Page.ProcessRequest(HttpContext context)
+   at ASP.catalog_aspx.ProcessRequest(HttpContext context) in c:\Users\Admin\AppData\Local\Temp\Temporary ASP.NET Files\vs\7f8e1ad2\526ea849\App_Web_zsnc153e.0.cs:line 0
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+
+=== 2026-04-12 16:30:20Z | 89f717863c584419b9908d86406b98ad | 500 ===
+URL: http://localhost:64705/Account/Checkout.aspx
+MESSAGE: Exception of type 'System.Web.HttpUnhandledException' was thrown.
+STACK:    at System.Web.UI.Page.HandleError(Exception e)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest()
+   at System.Web.UI.Page.ProcessRequest(HttpContext context)
+   at ASP.account_checkout_aspx.ProcessRequest(HttpContext context) in c:\Users\Admin\AppData\Local\Temp\Temporary ASP.NET Files\vs\7f8e1ad2\526ea849\App_Web_jbk5gpvp.4.cs:line 0
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+
+=== 2026-04-12 16:36:53Z | 461dca713a7c4189ac7b878e799c5d58 | 500 ===
+URL: http://localhost:64705/Account/Checkout.aspx
+MESSAGE: Exception of type 'System.Web.HttpUnhandledException' was thrown.
+BASE MESSAGE: Invalid object name 'dbo.payment_methods'.
+STACK:    at System.Web.UI.Page.HandleError(Exception e)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest()
+   at System.Web.UI.Page.ProcessRequest(HttpContext context)
+   at ASP.account_checkout_aspx.ProcessRequest(HttpContext context) in c:\Users\Admin\AppData\Local\Temp\Temporary ASP.NET Files\vs\7f8e1ad2\526ea849\App_Web_haomugee.6.cs:line 0
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+BASE STACK:    at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   at Db.Query(String sql, SqlParameter[] parameters) in c:\Users\Admin\source\repos\pukar\App_Code\Data\Db.cs:line 50
+   at serena.Site.Account.CheckoutPage.BindPaymentMethods() in c:\Users\Admin\source\repos\pukar\Account\Checkout.aspx.cs:line 126
+   at serena.Site.Account.CheckoutPage.Page_Load(Object sender, EventArgs e) in c:\Users\Admin\source\repos\pukar\Account\Checkout.aspx.cs:line 42
+   at System.Web.UI.Control.OnLoad(EventArgs e)
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+
+=== 2026-04-12 16:46:42Z | 2d7219dd9fb443af856a74e35c8b3ed9 | 500 ===
+URL: http://localhost:64705/Account/Checkout.aspx
+MESSAGE: Exception of type 'System.Web.HttpUnhandledException' was thrown.
+BASE MESSAGE: Invalid object name 'dbo.payment_methods'.
+STACK:    at System.Web.UI.Page.HandleError(Exception e)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest()
+   at System.Web.UI.Page.ProcessRequest(HttpContext context)
+   at ASP.account_checkout_aspx.ProcessRequest(HttpContext context) in c:\Users\Admin\AppData\Local\Temp\Temporary ASP.NET Files\vs\7f8e1ad2\526ea849\App_Web_ik15mjms.0.cs:line 0
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+BASE STACK:    at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   at Db.Query(String sql, SqlParameter[] parameters) in c:\Users\Admin\source\repos\pukar\App_Code\Data\Db.cs:line 50
+   at serena.Site.Account.CheckoutPage.BindPaymentMethods() in c:\Users\Admin\source\repos\pukar\Account\Checkout.aspx.cs:line 154
+   at serena.Site.Account.CheckoutPage.Page_Load(Object sender, EventArgs e) in c:\Users\Admin\source\repos\pukar\Account\Checkout.aspx.cs:line 42
+   at System.Web.UI.Control.OnLoad(EventArgs e)
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+
+=== 2026-04-12 17:17:23Z | 5d245a42752e4d1696d705f895a96cee | 500 ===
+URL: http://localhost:64705/Catalog.aspx?cat=laptops
+MESSAGE: Exception of type 'System.Web.HttpUnhandledException' was thrown.
+BASE MESSAGE: The SqlParameter is already contained by another SqlParameterCollection.
+STACK:    at System.Web.UI.Page.HandleError(Exception e)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest()
+   at System.Web.UI.Page.ProcessRequest(HttpContext context)
+   at ASP.catalog_aspx.ProcessRequest(HttpContext context) in c:\Users\Admin\AppData\Local\Temp\Temporary ASP.NET Files\vs\7f8e1ad2\526ea849\App_Web_warv1mx3.12.cs:line 0
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+BASE STACK:    at System.Data.SqlClient.SqlParameterCollection.Validate(Int32 index, Object value)
+   at System.Data.SqlClient.SqlParameterCollection.AddRange(Array values)
+   at Db.Query(String sql, SqlParameter[] parameters) in c:\Users\Admin\source\repos\pukar\App_Code\Data\Db.cs:line 46
+   at serena.Site.CatalogPage.BindProducts() in c:\Users\Admin\source\repos\pukar\Catalog.aspx.cs:line 189
+   at serena.Site.CatalogPage.OnLoad(EventArgs e) in c:\Users\Admin\source\repos\pukar\Catalog.aspx.cs:line 41
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+
+=== 2026-04-12 17:19:04Z | 35b4baf3c54e4b21a816ab4ec809851f | 500 ===
+URL: http://localhost:64705/Catalog.aspx?cat=5&sort=name_asc&page=1
+MESSAGE: Exception of type 'System.Web.HttpUnhandledException' was thrown.
+BASE MESSAGE: The SqlParameter is already contained by another SqlParameterCollection.
+STACK:    at System.Web.UI.Page.HandleError(Exception e)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest()
+   at System.Web.UI.Page.ProcessRequest(HttpContext context)
+   at ASP.catalog_aspx.ProcessRequest(HttpContext context) in c:\Users\Admin\AppData\Local\Temp\Temporary ASP.NET Files\vs\7f8e1ad2\526ea849\App_Web_warv1mx3.12.cs:line 0
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+BASE STACK:    at System.Data.SqlClient.SqlParameterCollection.Validate(Int32 index, Object value)
+   at System.Data.SqlClient.SqlParameterCollection.AddRange(Array values)
+   at Db.Query(String sql, SqlParameter[] parameters) in c:\Users\Admin\source\repos\pukar\App_Code\Data\Db.cs:line 46
+   at serena.Site.CatalogPage.BindProducts() in c:\Users\Admin\source\repos\pukar\Catalog.aspx.cs:line 189
+   at serena.Site.CatalogPage.OnLoad(EventArgs e) in c:\Users\Admin\source\repos\pukar\Catalog.aspx.cs:line 41
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+
+=== 2026-04-12 17:36:53Z | 155f35840a40497db4537d93824cebda | 500 ===
+URL: http://localhost:64705/Admin/PaymentMethods.aspx
+MESSAGE: Exception of type 'System.Web.HttpUnhandledException' was thrown.
+BASE MESSAGE: Invalid object name 'payment_methods'.
+STACK:    at System.Web.UI.Page.HandleError(Exception e)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest()
+   at System.Web.UI.Page.ProcessRequest(HttpContext context)
+   at ASP.admin_paymentmethods_aspx.ProcessRequest(HttpContext context) in c:\Users\Admin\AppData\Local\Temp\Temporary ASP.NET Files\vs\7f8e1ad2\526ea849\App_Web_250w12z0.8.cs:line 0
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+BASE STACK:    at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   at Db.Query(String sql, SqlParameter[] parameters) in c:\Users\Admin\source\repos\pukar\App_Code\Data\Db.cs:line 50
+   at serena.Admin.PaymentMethodsPage.BindTable() in c:\Users\Admin\source\repos\pukar\Admin\PaymentMethods.aspx.cs:line 155
+   at serena.Admin.PaymentMethodsPage.OnLoad(EventArgs e) in c:\Users\Admin\source\repos\pukar\Admin\PaymentMethods.aspx.cs:line 30
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+
+=== 2026-04-12 18:24:30Z | f1182b3649a0485997a47b9e757dcafa | 500 ===
+URL: http://localhost:64705/Admin/Feedbacks.aspx
+MESSAGE: Exception of type 'System.Web.HttpUnhandledException' was thrown.
+BASE MESSAGE: Invalid object name 'feedbacks'.
+STACK:    at System.Web.UI.Page.HandleError(Exception e)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest()
+   at System.Web.UI.Page.ProcessRequest(HttpContext context)
+   at ASP.admin_feedbacks_aspx.ProcessRequest(HttpContext context) in c:\Users\Admin\AppData\Local\Temp\Temporary ASP.NET Files\vs\7f8e1ad2\526ea849\App_Web_zjzhjy15.0.cs:line 0
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+BASE STACK:    at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   at Db.Scalar[T](String sql, SqlParameter[] parameters) in c:\Users\Admin\source\repos\pukar\App_Code\Data\Db.cs:line 35
+   at serena.Admin.FeedbacksPage.OnLoad(EventArgs e) in c:\Users\Admin\source\repos\pukar\Admin\Feedbacks.aspx.cs:line 27
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+
+=== 2026-04-12 18:43:44Z | aa960949e4b84ca6a8e49da755975492 | 500 ===
+URL: http://localhost:64705/Admin/PaymentMethods.aspx
+MESSAGE: Exception of type 'System.Web.HttpUnhandledException' was thrown.
+BASE MESSAGE: Invalid object name 'payment_methods'.
+STACK:    at System.Web.UI.Page.HandleError(Exception e)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest()
+   at System.Web.UI.Page.ProcessRequest(HttpContext context)
+   at ASP.admin_paymentmethods_aspx.ProcessRequest(HttpContext context) in c:\Users\Admin\AppData\Local\Temp\Temporary ASP.NET Files\vs\7f8e1ad2\526ea849\App_Web_4vqdhdxe.18.cs:line 0
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+BASE STACK:    at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   at Db.Query(String sql, SqlParameter[] parameters) in c:\Users\Admin\source\repos\pukar\App_Code\Data\Db.cs:line 50
+   at serena.Admin.PaymentMethodsPage.BindTable() in c:\Users\Admin\source\repos\pukar\Admin\PaymentMethods.aspx.cs:line 155
+   at serena.Admin.PaymentMethodsPage.OnLoad(EventArgs e) in c:\Users\Admin\source\repos\pukar\Admin\PaymentMethods.aspx.cs:line 30
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+
+=== 2026-04-12 18:50:23Z | cee0bc397549416f99aec3960fc51d1a | 500 ===
+URL: http://localhost:64705/Admin/PaymentMethods.aspx
+MESSAGE: Exception of type 'System.Web.HttpUnhandledException' was thrown.
+BASE MESSAGE: Invalid object name 'payment_methods'.
+STACK:    at System.Web.UI.Page.HandleError(Exception e)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest()
+   at System.Web.UI.Page.ProcessRequest(HttpContext context)
+   at ASP.admin_paymentmethods_aspx.ProcessRequest(HttpContext context) in c:\Users\Admin\AppData\Local\Temp\Temporary ASP.NET Files\vs\7f8e1ad2\526ea849\App_Web_vxfewwf3.14.cs:line 0
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+BASE STACK:    at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   at Db.Query(String sql, SqlParameter[] parameters) in c:\Users\Admin\source\repos\pukar\App_Code\Data\Db.cs:line 50
+   at serena.Admin.PaymentMethodsPage.BindTable() in c:\Users\Admin\source\repos\pukar\Admin\PaymentMethods.aspx.cs:line 155
+   at serena.Admin.PaymentMethodsPage.OnLoad(EventArgs e) in c:\Users\Admin\source\repos\pukar\Admin\PaymentMethods.aspx.cs:line 30
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+
+=== 2026-04-13 02:55:00Z | ac4f2cd59af64f86baef19d2b8de6d9e | 500 ===
+URL: http://localhost:64705/Catalog.aspx?q=DJI Mini 4 Pro
+MESSAGE: Exception of type 'System.Web.HttpUnhandledException' was thrown.
+BASE MESSAGE: The SqlParameter is already contained by another SqlParameterCollection.
+STACK:    at System.Web.UI.Page.HandleError(Exception e)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest()
+   at System.Web.UI.Page.ProcessRequest(HttpContext context)
+   at ASP.catalog_aspx.ProcessRequest(HttpContext context) in c:\Users\Admin\AppData\Local\Temp\Temporary ASP.NET Files\vs\7f8e1ad2\526ea849\App_Web_jgqhzlyp.0.cs:line 0
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+BASE STACK:    at System.Data.SqlClient.SqlParameterCollection.Validate(Int32 index, Object value)
+   at System.Data.SqlClient.SqlParameterCollection.AddRange(Array values)
+   at Db.Query(String sql, SqlParameter[] parameters) in c:\Users\Admin\source\repos\pukar\App_Code\Data\Db.cs:line 46
+   at serena.Site.CatalogPage.BindProducts() in c:\Users\Admin\source\repos\pukar\Catalog.aspx.cs:line 189
+   at serena.Site.CatalogPage.OnLoad(EventArgs e) in c:\Users\Admin\source\repos\pukar\Catalog.aspx.cs:line 41
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+
+=== 2026-04-13 02:55:09Z | 9223d51dd20b4fb99c2d8fd48f70da03 | 500 ===
+URL: http://localhost:64705/Catalog.aspx?q=DJI Mini 4 Pro
+MESSAGE: Exception of type 'System.Web.HttpUnhandledException' was thrown.
+BASE MESSAGE: The SqlParameter is already contained by another SqlParameterCollection.
+STACK:    at System.Web.UI.Page.HandleError(Exception e)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest()
+   at System.Web.UI.Page.ProcessRequest(HttpContext context)
+   at ASP.catalog_aspx.ProcessRequest(HttpContext context) in c:\Users\Admin\AppData\Local\Temp\Temporary ASP.NET Files\vs\7f8e1ad2\526ea849\App_Web_jgqhzlyp.0.cs:line 0
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+BASE STACK:    at System.Data.SqlClient.SqlParameterCollection.Validate(Int32 index, Object value)
+   at System.Data.SqlClient.SqlParameterCollection.AddRange(Array values)
+   at Db.Query(String sql, SqlParameter[] parameters) in c:\Users\Admin\source\repos\pukar\App_Code\Data\Db.cs:line 46
+   at serena.Site.CatalogPage.BindProducts() in c:\Users\Admin\source\repos\pukar\Catalog.aspx.cs:line 189
+   at serena.Site.CatalogPage.OnLoad(EventArgs e) in c:\Users\Admin\source\repos\pukar\Catalog.aspx.cs:line 41
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+
+=== 2026-04-13 05:24:48Z | 9bdb4550861c4f348d743701366ae45b | 404 ===
+URL: http://localhost:64705/Account/Notifications.aspx
+MESSAGE: The file '/Account/Notifications.aspx.cs' does not exist.
+BASE MESSAGE: The file '/Account/Notifications.aspx.cs' does not exist.
+STACK:    at System.Web.UI.TemplateParser.ParseString(String text, VirtualPath virtualPath, Encoding fileEncoding)
+   at System.Web.UI.TemplateParser.ParseFile(String physicalPath, VirtualPath virtualPath)
+   at System.Web.UI.TemplateParser.ParseInternal()
+   at System.Web.UI.TemplateParser.Parse()
+   at System.Web.Compilation.BaseTemplateBuildProvider.get_CodeCompilerType()
+   at System.Web.Compilation.BuildProvider.GetCompilerTypeFromBuildProvider(BuildProvider buildProvider)
+   at System.Web.Compilation.BuildProvidersCompiler.ProcessBuildProviders()
+   at System.Web.Compilation.BuildProvidersCompiler.PerformBuild()
+   at System.Web.Compilation.BuildManager.CompileWebFile(VirtualPath virtualPath)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(VirtualPath virtualPath, HttpContext context, Boolean allowCrossApp, Boolean throwIfNotFound)
+   at System.Web.Compilation.BuildManager.CreateInstanceFromVirtualPath(VirtualPath virtualPath, Type requiredBaseType, HttpContext context, Boolean allowCrossApp)
+   at System.Web.UI.PageHandlerFactory.GetHandlerHelper(HttpContext context, String requestType, VirtualPath virtualPath, String physicalPath)
+   at System.Web.HttpApplication.MaterializeHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+BASE STACK:    at System.Web.UI.Util.CheckVirtualFileExists(VirtualPath virtualPath)
+   at System.Web.UI.TemplateParser.ProcessCodeFile(VirtualPath codeFileVirtualPath)
+   at System.Web.UI.TemplateParser.ProcessMainDirectiveAttribute(String deviceName, String name, String value, IDictionary parseData)
+
+=== 2026-04-13 08:11:02Z | 9874f52faf494c9d8f0016ef78c0f944 | 500 ===
+URL: http://localhost:64705/Cart.aspx
+MESSAGE: Exception of type 'System.Web.HttpUnhandledException' was thrown.
+BASE MESSAGE: The control with ID 'upCart' requires a ScriptManager on the page. The ScriptManager must appear before any controls that need it.
+STACK:    at System.Web.UI.Page.HandleError(Exception e)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest()
+   at System.Web.UI.Page.ProcessRequest(HttpContext context)
+   at ASP.cart_aspx.ProcessRequest(HttpContext context) in c:\Users\Admin\AppData\Local\Temp\Temporary ASP.NET Files\vs\7f8e1ad2\526ea849\App_Web_yqhyfc00.11.cs:line 0
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+BASE STACK:    at System.Web.UI.UpdatePanel.get_ScriptManager()
+   at System.Web.UI.UpdatePanel.RegisterPanel()
+   at System.Web.UI.UpdatePanel.OnInit(EventArgs e)
+   at System.Web.UI.Control.InitRecursive(Control namingContainer)
+   at System.Web.UI.Control.InitRecursive(Control namingContainer)
+   at System.Web.UI.Control.InitRecursive(Control namingContainer)
+   at System.Web.UI.Control.InitRecursive(Control namingContainer)
+   at System.Web.UI.Control.InitRecursive(Control namingContainer)
+   at System.Web.UI.Control.InitRecursive(Control namingContainer)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+
+=== 2026-04-13 08:15:02Z | ccf1c6433e584615a2aed3150aee2108 | 500 ===
+URL: http://localhost:64705/Cart.aspx
+MESSAGE: Exception of type 'System.Web.HttpUnhandledException' was thrown.
+BASE MESSAGE: The control with ID 'upCart' requires a ScriptManager on the page. The ScriptManager must appear before any controls that need it.
+STACK:    at System.Web.UI.Page.HandleError(Exception e)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest()
+   at System.Web.UI.Page.ProcessRequest(HttpContext context)
+   at ASP.cart_aspx.ProcessRequest(HttpContext context) in c:\Users\Admin\AppData\Local\Temp\Temporary ASP.NET Files\vs\7f8e1ad2\526ea849\App_Web_0sydggo1.0.cs:line 0
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+BASE STACK:    at System.Web.UI.UpdatePanel.get_ScriptManager()
+   at System.Web.UI.UpdatePanel.RegisterPanel()
+   at System.Web.UI.UpdatePanel.OnInit(EventArgs e)
+   at System.Web.UI.Control.InitRecursive(Control namingContainer)
+   at System.Web.UI.Control.InitRecursive(Control namingContainer)
+   at System.Web.UI.Control.InitRecursive(Control namingContainer)
+   at System.Web.UI.Control.InitRecursive(Control namingContainer)
+   at System.Web.UI.Control.InitRecursive(Control namingContainer)
+   at System.Web.UI.Control.InitRecursive(Control namingContainer)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+
+=== 2026-04-13 08:20:14Z | c92b8deba7554ab3850d9375e2be2e80 | 500 ===
+URL: http://localhost:64705/Cart.aspx
+MESSAGE: Exception of type 'System.Web.HttpUnhandledException' was thrown.
+BASE MESSAGE: The control with ID 'upCart' requires a ScriptManager on the page. The ScriptManager must appear before any controls that need it.
+STACK:    at System.Web.UI.Page.HandleError(Exception e)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest()
+   at System.Web.UI.Page.ProcessRequest(HttpContext context)
+   at ASP.cart_aspx.ProcessRequest(HttpContext context) in c:\Users\Admin\AppData\Local\Temp\Temporary ASP.NET Files\vs\7f8e1ad2\526ea849\App_Web_wmqdp2i5.13.cs:line 0
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+BASE STACK:    at System.Web.UI.UpdatePanel.get_ScriptManager()
+   at System.Web.UI.UpdatePanel.RegisterPanel()
+   at System.Web.UI.UpdatePanel.OnInit(EventArgs e)
+   at System.Web.UI.Control.InitRecursive(Control namingContainer)
+   at System.Web.UI.Control.InitRecursive(Control namingContainer)
+   at System.Web.UI.Control.InitRecursive(Control namingContainer)
+   at System.Web.UI.Control.InitRecursive(Control namingContainer)
+   at System.Web.UI.Control.InitRecursive(Control namingContainer)
+   at System.Web.UI.Control.InitRecursive(Control namingContainer)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+
+=== 2026-04-13 08:20:22Z | 41c6da0230b14809a3d63189c7889db8 | 500 ===
+URL: http://localhost:64705/Cart.aspx
+MESSAGE: Exception of type 'System.Web.HttpUnhandledException' was thrown.
+BASE MESSAGE: The control with ID 'upCart' requires a ScriptManager on the page. The ScriptManager must appear before any controls that need it.
+STACK:    at System.Web.UI.Page.HandleError(Exception e)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest()
+   at System.Web.UI.Page.ProcessRequest(HttpContext context)
+   at ASP.cart_aspx.ProcessRequest(HttpContext context) in c:\Users\Admin\AppData\Local\Temp\Temporary ASP.NET Files\vs\7f8e1ad2\526ea849\App_Web_wmqdp2i5.13.cs:line 0
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+BASE STACK:    at System.Web.UI.UpdatePanel.get_ScriptManager()
+   at System.Web.UI.UpdatePanel.RegisterPanel()
+   at System.Web.UI.UpdatePanel.OnInit(EventArgs e)
+   at System.Web.UI.Control.InitRecursive(Control namingContainer)
+   at System.Web.UI.Control.InitRecursive(Control namingContainer)
+   at System.Web.UI.Control.InitRecursive(Control namingContainer)
+   at System.Web.UI.Control.InitRecursive(Control namingContainer)
+   at System.Web.UI.Control.InitRecursive(Control namingContainer)
+   at System.Web.UI.Control.InitRecursive(Control namingContainer)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+
+=== 2026-04-13 08:38:51Z | c757e136988a47d8ae1a6569cac39e26 | 500 ===
+URL: http://localhost:64705/Cart.aspx
+MESSAGE: Exception of type 'System.Web.HttpUnhandledException' was thrown.
+BASE MESSAGE: The control with ID 'upCart' requires a ScriptManager on the page. The ScriptManager must appear before any controls that need it.
+STACK:    at System.Web.UI.Page.HandleError(Exception e)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest()
+   at System.Web.UI.Page.ProcessRequest(HttpContext context)
+   at ASP.cart_aspx.ProcessRequest(HttpContext context) in c:\Users\Admin\AppData\Local\Temp\Temporary ASP.NET Files\vs\7f8e1ad2\526ea849\App_Web_wmqdp2i5.13.cs:line 0
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+BASE STACK:    at System.Web.UI.UpdatePanel.get_ScriptManager()
+   at System.Web.UI.UpdatePanel.RegisterPanel()
+   at System.Web.UI.UpdatePanel.OnInit(EventArgs e)
+   at System.Web.UI.Control.InitRecursive(Control namingContainer)
+   at System.Web.UI.Control.InitRecursive(Control namingContainer)
+   at System.Web.UI.Control.InitRecursive(Control namingContainer)
+   at System.Web.UI.Control.InitRecursive(Control namingContainer)
+   at System.Web.UI.Control.InitRecursive(Control namingContainer)
+   at System.Web.UI.Control.InitRecursive(Control namingContainer)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+
+=== 2026-04-13 08:46:17Z | e1d9068384614dc9b8ddafa51fcc54e7 | 500 ===
+URL: http://localhost:64705/Cart.aspx
+MESSAGE: Exception of type 'System.Web.HttpUnhandledException' was thrown.
+BASE MESSAGE: The control with ID 'upCart' requires a ScriptManager on the page. The ScriptManager must appear before any controls that need it.
+STACK:    at System.Web.UI.Page.HandleError(Exception e)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest()
+   at System.Web.UI.Page.ProcessRequest(HttpContext context)
+   at ASP.cart_aspx.ProcessRequest(HttpContext context) in c:\Users\Admin\AppData\Local\Temp\Temporary ASP.NET Files\vs\7f8e1ad2\526ea849\App_Web_ovf0pyxv.6.cs:line 0
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+BASE STACK:    at System.Web.UI.UpdatePanel.get_ScriptManager()
+   at System.Web.UI.UpdatePanel.RegisterPanel()
+   at System.Web.UI.UpdatePanel.OnInit(EventArgs e)
+   at System.Web.UI.Control.InitRecursive(Control namingContainer)
+   at System.Web.UI.Control.InitRecursive(Control namingContainer)
+   at System.Web.UI.Control.InitRecursive(Control namingContainer)
+   at System.Web.UI.Control.InitRecursive(Control namingContainer)
+   at System.Web.UI.Control.InitRecursive(Control namingContainer)
+   at System.Web.UI.Control.InitRecursive(Control namingContainer)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+
+=== 2026-04-13 08:55:19Z | cfc6c2c7429049319c8028792aa3662e | 500 ===
+URL: http://localhost:64705/Cart.aspx
+MESSAGE: Exception of type 'System.Web.HttpUnhandledException' was thrown.
+BASE MESSAGE: The control with ID 'upCart' requires a ScriptManager on the page. The ScriptManager must appear before any controls that need it.
+STACK:    at System.Web.UI.Page.HandleError(Exception e)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest()
+   at System.Web.UI.Page.ProcessRequest(HttpContext context)
+   at ASP.cart_aspx.ProcessRequest(HttpContext context) in c:\Users\Admin\AppData\Local\Temp\Temporary ASP.NET Files\vs\7f8e1ad2\526ea849\App_Web_ovf0pyxv.6.cs:line 0
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+BASE STACK:    at System.Web.UI.UpdatePanel.get_ScriptManager()
+   at System.Web.UI.UpdatePanel.RegisterPanel()
+   at System.Web.UI.UpdatePanel.OnInit(EventArgs e)
+   at System.Web.UI.Control.InitRecursive(Control namingContainer)
+   at System.Web.UI.Control.InitRecursive(Control namingContainer)
+   at System.Web.UI.Control.InitRecursive(Control namingContainer)
+   at System.Web.UI.Control.InitRecursive(Control namingContainer)
+   at System.Web.UI.Control.InitRecursive(Control namingContainer)
+   at System.Web.UI.Control.InitRecursive(Control namingContainer)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+
+=== 2026-04-13 10:55:09Z | 211460ba25a543a8a28d43f5cd61f9a8 | 500 ===
+URL: http://localhost:64705/Catalog.aspx?cat=5&sort=name_asc&page=1
+MESSAGE: Exception of type 'System.Web.HttpUnhandledException' was thrown.
+BASE MESSAGE: The SqlParameter is already contained by another SqlParameterCollection.
+STACK:    at System.Web.UI.Page.HandleError(Exception e)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest()
+   at System.Web.UI.Page.ProcessRequest(HttpContext context)
+   at ASP.catalog_aspx.ProcessRequest(HttpContext context) in c:\Users\Admin\AppData\Local\Temp\Temporary ASP.NET Files\vs\7f8e1ad2\526ea849\App_Web_gymuaujw.15.cs:line 0
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+BASE STACK:    at System.Data.SqlClient.SqlParameterCollection.Validate(Int32 index, Object value)
+   at System.Data.SqlClient.SqlParameterCollection.AddRange(Array values)
+   at Db.Query(String sql, SqlParameter[] parameters) in c:\Users\Admin\source\repos\pukar\App_Code\Data\Db.cs:line 46
+   at serena.Site.CatalogPage.BindProducts() in c:\Users\Admin\source\repos\pukar\Catalog.aspx.cs:line 189
+   at serena.Site.CatalogPage.OnLoad(EventArgs e) in c:\Users\Admin\source\repos\pukar\Catalog.aspx.cs:line 41
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+
+=== 2026-04-13 12:18:36Z | 4175cba0af7c413fb517f6b4882a33ad | 404 ===
+URL: http://localhost:64705/Admin/Notifications.aspx
+MESSAGE: The file '/Admin/Notifications.aspx' does not exist.
+BASE MESSAGE: The file '/Admin/Notifications.aspx' does not exist.
+STACK:    at System.Web.UI.Util.CheckVirtualFileExists(VirtualPath virtualPath)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(VirtualPath virtualPath, HttpContext context, Boolean allowCrossApp, Boolean throwIfNotFound)
+   at System.Web.Compilation.BuildManager.CreateInstanceFromVirtualPath(VirtualPath virtualPath, Type requiredBaseType, HttpContext context, Boolean allowCrossApp)
+   at System.Web.UI.PageHandlerFactory.GetHandlerHelper(HttpContext context, String requestType, VirtualPath virtualPath, String physicalPath)
+   at System.Web.HttpApplication.MaterializeHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+BASE STACK:    at System.Web.UI.Util.CheckVirtualFileExists(VirtualPath virtualPath)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(VirtualPath virtualPath, HttpContext context, Boolean allowCrossApp, Boolean throwIfNotFound)
+   at System.Web.Compilation.BuildManager.CreateInstanceFromVirtualPath(VirtualPath virtualPath, Type requiredBaseType, HttpContext context, Boolean allowCrossApp)
+   at System.Web.UI.PageHandlerFactory.GetHandlerHelper(HttpContext context, String requestType, VirtualPath virtualPath, String physicalPath)
+   at System.Web.HttpApplication.MaterializeHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+
+=== 2026-04-13 12:47:50Z | 867966c16c114399bb817a4cb93a88c0 | 500 ===
+URL: http://localhost:64705/Account/Checkout.aspx
+MESSAGE: c:\Users\Admin\source\repos\pukar\Account\Checkout.aspx.cs(331): error CS0103: The name 'EmailService' does not exist in the current context
+BASE MESSAGE: c:\Users\Admin\source\repos\pukar\Account\Checkout.aspx.cs(331): error CS0103: The name 'EmailService' does not exist in the current context
+STACK:    at System.Web.Compilation.BuildManager.CompileWebFile(VirtualPath virtualPath)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(VirtualPath virtualPath, HttpContext context, Boolean allowCrossApp, Boolean throwIfNotFound)
+   at System.Web.Compilation.BuildManager.CreateInstanceFromVirtualPath(VirtualPath virtualPath, Type requiredBaseType, HttpContext context, Boolean allowCrossApp)
+   at System.Web.UI.PageHandlerFactory.GetHandlerHelper(HttpContext context, String requestType, VirtualPath virtualPath, String physicalPath)
+   at System.Web.HttpApplication.MaterializeHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+BASE STACK:    at System.Web.Compilation.BuildManager.CompileWebFile(VirtualPath virtualPath)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(VirtualPath virtualPath, HttpContext context, Boolean allowCrossApp, Boolean throwIfNotFound)
+   at System.Web.Compilation.BuildManager.CreateInstanceFromVirtualPath(VirtualPath virtualPath, Type requiredBaseType, HttpContext context, Boolean allowCrossApp)
+   at System.Web.UI.PageHandlerFactory.GetHandlerHelper(HttpContext context, String requestType, VirtualPath virtualPath, String physicalPath)
+   at System.Web.HttpApplication.MaterializeHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+
+=== 2026-04-13 12:48:47Z | 12267e538740446ead949eb0b2c9a3bc | 500 ===
+URL: http://localhost:64705/Account/Checkout.aspx
+MESSAGE: c:\Users\Admin\source\repos\pukar\Account\Checkout.aspx.cs(331): error CS0103: The name 'EmailService' does not exist in the current context
+BASE MESSAGE: c:\Users\Admin\source\repos\pukar\Account\Checkout.aspx.cs(331): error CS0103: The name 'EmailService' does not exist in the current context
+STACK:    at System.Web.Compilation.BuildManager.CompileWebFile(VirtualPath virtualPath)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(VirtualPath virtualPath, HttpContext context, Boolean allowCrossApp, Boolean throwIfNotFound)
+   at System.Web.Compilation.BuildManager.CreateInstanceFromVirtualPath(VirtualPath virtualPath, Type requiredBaseType, HttpContext context, Boolean allowCrossApp)
+   at System.Web.UI.PageHandlerFactory.GetHandlerHelper(HttpContext context, String requestType, VirtualPath virtualPath, String physicalPath)
+   at System.Web.HttpApplication.MaterializeHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+BASE STACK:    at System.Web.Compilation.BuildManager.CompileWebFile(VirtualPath virtualPath)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(VirtualPath virtualPath, HttpContext context, Boolean allowCrossApp, Boolean throwIfNotFound)
+   at System.Web.Compilation.BuildManager.CreateInstanceFromVirtualPath(VirtualPath virtualPath, Type requiredBaseType, HttpContext context, Boolean allowCrossApp)
+   at System.Web.UI.PageHandlerFactory.GetHandlerHelper(HttpContext context, String requestType, VirtualPath virtualPath, String physicalPath)
+   at System.Web.HttpApplication.MaterializeHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+
+=== 2026-04-13 12:49:24Z | 0966e612deb344d789a4e306522a87af | 500 ===
+URL: http://localhost:64705/Account/Checkout.aspx
+MESSAGE: c:\Users\Admin\source\repos\pukar\Account\Checkout.aspx.cs(331): error CS0103: The name 'EmailService' does not exist in the current context
+BASE MESSAGE: c:\Users\Admin\source\repos\pukar\Account\Checkout.aspx.cs(331): error CS0103: The name 'EmailService' does not exist in the current context
+STACK:    at System.Web.Compilation.BuildManager.CompileWebFile(VirtualPath virtualPath)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(VirtualPath virtualPath, HttpContext context, Boolean allowCrossApp, Boolean throwIfNotFound)
+   at System.Web.Compilation.BuildManager.CreateInstanceFromVirtualPath(VirtualPath virtualPath, Type requiredBaseType, HttpContext context, Boolean allowCrossApp)
+   at System.Web.UI.PageHandlerFactory.GetHandlerHelper(HttpContext context, String requestType, VirtualPath virtualPath, String physicalPath)
+   at System.Web.HttpApplication.MaterializeHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+BASE STACK:    at System.Web.Compilation.BuildManager.CompileWebFile(VirtualPath virtualPath)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(VirtualPath virtualPath, HttpContext context, Boolean allowCrossApp, Boolean throwIfNotFound)
+   at System.Web.Compilation.BuildManager.CreateInstanceFromVirtualPath(VirtualPath virtualPath, Type requiredBaseType, HttpContext context, Boolean allowCrossApp)
+   at System.Web.UI.PageHandlerFactory.GetHandlerHelper(HttpContext context, String requestType, VirtualPath virtualPath, String physicalPath)
+   at System.Web.HttpApplication.MaterializeHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+
+=== 2026-04-13 12:56:33Z | 8f47a0c8e2f04f9496283007ff2abbfd | 500 ===
+URL: http://localhost:64705/Account/Checkout.aspx
+MESSAGE: c:\Users\Admin\source\repos\pukar\Account\Checkout.aspx.cs(331): error CS0103: The name 'EmailService' does not exist in the current context
+BASE MESSAGE: c:\Users\Admin\source\repos\pukar\Account\Checkout.aspx.cs(331): error CS0103: The name 'EmailService' does not exist in the current context
+STACK:    at System.Web.Compilation.BuildManager.CompileWebFile(VirtualPath virtualPath)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(VirtualPath virtualPath, HttpContext context, Boolean allowCrossApp, Boolean throwIfNotFound)
+   at System.Web.Compilation.BuildManager.CreateInstanceFromVirtualPath(VirtualPath virtualPath, Type requiredBaseType, HttpContext context, Boolean allowCrossApp)
+   at System.Web.UI.PageHandlerFactory.GetHandlerHelper(HttpContext context, String requestType, VirtualPath virtualPath, String physicalPath)
+   at System.Web.HttpApplication.MaterializeHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+BASE STACK:    at System.Web.Compilation.BuildManager.CompileWebFile(VirtualPath virtualPath)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(VirtualPath virtualPath, HttpContext context, Boolean allowCrossApp, Boolean throwIfNotFound)
+   at System.Web.Compilation.BuildManager.CreateInstanceFromVirtualPath(VirtualPath virtualPath, Type requiredBaseType, HttpContext context, Boolean allowCrossApp)
+   at System.Web.UI.PageHandlerFactory.GetHandlerHelper(HttpContext context, String requestType, VirtualPath virtualPath, String physicalPath)
+   at System.Web.HttpApplication.MaterializeHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+
+=== 2026-04-13 13:02:17Z | 889e7d26528c42d48b9c9344cc85e139 | 500 ===
+URL: http://localhost:64705/Account/Checkout.aspx
+MESSAGE: c:\Users\Admin\source\repos\pukar\Account\Checkout.aspx.cs(331): error CS0103: The name 'EmailService' does not exist in the current context
+BASE MESSAGE: c:\Users\Admin\source\repos\pukar\Account\Checkout.aspx.cs(331): error CS0103: The name 'EmailService' does not exist in the current context
+STACK:    at System.Web.Compilation.BuildManager.CompileWebFile(VirtualPath virtualPath)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(VirtualPath virtualPath, HttpContext context, Boolean allowCrossApp, Boolean throwIfNotFound)
+   at System.Web.Compilation.BuildManager.CreateInstanceFromVirtualPath(VirtualPath virtualPath, Type requiredBaseType, HttpContext context, Boolean allowCrossApp)
+   at System.Web.UI.PageHandlerFactory.GetHandlerHelper(HttpContext context, String requestType, VirtualPath virtualPath, String physicalPath)
+   at System.Web.HttpApplication.MaterializeHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+BASE STACK:    at System.Web.Compilation.BuildManager.CompileWebFile(VirtualPath virtualPath)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(VirtualPath virtualPath, HttpContext context, Boolean allowCrossApp, Boolean throwIfNotFound)
+   at System.Web.Compilation.BuildManager.CreateInstanceFromVirtualPath(VirtualPath virtualPath, Type requiredBaseType, HttpContext context, Boolean allowCrossApp)
+   at System.Web.UI.PageHandlerFactory.GetHandlerHelper(HttpContext context, String requestType, VirtualPath virtualPath, String physicalPath)
+   at System.Web.HttpApplication.MaterializeHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+
+=== 2026-04-13 13:18:01Z | e677fbfe1ea940d3862ffa9081be6b5c | 500 ===
+URL: http://localhost:64705/Account/Checkout.aspx
+MESSAGE: c:\Users\Admin\source\repos\pukar\Account\Checkout.aspx.cs(331): error CS0103: The name 'EmailService' does not exist in the current context
+BASE MESSAGE: c:\Users\Admin\source\repos\pukar\Account\Checkout.aspx.cs(331): error CS0103: The name 'EmailService' does not exist in the current context
+STACK:    at System.Web.Compilation.BuildManager.CompileWebFile(VirtualPath virtualPath)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(VirtualPath virtualPath, HttpContext context, Boolean allowCrossApp, Boolean throwIfNotFound)
+   at System.Web.Compilation.BuildManager.CreateInstanceFromVirtualPath(VirtualPath virtualPath, Type requiredBaseType, HttpContext context, Boolean allowCrossApp)
+   at System.Web.UI.PageHandlerFactory.GetHandlerHelper(HttpContext context, String requestType, VirtualPath virtualPath, String physicalPath)
+   at System.Web.HttpApplication.MaterializeHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+BASE STACK:    at System.Web.Compilation.BuildManager.CompileWebFile(VirtualPath virtualPath)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(VirtualPath virtualPath, HttpContext context, Boolean allowCrossApp, Boolean throwIfNotFound)
+   at System.Web.Compilation.BuildManager.CreateInstanceFromVirtualPath(VirtualPath virtualPath, Type requiredBaseType, HttpContext context, Boolean allowCrossApp)
+   at System.Web.UI.PageHandlerFactory.GetHandlerHelper(HttpContext context, String requestType, VirtualPath virtualPath, String physicalPath)
+   at System.Web.HttpApplication.MaterializeHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+

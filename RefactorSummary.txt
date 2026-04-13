@@ -1,0 +1,64 @@
+# Serena E-commerce System - Refactoring Summary (Class-Based Architecture)
+
+I have refactored the Serena project from a raw SQL-in-page approach to a modern, 3-tier class-based architecture. This improves security, maintainability, and code organization.
+
+## 1. Architectural Changes
+
+### Tier 1: Entities (serena.Entities)
+These are simple C# classes that represent your database tables. They allow the system to pass data around as objects rather than raw database rows.
+*   **Product.cs**: Holds product details (Name, Price, Stock, etc.).
+*   **Member.cs**: For user account data (Username, Email, etc.).
+*   **Order.cs & OrderItem.cs**: Manages shopping orders and the list of items within them.
+*   **Category.cs**: Category information.
+
+### Tier 2: Data Access Layer (serena.DAL)
+This layer contains all the SQL queries. No SQL code should exist outside of these files.
+*   **ProductDAL.cs**: Fetches products for the Home page, Product details, and Search.
+*   **MemberDAL.cs**: Handles login lookups and user registration.
+*   **OrderDAL.cs**: Saves new orders and item lists to the database.
+
+### Tier 3: Business Logic Layer (serena.BLL)
+This layer manages the "rules" of your application.
+*   **ProductBLL.cs**: Validates stock levels before adding to cart.
+*   **MemberBLL.cs**: Manages the authentication process.
+*   **OrderBLL.cs**: Handles the logic for placing an order (generating order codes, validation).
+
+---
+
+## 2. Updated User Pages
+
+The following pages have been updated to use the new architecture:
+
+1.  **Home Page (`Default.aspx`)**: 
+    *   Uses `ProductBLL` to dynamically load "New Arrivals" and "Top Picks".
+    *   No longer uses raw SQL strings in the code-behind.
+2.  **Product Detail Page (`Product.aspx`)**: 
+    *   Uses `ProductBLL` to load single products via ID or URL Slug.
+    *   Displays stock status and handles "Add to Cart" via the logic layer.
+
+---
+
+## 3. Recommended User Flow (Page List)
+
+For a complete user experience, the following pages comprise the core "User/Customer" journey:
+
+*   **Public Pages**:
+    *   `Default.aspx` - Home page (Product listings).
+    *   `Catalog.aspx` - Full product catalog/search.
+    *   `Product.aspx` - Detailed product information.
+    *   `Cart.aspx` - Shopping cart management.
+
+*   **User Account Pages**:
+    *   `Account/Login.aspx` - User authentication.
+    *   `Account/Register.aspx` - New user sign-up.
+    *   `Account/Profile.aspx` - Manage personal info and addresses.
+    *   `Account/Orders.aspx` - View purchase history.
+
+*   **Checkout Process**:
+    *   `Account/Checkout.aspx` - Finalize order (Shipping & Payment).
+    *   `Account/OrderSuccess.aspx` - Confirmation page.
+
+---
+
+## 🛠️ Technical Note (C# Compatibility)
+The code has been specifically written to be compatible with older C# versions (avoiding $ interpolation and newer property initializers) to ensure it runs correctly in your environment.

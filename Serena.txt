@@ -1,0 +1,176 @@
+CREATE TABLE [dbo].[admins] (
+    [id]               INT           IDENTITY (1, 1) NOT NULL,
+    [full_name]        VARCHAR (255) NULL,
+    [username]         VARCHAR (255) NOT NULL,
+    [password]         VARCHAR (255) NOT NULL,
+    [role]             VARCHAR (50)  NULL,
+    [persistent_token] VARCHAR (64)  NULL,
+    [token_expires]    DATETIME2 (0) NULL,
+    [created_at]       DATETIME2 (0) DEFAULT (getdate()) NOT NULL,
+    [updated_at]       DATETIME2 (0) DEFAULT (getdate()) NOT NULL,
+    PRIMARY KEY CLUSTERED ([id] ASC)
+);
+
+
+GO
+CREATE UNIQUE NONCLUSTERED INDEX [UQ_admins_username]
+    ON [dbo].[admins]([username] ASC);
+
+CREATE TABLE [dbo].[categories] (
+    [id]   INT           IDENTITY (1, 1) NOT NULL,
+    [name] VARCHAR (255) NOT NULL,
+    PRIMARY KEY CLUSTERED ([id] ASC)
+);
+
+CREATE TABLE [dbo].[products] (
+    [id]          INT             IDENTITY (1, 1) NOT NULL,
+    [category_id] INT             NOT NULL,
+    [name]        VARCHAR (255)   NOT NULL,
+    [description] VARCHAR (MAX)   NOT NULL,
+    [stock]       INT             DEFAULT ((0)) NOT NULL,
+    [price]       DECIMAL (10, 2) NOT NULL,
+    [image]       VARCHAR (255)   NULL,
+    [is_show]     BIT             DEFAULT ((1)) NOT NULL,
+    [created_at]  DATETIME2 (0)   DEFAULT (getdate()) NOT NULL,
+    [updated_at]  DATETIME2 (0)   DEFAULT (getdate()) NOT NULL,
+    PRIMARY KEY CLUSTERED ([id] ASC),
+    CONSTRAINT [FK_products_categories] FOREIGN KEY ([category_id]) REFERENCES [dbo].[categories] ([id])
+);
+
+
+
+CREATE TABLE [dbo].[members] (
+    [id]               INT           IDENTITY (1, 1) NOT NULL,
+    [full_name]        VARCHAR (255) NULL,
+    [username]         VARCHAR (255) NOT NULL,
+    [email]            VARCHAR (255) NOT NULL,
+    [password]         VARCHAR (255) NOT NULL,
+    [phone]            VARCHAR (50)  NULL,
+    [created_at]       DATETIME2 (0) DEFAULT (getdate()) NOT NULL,
+    [updated_at]       DATETIME2 (0) DEFAULT (getdate()) NOT NULL,
+    PRIMARY KEY CLUSTERED ([id] ASC)
+);
+
+
+GO
+CREATE UNIQUE NONCLUSTERED INDEX [UQ_members_username]
+    ON [dbo].[members]([username] ASC);
+
+
+GO
+CREATE UNIQUE NONCLUSTERED INDEX [UQ_members_email]
+    ON [dbo].[members]([email] ASC);
+
+CREATE TABLE [dbo].[member_addresses] (
+    [id]          INT           IDENTITY (1, 1) NOT NULL,
+    [member_id]   INT           NOT NULL,
+    [address]     VARCHAR (MAX) NULL,
+    [township]    VARCHAR (255) NULL,
+    [postal_code] VARCHAR (20)  NULL,
+    [city]        VARCHAR (100) NULL,
+    [state]       VARCHAR (100) NULL,
+    [country]     VARCHAR (100) NULL,
+    [is_default]  BIT           DEFAULT ((0)) NOT NULL,
+    [created_at]  DATETIME2 (0) DEFAULT (getdate()) NOT NULL,
+    [updated_at]  DATETIME2 (0) DEFAULT (getdate()) NOT NULL,
+    PRIMARY KEY CLUSTERED ([id] ASC),
+    CONSTRAINT [FK_member_addresses_members] FOREIGN KEY ([member_id]) REFERENCES [dbo].[members] ([id])
+);
+
+
+
+CREATE TABLE [dbo].[feedbacks] (
+    [id]          INT           IDENTITY (1, 1) NOT NULL,
+    [member_id]   INT           NULL,
+    [admin_id]    INT           NULL,
+    [name]        VARCHAR (255) NULL,
+    [email]       VARCHAR (255) NULL,
+    [title]       VARCHAR (255) NOT NULL,
+    [message]     VARCHAR (MAX) NOT NULL,
+    [reply]       VARCHAR (MAX) NULL,
+    [is_resolved] BIT           DEFAULT ((0)) NOT NULL,
+    [created_at]  DATETIME2 (0) DEFAULT (getdate()) NOT NULL,
+    [updated_at]  DATETIME2 (0) DEFAULT (getdate()) NOT NULL,
+    PRIMARY KEY CLUSTERED ([id] ASC),
+    CONSTRAINT [FK_feedbacks_admins] FOREIGN KEY ([admin_id]) REFERENCES [dbo].[admins] ([id]),
+    CONSTRAINT [FK_feedbacks_members] FOREIGN KEY ([member_id]) REFERENCES [dbo].[members] ([id])
+);
+
+
+CREATE TABLE [dbo].[payment_methods] (
+    [id]         INT           IDENTITY (1, 1) NOT NULL,
+    [name]       VARCHAR (100) NOT NULL,
+    [is_use]     BIT           DEFAULT ((1)) NOT NULL,
+    [created_at] DATETIME2 (0) DEFAULT (getdate()) NOT NULL,
+    [updated_at] DATETIME2 (0) DEFAULT (getdate()) NOT NULL,
+    PRIMARY KEY CLUSTERED ([id] ASC),
+    CONSTRAINT [CK_payment_methods_name] CHECK ([name] = 'Cash On Delivery'
+                                                    OR [name] = 'Card'
+                                                    OR [name] = 'Bank')
+);
+
+
+GO
+CREATE UNIQUE NONCLUSTERED INDEX [UQ_payment_methods_name]
+    ON [dbo].[payment_methods]([name] ASC);
+
+
+
+
+CREATE TABLE [dbo].[orders] (
+    [id]           INT             IDENTITY (1, 1) NOT NULL,
+    [order_code]   VARCHAR (50)    NOT NULL,
+    [member_id]    INT             NOT NULL,
+    [ship_name]    VARCHAR (255)   NULL,
+    [ship_phone]   VARCHAR (50)    NULL,
+    [status]       VARCHAR (50)    NULL,
+    [total_qty]    INT             NOT NULL,
+    [total_amount] DECIMAL (10, 2) NOT NULL,
+    [payment]      VARCHAR (255)   NOT NULL,
+    [order_date]   DATETIME2 (0)   DEFAULT (getdate()) NOT NULL,
+    [created_at]   DATETIME2 (0)   DEFAULT (getdate()) NOT NULL,
+    [updated_at]   DATETIME2 (0)   DEFAULT (getdate()) NOT NULL,
+    PRIMARY KEY CLUSTERED ([id] ASC),
+    CONSTRAINT [UQ_orders_order_code] UNIQUE NONCLUSTERED ([order_code] ASC),
+    CONSTRAINT [FK_orders_members] FOREIGN KEY ([member_id]) REFERENCES [dbo].[members] ([id])
+);
+
+CREATE TABLE [dbo].[order_items] (
+    [id]         INT             IDENTITY (1, 1) NOT NULL,
+    [order_id]   INT             NOT NULL,
+    [product_id] INT             NOT NULL,
+    [quantity]   INT             NOT NULL,
+    [amount]     DECIMAL (10, 2) NOT NULL,
+    [created_at] DATETIME2 (0)   DEFAULT (getdate()) NOT NULL,
+    [updated_at] DATETIME2 (0)   DEFAULT (getdate()) NOT NULL,
+    PRIMARY KEY CLUSTERED ([id] ASC),
+    CONSTRAINT [FK_order_items_orders] FOREIGN KEY ([order_id]) REFERENCES [dbo].[orders] ([id]),
+    CONSTRAINT [FK_order_items_products] FOREIGN KEY ([product_id]) REFERENCES [dbo].[products] ([id])
+);
+
+CREATE TABLE [dbo].[order_addresses] (
+    [id]          INT           IDENTITY (1, 1) NOT NULL,
+    [order_id]    INT           NOT NULL,
+    [address]     VARCHAR (MAX) NULL,
+    [township]    VARCHAR (255) NULL,
+    [postal_code] VARCHAR (20)  NULL,
+    [city]        VARCHAR (100) NULL,
+    [state]       VARCHAR (100) NULL,
+    [country]     VARCHAR (100) NULL,
+    [created_at]  DATETIME2 (0) DEFAULT (getdate()) NOT NULL,
+    [updated_at]  DATETIME2 (0) DEFAULT (getdate()) NOT NULL,
+    PRIMARY KEY CLUSTERED ([id] ASC),
+    CONSTRAINT [FK_order_addresses_orders] FOREIGN KEY ([order_id]) REFERENCES [dbo].[orders] ([id])
+);
+
+CREATE TABLE [dbo].[order_logs] (
+    [id]         INT           IDENTITY (1, 1) NOT NULL,
+    [order_id]   INT           NOT NULL,
+    [status]     VARCHAR (50)  NOT NULL,
+    [admin_id]   INT           NOT NULL,
+    [created_at] DATETIME2 (0) DEFAULT (getdate()) NOT NULL,
+    [updated_at] DATETIME2 (0) DEFAULT (getdate()) NOT NULL,
+    PRIMARY KEY CLUSTERED ([id] ASC),
+    CONSTRAINT [FK_order_logs_orders] FOREIGN KEY ([order_id]) REFERENCES [dbo].[orders] ([id]),
+    CONSTRAINT [FK_order_logs_admins] FOREIGN KEY ([admin_id]) REFERENCES [dbo].[admins] ([id])
+);

@@ -1,0 +1,34 @@
+2026-04-12 19:55:26Z Email skipped (SmtpHost not configured). To=pukarchalise52@gmail.com, Subject=New order received - SS-20260413-97941
+2026-04-12 19:55:26Z Email skipped (SmtpHost not configured). To=pukarchalise52@gmail.com, Subject=Order confirmation - SS-20260413-97941
+2026-04-13 00:36:20Z Email skipped (SmtpHost not configured). To=pukarchalise52@gmail.com, Subject=Order status update - SS-20260413-97941
+2026-04-13 01:14:23Z Email skipped (SmtpHost not configured). To=pukarchalise52@gmail.com, Subject=New order received - SS-20260413-30315
+2026-04-13 01:14:23Z Email skipped (SmtpHost not configured). To=pukarchalise52@gmail.com, Subject=Order confirmation - SS-20260413-30315
+2026-04-13 01:15:05Z Email skipped (SmtpHost not configured). To=pukarchalise52@gmail.com, Subject=New order received - SS-20260413-26148
+2026-04-13 01:15:05Z Email skipped (SmtpHost not configured). To=pukarchalise52@gmail.com, Subject=Order confirmation - SS-20260413-26148
+2026-04-13 01:16:24Z Email skipped (SmtpHost not configured). To=pukarchalise52@gmail.com, Subject=Order status update - SS-20260413-26148
+2026-04-13 01:28:48Z Email skipped (SmtpHost not configured). To=pukarchalise52@gmail.com, Subject=New order received - SS-20260413-24162
+2026-04-13 01:28:48Z Email skipped (SmtpHost not configured). To=pukarchalise52@gmail.com, Subject=Order confirmation - SS-20260413-24162
+2026-04-13 02:15:56Z Email skipped (SmtpHost not configured). To=pukarchalise52@gmail.com, Subject=New order received - SS-20260413-98564
+2026-04-13 02:15:56Z Email skipped (SmtpHost not configured). To=pukarchalise52@gmail.com, Subject=Order confirmation - SS-20260413-98564
+2026-04-13 02:16:29Z Email skipped (SmtpHost not configured). To=pukarchalise52@gmail.com, Subject=New order received - SS-20260413-77311
+2026-04-13 02:16:29Z Email skipped (SmtpHost not configured). To=pukarchalise52@gmail.com, Subject=Order confirmation - SS-20260413-77311
+2026-04-13 02:31:10Z Email skipped (SmtpHost not configured). To=pukarchalise52@gmail.com, Subject=New order received - SS-20260413-81193
+2026-04-13 02:31:10Z Email skipped (SmtpHost not configured). To=pukarchalise52@gmail.com, Subject=Order confirmation - SS-20260413-81193
+2026-04-13 02:57:13Z Email skipped (SmtpHost not configured). To=pukarchalise52@gmail.com, Subject=New order received - SS-20260413-90562
+2026-04-13 02:57:13Z Email skipped (SmtpHost not configured). To=pukarchalise52@gmail.com, Subject=Order confirmation - SS-20260413-90562
+2026-04-13 04:50:37Z Email skipped (SmtpHost not configured). To=pukarchalise52@gmail.com, Subject=New order received - SS-20260413-98830
+2026-04-13 04:50:37Z Email skipped (SmtpHost not configured). To=pukarchalise52@gmail.com, Subject=Order confirmation - SS-20260413-98830
+2026-04-13 05:37:45Z Email skipped (SmtpHost not configured). To=pukarchalise52@gmail.com, Subject=New order received - SS-20260413-21794
+2026-04-13 05:37:45Z Email skipped (SmtpHost not configured). To=pukarchalise52@gmail.com, Subject=Order confirmation - SS-20260413-21794
+2026-04-13 11:00:29Z Email skipped (SmtpHost not configured). To=pukarchalise52@gmail.com, Subject=New order received - SS-20260413-55246
+2026-04-13 11:00:29Z Email skipped (SmtpHost not configured). To=pukarchalise52@gmail.com, Subject=Order confirmation - SS-20260413-55246
+2026-04-13 11:01:51Z Email skipped (SmtpHost not configured). To=pukarchalise52@gmail.com, Subject=Order status update - SS-20260413-55246
+2026-04-13 11:01:55Z Email skipped (SmtpHost not configured). To=pukarchalise52@gmail.com, Subject=Order status update - SS-20260413-55246
+2026-04-13 11:02:00Z Email skipped (SmtpHost not configured). To=pukarchalise52@gmail.com, Subject=Order status update - SS-20260413-55246
+2026-04-13 12:11:14Z Email skipped (SMTP credentials not configured). To=pukarchalise52@gmail.com, Subject=New order received - SS-20260413-12916
+2026-04-13 12:11:14Z Email skipped (SMTP credentials not configured). To=pukarchalise52@gmail.com, Subject=Order confirmation - SS-20260413-12916
+2026-04-13 12:17:06Z Email skipped (SMTP credentials not configured). To=pukarchalise52@gmail.com, Subject=New order received - SS-20260413-71862
+2026-04-13 12:17:06Z Email skipped (SMTP credentials not configured). To=pukarchalise52@gmail.com, Subject=Order confirmation - SS-20260413-71862
+2026-04-13 12:18:11Z Email send failed: The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.7.0 Authentication Required. For more information, go to | To=pukarchalise52@gmail.com | Subject=Order status update - SS-20260413-71862
+2026-04-13 12:18:23Z Email send failed: The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.7.0 Authentication Required. For more information, go to | To=pukarchalise52@gmail.com | Subject=Order status update - SS-20260413-71862
+2026-04-13 12:18:32Z Email send failed: The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.7.0 Authentication Required. For more information, go to | To=pukarchalise52@gmail.com | Subject=Order status update - SS-20260413-71862

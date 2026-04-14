@@ -76,7 +76,6 @@ namespace serena
             SetActive("navProducts", path.EndsWith("/admin/products.aspx"));
             bool isOrders = path.EndsWith("/admin/orders.aspx") || path.EndsWith("/admin/orderview.aspx");
             SetActive("navOrders", isOrders);
-            SetActive("navNotifications", path.EndsWith("/admin/notifications.aspx"));
             SetActive("navPaymentMethods", path.EndsWith("/admin/paymentmethods.aspx"));
             SetActive("navFeedbacks", path.EndsWith("/admin/feedbacks.aspx"));
             SetActive("navReports", path.EndsWith("/admin/reports.aspx"));

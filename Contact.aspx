@@ -7,7 +7,7 @@
 <asp:Content ID="m" ContentPlaceHolderID="MainContent" runat="server">
 
     <!-- Hero Header -->
-    <section class="bg-off-white py-20 mb-12">
+    <section class="eg-surface py-20 mb-12">
         <div class="container mx-auto px-4 lg:px-8 text-center">
             <h1 class="text-4xl md:text-5xl font-serif mb-4">Connect with us</h1>
             <p class="text-gray-400 max-w-2xl mx-auto leading-relaxed">Whether you have a question about our collection, need styling advice, or just want to share your thoughts, we're here to help.</p>
@@ -17,28 +17,28 @@
     <div class="container mx-auto px-4 lg:px-8 pb-32">
         <!-- Contact Cards -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-24">
-            <div class="bg-white border border-gray-100 p-10 text-center hover:shadow-xl transition-shadow duration-500">
+            <div class="bg-white border border-gray-100 p-10 text-center hover:shadow-xl transition-shadow duration-500 eg-card rounded-xl">
                 <div class="w-12 h-12 bg-off-white rounded-full flex items-center justify-center mx-auto mb-6 text-primary">
                     <i class="fa-solid fa-location-dot"></i>
                 </div>
                 <h3 class="text-[10px] uppercase tracking-widest font-bold mb-4">Our Studio</h3>
                 <p class="text-sm text-gray-500">128 Jalan Ampang,<br/>Kathmandu Nepal, 44600</p>
             </div>
-            <div class="bg-white border border-gray-100 p-10 text-center hover:shadow-xl transition-shadow duration-500">
+            <div class="bg-white border border-gray-100 p-10 text-center hover:shadow-xl transition-shadow duration-500 eg-card rounded-xl">
                 <div class="w-12 h-12 bg-off-white rounded-full flex items-center justify-center mx-auto mb-6 text-primary">
                     <i class="fa-solid fa-envelope"></i>
                 </div>
                 <h3 class="text-[10px] uppercase tracking-widest font-bold mb-4">Email Us</h3>
                 <p class="text-sm text-gray-500">egadget@support.com<br/>egadget@support.com</p>
             </div>
-            <div class="bg-white border border-gray-100 p-10 text-center hover:shadow-xl transition-shadow duration-500">
+            <div class="bg-white border border-gray-100 p-10 text-center hover:shadow-xl transition-shadow duration-500 eg-card rounded-xl">
                 <div class="w-12 h-12 bg-off-white rounded-full flex items-center justify-center mx-auto mb-6 text-primary">
                     <i class="fa-solid fa-phone"></i>
                 </div>
                 <h3 class="text-[10px] uppercase tracking-widest font-bold mb-4">Call Us</h3>
                 <p class="text-sm text-gray-500">9865513209<br/>Mon-Fri, 9am - 6pm</p>
             </div>
-            <div class="bg-white border border-gray-100 p-10 text-center hover:shadow-xl transition-shadow duration-500">
+            <div class="bg-white border border-gray-100 p-10 text-center hover:shadow-xl transition-shadow duration-500 eg-card rounded-xl">
                 <div class="w-12 h-12 bg-off-white rounded-full flex items-center justify-center mx-auto mb-6 text-primary">
                     <i class="fa-solid fa-share-nodes"></i>
                 </div>

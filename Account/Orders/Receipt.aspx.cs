@@ -148,6 +148,7 @@ ORDER BY oi.id ASC", Db.P("@oid", orderId));
         {
             string v = (s ?? "").Trim().ToLowerInvariant();
             if (v == "paid") return "accepted";
+            if (v == "processing") return "accepted";
             if (v == "delivering") return "inprocess";
             if (v == "completed") return "delivered";
             return v;
@@ -161,14 +162,9 @@ ORDER BY oi.id ASC", Db.P("@oid", orderId));
                 return "Pay cash to the delivery rider when your order arrives. Please keep the recipient phone active for delivery confirmation.";
             }
 
-            if (p == "card")
+            if (p == "esewa")
             {
-                return "Card payments are recorded for verification. Please keep your card available if the delivery team needs to confirm payment details.";
-            }
-
-            if (p == "bank")
-            {
-                return "Transfer the total amount to the bank account shared by the store and keep the transaction slip until your order is verified.";
+                return "Your payment was processed through eSewa. Keep the transaction reference for support and reconciliation.";
             }
 
             return "Payment will be processed according to the selected method.";

@@ -35,11 +35,11 @@
 
       <div id="alertMsg" runat="server" class="mb-8"></div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 eg-card bg-white rounded-2xl p-6 md:p-8">
         <div class="lg:col-span-1 space-y-12">
           <section>
             <h3 class="font-serif text-2xl mb-8 border-b border-gray-100 pb-4">Summary</h3>
-            <div class="bg-off-white p-8 border border-gray-100 space-y-6">
+            <div class="bg-off-white p-8 border border-gray-100 space-y-6 eg-card rounded-xl">
               <div>
                 <label class="block text-[10px] uppercase tracking-widest text-gray-400 font-bold mb-2">Current Status</label>
                 <span id="litOrderStatus" runat="server" class="text-[10px] uppercase tracking-widest font-bold px-4 py-2 rounded-full inline-block"></span>
@@ -70,7 +70,7 @@
         <div class="lg:col-span-2 space-y-12">
           <section>
             <h3 class="font-serif text-2xl mb-8 border-b border-gray-100 pb-4">Shipping</h3>
-            <div class="bg-white border border-gray-100 shadow-sm p-8">
+            <div class="bg-white border border-gray-100 shadow-sm p-8 eg-card rounded-xl">
               <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div>
                   <div class="block text-[10px] uppercase tracking-widest text-gray-400 font-bold mb-2">Recipient</div>
@@ -89,7 +89,7 @@
 
           <section>
             <h3 class="font-serif text-2xl mb-8 border-b border-gray-100 pb-4">Items</h3>
-            <div class="overflow-x-auto bg-white border border-gray-100 shadow-sm p-8">
+            <div class="overflow-x-auto bg-white border border-gray-100 shadow-sm p-8 eg-card rounded-xl">
               <asp:Literal ID="litItemsTable" runat="server" />
             </div>
           </section>

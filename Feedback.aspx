@@ -6,7 +6,7 @@
 
 <asp:Content ID="m" ContentPlaceHolderID="MainContent" runat="server">
     
-    <section class="bg-off-white py-12 mb-12">
+    <section class="eg-surface py-12 mb-12">
         <div class="container mx-auto px-4 lg:px-8">
             <h1 class="text-4xl font-serif mb-2">Thoughts & Feedback</h1>
             <nav class="flex text-xs uppercase tracking-widest text-gray-400">
@@ -24,7 +24,7 @@
         <div class="flex flex-col lg:flex-row gap-16">
             <!-- Form Section -->
             <div class="w-full lg:w-1/2">
-                <div class="bg-white border border-gray-100 p-10 shadow-sm">
+                <div class="bg-white border border-gray-100 p-10 shadow-sm eg-card rounded-xl">
                     <h2 class="text-2xl font-serif mb-8 border-b border-gray-100 pb-4">Share with us</h2>
                     
                     <div class="space-y-6">
@@ -48,7 +48,7 @@
                             <textarea id="txtMsg" runat="server" rows="6" class="w-full bg-off-white border border-transparent px-4 py-4 text-sm focus:border-primary focus:bg-white focus:outline-none transition-all resize-none" placeholder="Tell us more..."></textarea>
                         </div>
 
-                        <button id="btnSend" runat="server" class="w-full bg-text-dark text-white py-5 text-xs uppercase tracking-[0.2em] font-bold hover:bg-primary transition-all duration-500" onserverclick="btnSend_ServerClick">
+                        <button id="btnSend" runat="server" data-loading-text="Submitting..." class="w-full bg-text-dark text-white py-5 text-xs uppercase tracking-[0.2em] font-bold hover:bg-primary transition-all duration-500" onserverclick="btnSend_ServerClick">
                             Submit Feedback
                         </button>
                     </div>
@@ -64,7 +64,7 @@
                     </div>
 
                     <!-- Filters -->
-                    <div class="bg-off-white p-8 mb-10 space-y-6">
+                    <div class="bg-off-white p-8 mb-10 space-y-6 eg-card rounded-xl">
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                             <div>
                                 <label class="text-[10px] uppercase tracking-widest font-bold text-gray-400 mb-2 block" for="txtFilterQ">Keyword</label>

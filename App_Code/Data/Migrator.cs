@@ -31,6 +31,36 @@ BEGIN
 END;
 ");
 
+            // v6: payment transaction tracking table
+            var v6 = new StringBuilder();
+            v6.Append(@"
+IF NOT EXISTS (SELECT 1 FROM sys.tables WHERE name='payment_transactions' AND schema_id=SCHEMA_ID('dbo'))
+BEGIN
+  CREATE TABLE dbo.payment_transactions(
+    id INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+    order_id INT NOT NULL,
+    order_code VARCHAR(50) NOT NULL,
+    payment_method VARCHAR(100) NOT NULL,
+    transaction_ref VARCHAR(120) NULL,
+    provider_status VARCHAR(50) NULL,
+    amount DECIMAL(10,2) NULL,
+    raw_response VARCHAR(MAX) NULL,
+    created_at DATETIME2(0) NOT NULL DEFAULT (GETDATE()),
+    updated_at DATETIME2(0) NOT NULL DEFAULT (GETDATE())
+  );
+END;
+
+IF NOT EXISTS (SELECT 1 FROM sys.foreign_keys WHERE name='FK_payment_transactions_orders')
+  ALTER TABLE dbo.payment_transactions WITH CHECK
+    ADD CONSTRAINT FK_payment_transactions_orders FOREIGN KEY(order_id) REFERENCES dbo.orders(id);
+
+IF NOT EXISTS (SELECT 1 FROM sys.indexes WHERE name='IX_payment_transactions_order_id' AND object_id=OBJECT_ID('dbo.payment_transactions'))
+  CREATE NONCLUSTERED INDEX IX_payment_transactions_order_id ON dbo.payment_transactions(order_id, id DESC);
+
+IF NOT EXISTS (SELECT 1 FROM sys.indexes WHERE name='IX_payment_transactions_ref' AND object_id=OBJECT_ID('dbo.payment_transactions'))
+  CREATE NONCLUSTERED INDEX IX_payment_transactions_ref ON dbo.payment_transactions(transaction_ref);
+");
+
             // admins
             sb.Append(@"
 IF NOT EXISTS (SELECT 1 FROM sys.tables WHERE name='admins' AND schema_id=SCHEMA_ID('dbo'))
@@ -152,7 +182,7 @@ BEGIN
     ALTER TABLE dbo.payment_methods DROP CONSTRAINT CK_payment_methods_name;
 
   ALTER TABLE dbo.payment_methods WITH CHECK ADD CONSTRAINT CK_payment_methods_name
-    CHECK ([name] IN ('Cash On Delivery','Card','Bank','eSewa'));
+    CHECK ([name] IN ('Cash On Delivery','eSewa'));
 END;
 IF NOT EXISTS (SELECT 1 FROM sys.indexes WHERE name='UQ_payment_methods_name' AND object_id=OBJECT_ID('dbo.payment_methods'))
   CREATE UNIQUE NONCLUSTERED INDEX UQ_payment_methods_name ON dbo.payment_methods([name]);
@@ -313,7 +343,7 @@ BEGIN
 END;
 
 ALTER TABLE dbo.payment_methods WITH CHECK ADD CONSTRAINT CK_payment_methods_name
-    CHECK ([name] IN ('Cash On Delivery','Card','Bank','eSewa'));
+    CHECK ([name] IN ('Cash On Delivery','eSewa'));
 
 IF NOT EXISTS (SELECT 1 FROM dbo.payment_methods WHERE name = 'eSewa')
 BEGIN
@@ -354,12 +384,26 @@ IF NOT EXISTS (SELECT 1 FROM sys.foreign_keys WHERE name='FK_notifications_order
   ALTER TABLE dbo.notifications WITH CHECK ADD CONSTRAINT FK_notifications_orders FOREIGN KEY(order_id) REFERENCES dbo.orders(id);
 ");
 
+            // v5: restrict payment methods to cash on delivery + eSewa
+            var v5 = new StringBuilder();
+            v5.Append(@"
+IF EXISTS (SELECT 1 FROM sys.check_constraints WHERE name='CK_payment_methods_name')
+BEGIN
+  ALTER TABLE dbo.payment_methods DROP CONSTRAINT CK_payment_methods_name;
+END;
+
+ALTER TABLE dbo.payment_methods WITH CHECK ADD CONSTRAINT CK_payment_methods_name
+    CHECK ([name] IN ('Cash On Delivery','eSewa'));
+");
+
             return new[]
             {
                 new Migration { Version = 1, Name = "create_core_tables", Sql = sb.ToString() },
                 new Migration { Version = 2, Name = "add_esewa_payment", Sql = v2.ToString() },
                 new Migration { Version = 3, Name = "seed_default_admin", Sql = v3.ToString() },
-                new Migration { Version = 4, Name = "add_notifications", Sql = v4.ToString() }
+                new Migration { Version = 4, Name = "add_notifications", Sql = v4.ToString() },
+                new Migration { Version = 5, Name = "restrict_payment_methods", Sql = v5.ToString() },
+                new Migration { Version = 6, Name = "add_payment_transactions", Sql = v6.ToString() }
             };
         }
 

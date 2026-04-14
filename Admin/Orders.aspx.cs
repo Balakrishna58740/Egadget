@@ -251,7 +251,7 @@ LEFT JOIN members m ON m.id = o.member_id");
         private static void AppendStatusFilter(string status, List<SqlParameter> parms, ref string where)
         {
             string s = (status ?? "").Trim().ToLowerInvariant();
-            if (s == "accepted") where += " AND LOWER(COALESCE(o.status,'')) IN ('accepted','paid') ";
+            if (s == "accepted") where += " AND LOWER(COALESCE(o.status,'')) IN ('accepted','paid','processing') ";
             else if (s == "inprocess") where += " AND LOWER(COALESCE(o.status,'')) IN ('inprocess','delivering') ";
             else if (s == "delivered") where += " AND LOWER(COALESCE(o.status,'')) IN ('delivered','completed') ";
             else
@@ -277,7 +277,7 @@ GROUP BY LOWER(COALESCE(o.status,''));", CloneParams(baseParams));
                 string s = Convert.ToString(r["s"] ?? "").Trim();
                 int c = Convert.ToInt32(r["c"]);
                 if (string.IsNullOrEmpty(s)) s = "unknown";
-                if (s == "paid") s = "accepted";
+                if (s == "paid" || s == "processing") s = "accepted";
                 else if (s == "delivering") s = "inprocess";
                 else if (s == "completed") s = "delivered";
 
@@ -340,7 +340,7 @@ GROUP BY LOWER(COALESCE(o.status,''));", CloneParams(baseParams));
             
             string cls = "border-gray-200 text-gray-300";
             if (s == "pending") cls = "border-orange-200 text-orange-400";
-            else if (s == "accepted" || s == "paid") cls = "border-green-200 text-green-500";
+            else if (s == "accepted" || s == "paid" || s == "processing") cls = "border-green-200 text-green-500";
             else if (s == "inprocess" || s == "delivering") cls = "border-blue-200 text-blue-400";
             else if (s == "delivered" || s == "completed") cls = "border-primary text-primary";
             else if (s == "canceled") cls = "border-red-200 text-red-500";

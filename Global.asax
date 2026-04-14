@@ -95,14 +95,19 @@ BEGIN
   );
 END;
 
+IF EXISTS (SELECT 1 FROM sys.check_constraints WHERE name='CK_payment_methods_name' AND parent_object_id = OBJECT_ID('dbo.payment_methods'))
+  ALTER TABLE dbo.payment_methods DROP CONSTRAINT CK_payment_methods_name;
+
+IF NOT EXISTS (SELECT 1 FROM sys.check_constraints WHERE name='CK_payment_methods_name' AND parent_object_id = OBJECT_ID('dbo.payment_methods'))
+  ALTER TABLE dbo.payment_methods WITH CHECK ADD CONSTRAINT CK_payment_methods_name
+    CHECK ([name] IN ('Cash On Delivery', 'eSewa'));
+
 IF NOT EXISTS (SELECT 1 FROM dbo.payment_methods WHERE [name] = 'Cash On Delivery')
   INSERT INTO dbo.payment_methods ([name], is_use) VALUES ('Cash On Delivery', 1);
-IF NOT EXISTS (SELECT 1 FROM dbo.payment_methods WHERE [name] = 'Card')
-  INSERT INTO dbo.payment_methods ([name], is_use) VALUES ('Card', 1);
-IF NOT EXISTS (SELECT 1 FROM dbo.payment_methods WHERE [name] = 'Bank')
-  INSERT INTO dbo.payment_methods ([name], is_use) VALUES ('Bank', 1);
 IF NOT EXISTS (SELECT 1 FROM dbo.payment_methods WHERE [name] = 'eSewa')
   INSERT INTO dbo.payment_methods ([name], is_use) VALUES ('eSewa', 1);
+
+DELETE FROM dbo.payment_methods WHERE LOWER(LTRIM(RTRIM([name]))) NOT IN ('cash on delivery','esewa');
 ");
         }
         catch { /* best-effort schema bootstrap */ }

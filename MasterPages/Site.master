@@ -121,6 +121,9 @@
                     <a runat="server" href="~/About.aspx" class="text-xs uppercase tracking-widest font-medium">About</a>
                     <a runat="server" href="~/Contact.aspx" class="text-xs uppercase tracking-widest font-medium">Contact</a>
                     <a runat="server" href="~/Feedback.aspx" class="text-xs uppercase tracking-widest font-medium">Feedback</a>
+                    <a id="lnkMobileNotifications" runat="server" href="~/Account/Notifications.aspx" class="text-xs uppercase tracking-widest font-medium">Notifications</a>
+                    <a id="lnkMobileProfile" runat="server" href="~/Account/Profile.aspx" class="text-xs uppercase tracking-widest font-medium">My Account</a>
+                    <a id="lnkMobileLogin" runat="server" href="~/Account/Login.aspx" class="text-xs uppercase tracking-widest font-medium">Login</a>
                 </nav>
             </div>
         </header>
@@ -205,14 +208,21 @@
         // Header scroll effect
         window.addEventListener('scroll', function() {
             const header = document.getElementById('siteHeader');
+            if (!header) return;
+
+            const headerRow = header.querySelector('div > div');
             if (window.scrollY > 50) {
                 header.classList.add('py-0', 'shadow-sm');
-                header.querySelector('> div > div').classList.remove('h-24');
-                header.querySelector('> div > div').classList.add('h-16');
+                if (headerRow) {
+                    headerRow.classList.remove('h-24');
+                    headerRow.classList.add('h-16');
+                }
             } else {
                 header.classList.remove('py-0', 'shadow-sm');
-                header.querySelector('> div > div').classList.add('h-24');
-                header.querySelector('> div > div').classList.remove('h-16');
+                if (headerRow) {
+                    headerRow.classList.add('h-24');
+                    headerRow.classList.remove('h-16');
+                }
             }
         });
 
@@ -232,6 +242,29 @@
             userBtn.parentElement.addEventListener('mouseenter', () => userDropdown.classList.remove('hidden'));
             userBtn.parentElement.addEventListener('mouseleave', () => userDropdown.classList.add('hidden'));
         }
+
+        // Prevent duplicate submits for key actions
+        document.addEventListener('click', function (e) {
+            const btn = e.target.closest('[data-loading-text]');
+            if (!btn || btn.classList.contains('btn-loading')) return;
+            const text = btn.getAttribute('data-loading-text');
+            if (!text) return;
+
+            btn.classList.add('btn-loading');
+            if (btn.tagName === 'INPUT') btn.value = text;
+            else btn.textContent = text;
+        });
+
+        // Auto-dismiss non-critical alerts for cleaner UX
+        window.setTimeout(function () {
+            document.querySelectorAll('.alert-dismissible').forEach(function (el) {
+                el.style.transition = 'opacity 0.35s ease';
+                el.style.opacity = '0';
+                window.setTimeout(function () {
+                    if (el && el.parentNode) el.parentNode.removeChild(el);
+                }, 380);
+            });
+        }, 4500);
     </script>
 </body>
 </html>

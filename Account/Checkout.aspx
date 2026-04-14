@@ -19,7 +19,7 @@
             </asp:PlaceHolder>
 
             <asp:PlaceHolder ID="phCheckout" runat="server" Visible="false">
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 eg-card bg-white rounded-2xl p-6 md:p-8">
                     
                     <!-- Left: Shipping & Payment -->
                     <div class="lg:col-span-7 space-y-12">
@@ -77,7 +77,7 @@
                     <!-- Right: Order Summary Sticky -->
                     <div class="lg:col-span-5">
                         <div class="lg:sticky lg:top-32 space-y-6">
-                            <div class="bg-white border border-gray-100 shadow-xl p-8">
+                            <div class="bg-white border border-gray-100 shadow-xl p-8 eg-card rounded-2xl">
                                 <h3 class="font-serif text-2xl mb-8 border-b border-gray-100 pb-4">Summary</h3>
                                 
                                 <div class="max-h-[400px] overflow-y-auto mb-8 pr-2 custom-scrollbar">
@@ -101,6 +101,7 @@
 
                                 <asp:Button ID="btnPlaceOrder" runat="server" 
                                     Text="Place Order" 
+                                    data-loading-text="Placing Order..."
                                     CssClass="w-full bg-primary text-white py-5 text-sm uppercase tracking-widest font-bold hover:bg-primary/90 transition-all cursor-pointer shadow-lg shadow-primary/20" 
                                     OnClick="btnPlaceOrder_Click" 
                                     UseSubmitBehavior="false" />

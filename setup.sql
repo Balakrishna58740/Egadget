@@ -12,6 +12,22 @@ BEGIN
     );
 END;
 
+IF NOT EXISTS (SELECT 1 FROM sys.tables WHERE name = 'payment_transactions')
+BEGIN
+    CREATE TABLE dbo.payment_transactions(
+        id INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+        order_id INT NOT NULL,
+        order_code VARCHAR(50) NOT NULL,
+        payment_method VARCHAR(100) NOT NULL,
+        transaction_ref VARCHAR(120) NULL,
+        provider_status VARCHAR(50) NULL,
+        amount DECIMAL(10,2) NULL,
+        raw_response VARCHAR(MAX) NULL,
+        created_at DATETIME2(0) NOT NULL DEFAULT (GETDATE()),
+        updated_at DATETIME2(0) NOT NULL DEFAULT (GETDATE())
+    );
+END;
+
 IF NOT EXISTS (SELECT 1 FROM sys.tables WHERE name = 'products')
 BEGIN
     CREATE TABLE dbo.products(
@@ -27,6 +43,10 @@ BEGIN
         updated_at DATETIME2(0) NOT NULL DEFAULT (GETDATE())
     );
 END;
+
+IF NOT EXISTS (SELECT 1 FROM sys.foreign_keys WHERE name = 'FK_payment_transactions_orders')
+    ALTER TABLE dbo.payment_transactions WITH CHECK
+        ADD CONSTRAINT FK_payment_transactions_orders FOREIGN KEY(order_id) REFERENCES dbo.orders(id);
 
 IF NOT EXISTS (SELECT 1 FROM sys.tables WHERE name = 'notifications')
 BEGIN
@@ -72,7 +92,7 @@ IF EXISTS (SELECT 1 FROM sys.check_constraints WHERE name = 'CK_payment_methods_
 
 IF NOT EXISTS (SELECT 1 FROM sys.check_constraints WHERE name = 'CK_payment_methods_name' AND parent_object_id = OBJECT_ID('dbo.payment_methods'))
     ALTER TABLE dbo.payment_methods WITH CHECK ADD CONSTRAINT CK_payment_methods_name
-        CHECK ([name] IN ('Cash On Delivery', 'Card', 'Bank', 'eSewa'));
+        CHECK ([name] IN ('Cash On Delivery', 'eSewa'));
 
 IF NOT EXISTS (SELECT 1 FROM sys.tables WHERE name = 'members')
 BEGIN
@@ -203,9 +223,7 @@ VALUES ('Admin User', 'admin', '8D969EEF6ECAD3C29A3A629280E686CF0C3F5D5A86AFF3CA
 -- Payment methods used by checkout
 DELETE FROM dbo.payment_methods;
 INSERT INTO dbo.payment_methods ([name], is_use) VALUES ('Cash On Delivery', 1);
-INSERT INTO dbo.payment_methods ([name], is_use) VALUES ('Card', 1);
-INSERT INTO dbo.payment_methods ([name], is_use) VALUES ('Bank', 1);
 INSERT INTO dbo.payment_methods ([name], is_use) VALUES ('eSewa', 1);
 
 PRINT 'Database setup and seeding completed successfully.';
-this is what i am facing in that category The SqlParameter is already contained by another SqlParameterCollection.
+-- this is what i am facing in that category The SqlParameter is already contained by another SqlParameterCollection.

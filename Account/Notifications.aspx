@@ -4,7 +4,7 @@
 
 <asp:Content ID="m" ContentPlaceHolderID="MainContent" runat="server">
   <div class="container mx-auto px-4 py-12 max-w-5xl">
-    <div class="bg-white border border-gray-100 p-8 mb-6">
+    <div class="bg-white border border-gray-100 p-8 mb-6 eg-card rounded-2xl">
       <div class="flex items-center justify-between">
         <div>
           <h1 class="font-serif text-3xl">My Notifications</h1>
@@ -16,7 +16,7 @@
 
     <asp:Literal ID="litMsg" runat="server" />
 
-    <div class="bg-white border border-gray-100 overflow-hidden">
+    <div class="bg-white border border-gray-100 overflow-hidden eg-card rounded-2xl">
       <table class="w-full text-left">
         <thead>
           <tr class="text-[10px] uppercase tracking-widest text-gray-400 border-b border-gray-100 bg-off-white">
@@ -81,10 +81,11 @@
 
     private void BindRows(int memberId)
     {
-        var dt = Db.Query(@"SELECT TOP 100 id, title, body, is_read, created_at
-                            FROM dbo.notifications
-                            WHERE recipient_member_id=@mid
-                            ORDER BY created_at DESC, id DESC", Db.P("@mid", memberId));
+        var dt = Db.Query(@"SELECT TOP 100 n.id, n.title, n.body, n.is_read, n.created_at, o.order_code
+                            FROM dbo.notifications n
+                            LEFT JOIN dbo.orders o ON o.id = n.order_id
+                            WHERE n.recipient_member_id=@mid
+                            ORDER BY n.created_at DESC, n.id DESC", Db.P("@mid", memberId));
 
         var sb = new System.Text.StringBuilder();
         if (dt == null || dt.Rows.Count == 0)
@@ -97,6 +98,7 @@
             {
                 int id = Convert.ToInt32(r["id"]);
                 bool isRead = Convert.ToBoolean(r["is_read"]);
+                string orderCode = Convert.ToString(r["order_code"]);
                 string when = "-";
                 try { when = Convert.ToDateTime(r["created_at"]).ToString("yyyy-MM-dd HH:mm"); } catch { }
 
@@ -108,9 +110,12 @@
                 sb.Append("<td class='px-6 py-4 text-sm text-gray-500'>").Append(HttpUtility.HtmlEncode(Convert.ToString(r["body"]))).Append("</td>");
                 sb.Append("<td class='px-6 py-4 text-right'>");
                 if (!isRead)
-                    sb.Append("<a class='text-xs text-primary font-bold hover:underline' href='Notifications.aspx?read=").Append(id).Append("'>Mark read</a>");
+                    sb.Append("<a class='text-xs text-primary font-bold hover:underline mr-3' href='Notifications.aspx?read=").Append(id).Append("'>Mark read</a>");
                 else
-                    sb.Append("<span class='text-xs text-gray-300'>Read</span>");
+                    sb.Append("<span class='text-xs text-gray-300 mr-3'>Read</span>");
+
+                if (!string.IsNullOrWhiteSpace(orderCode))
+                    sb.Append("<a class='text-xs text-blue-700 font-bold hover:underline' href='Orders/Detail.aspx?code=").Append(HttpUtility.UrlEncode(orderCode)).Append("'>View order</a>");
                 sb.Append("</td></tr>");
             }
         }

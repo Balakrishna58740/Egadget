@@ -77,6 +77,23 @@ BEGIN
     read_at DATETIME2(0) NULL
   );
 END;
+
+IF COL_LENGTH('dbo.notifications', 'recipient_member_id') IS NULL
+  ALTER TABLE dbo.notifications ADD recipient_member_id INT NULL;
+IF COL_LENGTH('dbo.notifications', 'is_admin') IS NULL
+  ALTER TABLE dbo.notifications ADD is_admin BIT NOT NULL CONSTRAINT DF_notifications_is_admin DEFAULT(0);
+IF COL_LENGTH('dbo.notifications', 'order_id') IS NULL
+  ALTER TABLE dbo.notifications ADD order_id INT NULL;
+IF COL_LENGTH('dbo.notifications', 'title') IS NULL
+  ALTER TABLE dbo.notifications ADD title VARCHAR(200) NOT NULL CONSTRAINT DF_notifications_title DEFAULT('Notification');
+IF COL_LENGTH('dbo.notifications', 'body') IS NULL
+  ALTER TABLE dbo.notifications ADD body VARCHAR(MAX) NULL;
+IF COL_LENGTH('dbo.notifications', 'is_read') IS NULL
+  ALTER TABLE dbo.notifications ADD is_read BIT NOT NULL CONSTRAINT DF_notifications_is_read DEFAULT(0);
+IF COL_LENGTH('dbo.notifications', 'created_at') IS NULL
+  ALTER TABLE dbo.notifications ADD created_at DATETIME2(0) NOT NULL CONSTRAINT DF_notifications_created_at DEFAULT(GETDATE());
+IF COL_LENGTH('dbo.notifications', 'read_at') IS NULL
+  ALTER TABLE dbo.notifications ADD read_at DATETIME2(0) NULL;
 ");
         }
         catch { }

@@ -6,7 +6,7 @@
 
 <asp:Content ID="m" ContentPlaceHolderID="MainContent" runat="server">
     
-    <section class="bg-off-white py-12 mb-12">
+    <section class="eg-surface py-12 mb-12">
         <div class="container mx-auto px-4 lg:px-8">
             <h1 class="text-4xl font-serif mb-2">Shopping Cart</h1>
             <nav class="flex text-xs uppercase tracking-widest text-gray-400">
@@ -36,7 +36,7 @@
         <asp:Panel ID="pnlCart" runat="server" Visible="false">
             <div class="flex flex-col xl:flex-row gap-16">
                 <!-- Items List -->
-                <div class="w-full xl:w-2/3">
+                <div class="w-full xl:w-2/3 eg-card bg-white rounded-2xl p-6 md:p-8">
                     <div class="border-b border-gray-100 pb-6 mb-10 hidden md:flex items-center text-[10px] uppercase tracking-[0.2em] font-bold text-gray-400">
                         <div class="w-1/2">Product</div>
                         <div class="w-1/6 text-center">Price</div>
@@ -54,6 +54,7 @@
                                             <a href='<%# GetProductUrl(Eval("name")) %>'>
                                                 <img src='<%# GetProductImageUrl(Eval("image"), Eval("name")) %>'
                                                      alt='<%# Html(Eval("name")) %>'
+                                                     loading="lazy" decoding="async"
                                                      class="w-full h-full object-cover" />
                                             </a>
                                         </div>
@@ -118,7 +119,7 @@
 
                 <!-- Order Summary Sidebar -->
                 <div class="w-full xl:w-1/3">
-                    <div class="bg-off-white p-10 sticky top-32">
+                    <div class="eg-card bg-off-white p-10 sticky top-32 rounded-2xl">
                         <h2 class="text-2xl font-serif mb-8 pb-6 border-b border-gray-200">Order Summary</h2>
                         
                         <div class="space-y-6 mb-8 text-sm">

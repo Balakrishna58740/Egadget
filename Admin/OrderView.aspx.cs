@@ -136,6 +136,7 @@ WHERE o.id=@id", Db.P("@id", orderId));
         {
             string v = (s ?? "").Trim().ToLowerInvariant();
             if (v == "paid") return "accepted";
+            if (v == "processing") return "accepted";
             if (v == "delivering") return "inprocess";
             if (v == "completed") return "delivered";
             return v;
@@ -203,6 +204,24 @@ WHERE o.id=@id;", Db.P("@id", id));
             SetText("litTotalAmount", amt.ToString("N2"));
 
             SetText("litStatusUpper", statusUpper);
+
+            var tx = Db.Query(@"SELECT TOP 1 transaction_ref, provider_status
+FROM dbo.payment_transactions
+WHERE order_id=@oid
+ORDER BY id DESC", Db.P("@oid", id));
+
+            if (tx != null && tx.Rows.Count > 0)
+            {
+                string txRef = Convert.ToString(tx.Rows[0]["transaction_ref"]);
+                string txStatus = Convert.ToString(tx.Rows[0]["provider_status"]);
+                SetText("litTxnRef", string.IsNullOrWhiteSpace(txRef) ? "-" : txRef);
+                SetText("litTxnStatus", string.IsNullOrWhiteSpace(txStatus) ? "-" : txStatus.ToUpperInvariant());
+            }
+            else
+            {
+                SetText("litTxnRef", "-");
+                SetText("litTxnStatus", "-");
+            }
 
             var badge = Find<HtmlGenericControl>("badgeStatus");
             if (badge != null)

@@ -59,8 +59,6 @@ namespace serena
 
                 // Payment Methods (must match CHECK constraint)
                 EnsurePayment("Cash On Delivery", sb);
-                EnsurePayment("Card", sb);
-                EnsurePayment("Bank", sb);
                 EnsurePayment("eSewa", sb);
 
                 // Products (name, category, price, stock)

@@ -153,7 +153,15 @@ namespace serena.Site.Account
         {
             try
             {
-                DataTable methods = Db.Query("SELECT id, name FROM dbo.payment_methods WHERE is_use = 1 ORDER BY name ASC");
+                DataTable methods = Db.Query(@"SELECT id, name
+FROM dbo.payment_methods
+WHERE is_use = 1
+  AND LOWER(LTRIM(RTRIM(name))) IN ('cash on delivery','esewa')
+ORDER BY CASE
+    WHEN LOWER(LTRIM(RTRIM(name)))='cash on delivery' THEN 1
+    WHEN LOWER(LTRIM(RTRIM(name)))='esewa' THEN 2
+    ELSE 9
+END, name ASC");
                 rblPayment.DataSource = methods;
                 rblPayment.DataTextField = "name";
                 rblPayment.DataValueField = "id";
@@ -172,8 +180,6 @@ namespace serena.Site.Account
         {
             rblPayment.Items.Clear();
             rblPayment.Items.Add(new ListItem("Cash On Delivery", "Cash On Delivery"));
-            rblPayment.Items.Add(new ListItem("Card", "Card"));
-            rblPayment.Items.Add(new ListItem("Bank", "Bank"));
             rblPayment.Items.Add(new ListItem("eSewa", "eSewa"));
         }
 
@@ -218,6 +224,32 @@ IF NOT EXISTS (SELECT 1 FROM sys.foreign_keys WHERE name='FK_order_logs_orders')
 IF NOT EXISTS (SELECT 1 FROM sys.foreign_keys WHERE name='FK_order_logs_admins')
   ALTER TABLE dbo.order_logs WITH CHECK
     ADD CONSTRAINT FK_order_logs_admins FOREIGN KEY(admin_id) REFERENCES dbo.admins(id);
+
+IF NOT EXISTS (SELECT 1 FROM sys.tables WHERE name='payment_transactions' AND schema_id=SCHEMA_ID('dbo'))
+BEGIN
+  CREATE TABLE dbo.payment_transactions(
+    id INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+    order_id INT NOT NULL,
+    order_code VARCHAR(50) NOT NULL,
+    payment_method VARCHAR(100) NOT NULL,
+    transaction_ref VARCHAR(120) NULL,
+    provider_status VARCHAR(50) NULL,
+    amount DECIMAL(10,2) NULL,
+    raw_response VARCHAR(MAX) NULL,
+    created_at DATETIME2(0) NOT NULL DEFAULT (GETDATE()),
+    updated_at DATETIME2(0) NOT NULL DEFAULT (GETDATE())
+  );
+END;
+
+IF NOT EXISTS (SELECT 1 FROM sys.foreign_keys WHERE name='FK_payment_transactions_orders')
+  ALTER TABLE dbo.payment_transactions WITH CHECK
+    ADD CONSTRAINT FK_payment_transactions_orders FOREIGN KEY(order_id) REFERENCES dbo.orders(id);
+
+IF NOT EXISTS (SELECT 1 FROM sys.indexes WHERE name='IX_payment_transactions_order_id' AND object_id=OBJECT_ID('dbo.payment_transactions'))
+  CREATE NONCLUSTERED INDEX IX_payment_transactions_order_id ON dbo.payment_transactions(order_id, id DESC);
+
+IF NOT EXISTS (SELECT 1 FROM sys.indexes WHERE name='IX_payment_transactions_ref' AND object_id=OBJECT_ID('dbo.payment_transactions'))
+  CREATE NONCLUSTERED INDEX IX_payment_transactions_ref ON dbo.payment_transactions(transaction_ref);
 ");
         }
 
@@ -268,6 +300,16 @@ VALUES (@code, @mid, @sname, @sphone, 'pending',
                     Db.P("@payment", paymentName)
                 );
                 if (orderId <= 0) throw new Exception("Order was not created.");
+
+                Db.Execute(@"INSERT INTO dbo.payment_transactions(order_id, order_code, payment_method, transaction_ref, provider_status, amount, raw_response, created_at, updated_at)
+VALUES (@oid, @code, @method, @ref, @status, @amt, @raw, GETDATE(), GETDATE())",
+                    Db.P("@oid", orderId),
+                    Db.P("@code", orderCode),
+                    Db.P("@method", paymentName),
+                    Db.P("@ref", paymentName.Equals("eSewa", StringComparison.OrdinalIgnoreCase) ? (object)null : orderCode),
+                    Db.P("@status", paymentName.Equals("eSewa", StringComparison.OrdinalIgnoreCase) ? "initiated" : "pending"),
+                    Db.P("@amt", subTotal),
+                    Db.P("@raw", "checkout_created"));
 
                 // 2) Items
                 foreach (var it in cart)
@@ -328,12 +370,16 @@ VALUES (@oid, @addr, @town, @zip, @city, @state, @country)",
 
                 NotificationService.NotifyAdminOrderPlaced(orderId, orderCode, subTotal, paymentName);
                 NotificationService.NotifyMemberOrderPlaced(memberId, orderId, orderCode, subTotal);
-                EmailService.SendStoreOrderAlert(orderCode, subTotal, paymentName);
-                EmailService.SendCustomerOrderConfirmation(memberEmail, memberName, orderCode, subTotal, paymentName);
+                bool isEsewa = paymentName.Equals("eSewa", StringComparison.OrdinalIgnoreCase);
+                if (!isEsewa)
+                {
+                    global::EmailService.SendStoreOrderAlert(orderCode, subTotal, paymentName);
+                    global::EmailService.SendCustomerOrderConfirmation(memberEmail, memberName, orderCode, subTotal, paymentName);
+                }
 
                 ClearCart();
                 
-                if (paymentName.Equals("eSewa", StringComparison.OrdinalIgnoreCase))
+                if (isEsewa)
                 {
                     successUrl = "~/Account/Orders/InitiateEsewa.aspx?code=" + Server.UrlEncode(orderCode);
                 }

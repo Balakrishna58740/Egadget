@@ -1,0 +1,243 @@
+/* Product Categories redesign (UI only) */
+.cat-page {
+    background: #F1F5F9;
+    color: #1E293B;
+    padding: 1.25rem;
+    min-height: calc(100vh - 5rem);
+}
+
+.cat-header h2 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #1E293B;
+    margin: 0;
+}
+
+.cat-header p {
+    margin-top: .4rem;
+    font-size: 13px;
+    color: #00A86B;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    font-weight: 600;
+}
+
+.cat-alert {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    padding: .85rem 1rem;
+    border-left: 4px solid transparent;
+    border-radius: 8px;
+    font-size: 11px;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.cat-alert:empty {
+    display: none;
+}
+
+.cat-grid {
+    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: 4fr 8fr;
+    gap: 1.2rem;
+}
+
+.cat-card {
+    background: #FFFFFF;
+    border-radius: 12px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.07);
+    border: 1px solid #D1FAE5;
+}
+
+.cat-sticky {
+    position: sticky;
+    top: 6rem;
+    padding: 1.15rem;
+}
+
+.cat-panel-head {
+    display: flex;
+    align-items: center;
+    gap: .55rem;
+    margin-bottom: 1rem;
+}
+
+.cat-panel-head i {
+    color: #00A86B;
+}
+
+.cat-panel-head h3 {
+    margin: 0;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    font-weight: 700;
+    color: #1E293B;
+}
+
+.cat-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.cat-form label {
+    display: block;
+    margin-bottom: .45rem;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: .09em;
+    color: #64748B;
+    font-weight: 700;
+}
+
+.cat-input {
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid #E2E8F0;
+    padding: 10px 14px;
+    font-size: 14px;
+    color: #1E293B;
+    background: #fff;
+    outline: none;
+}
+
+.cat-input:focus {
+    border-color: #00A86B;
+    box-shadow: 0 0 0 3px rgba(0, 168, 107, .14);
+}
+
+.cat-btn-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    margin-top: .2rem;
+}
+
+.cat-btn-save,
+.cat-btn-cancel {
+    width: 100%;
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.cat-btn-save {
+    border: 1px solid #00A86B;
+    background: #00A86B;
+    color: #fff;
+}
+
+.cat-btn-save:hover {
+    opacity: .94;
+}
+
+.cat-btn-cancel {
+    border: 0;
+    background: transparent;
+    color: #94A3B8;
+}
+
+.cat-btn-cancel:hover {
+    color: #64748B;
+}
+
+.cat-table-card {
+    overflow: hidden;
+}
+
+.cat-table-head {
+    padding: 1rem 1.15rem;
+    border-bottom: 1px solid #F1F5F9;
+}
+
+.cat-table-wrap {
+    overflow-x: auto;
+}
+
+.cat-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.cat-table thead tr {
+    background: #ECFDF5;
+}
+
+.cat-table thead th {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: .07em;
+    color: #94A3B8;
+    font-weight: 700;
+    padding: .8rem 1.1rem;
+}
+
+.cat-table .w-ref {
+    width: 70px;
+}
+
+.cat-table tbody tr {
+    height: 52px;
+    border-bottom: 1px solid #F1F5F9;
+}
+
+.cat-table tbody tr:hover {
+    background: #F8FAFC;
+}
+
+/* Adapting existing generated row classes from code-behind (no logic changes) */
+.cat-table tbody td:first-child {
+    color: #94A3B8;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-size: 13px;
+}
+
+.cat-table tbody td:nth-child(2) {
+    font-size: 15px;
+    color: #1E293B;
+    font-weight: 400;
+}
+
+.cat-table tbody td:nth-child(3) {
+    text-align: center;
+    color: #00A86B;
+    font-weight: 700;
+}
+
+.cat-table tbody td:last-child div {
+    gap: 12px !important;
+}
+
+.cat-table tbody td:last-child a {
+    text-decoration: none;
+}
+
+.cat-table tbody td:last-child a .fa-pen-to-square {
+    color: #2563EB;
+}
+
+.cat-table tbody td:last-child a .fa-trash-can {
+    color: #94A3B8;
+}
+
+.cat-table tbody td:last-child a:hover .fa-trash-can {
+    color: #EF4444;
+}
+
+@media (max-width: 1200px) {
+    .cat-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .cat-sticky {
+        position: static;
+    }
+}

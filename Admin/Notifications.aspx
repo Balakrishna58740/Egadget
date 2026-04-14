@@ -1,4 +1,8 @@
 <%@ Page Language="C#" MasterPageFile="~/MasterPages/Admin.master" AutoEventWireup="true" %>
+<%@ Import Namespace="System.Data" %>
+<%@ Import Namespace="System.Text" %>
+<%@ Import Namespace="System.Web" %>
+<%@ Import Namespace="System.Web.UI.WebControls" %>
 
 <asp:Content ID="t" ContentPlaceHolderID="TitleContent" runat="server">Notifications</asp:Content>
 
@@ -35,13 +39,6 @@
 </asp:Content>
 
 <script runat="server">
-using System;
-using System.Data;
-using System.Text;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-
 protected void Page_Load(object sender, EventArgs e)
 {
     if (!IsPostBack)

@@ -2,151 +2,156 @@
     AutoEventWireup="true" CodeFile="Products.aspx.cs"
     Inherits="serena.Admin.ProductsPage" %>
 
-<asp:Content ID="t" ContentPlaceHolderID="TitleContent" runat="server">Inventory | Saja Admin</asp:Content>
+<asp:Content ID="t" ContentPlaceHolderID="TitleContent" runat="server">Product Inventory | eGadgetHub Admin</asp:Content>
+
+<asp:Content ID="h" ContentPlaceHolderID="HeadContent" runat="server">
+    <link rel="stylesheet" href="/Assets/css/admin-products-redesign.css" />
+</asp:Content>
 
 <asp:Content ID="m" ContentPlaceHolderID="MainContent" runat="server">
-    <!-- Page Header -->
-    <div class="mb-12 flex justify-between items-end">
-        <div>
-            <h2 class="text-3xl font-serif mb-2">Product Inventory</h2>
-            <p class="text-xs uppercase tracking-widest text-gray-400 font-bold">Manage your furniture collection</p>
+    <div class="prod-page">
+        <div class="prod-header">
+            <div>
+                <h2>Product Inventory</h2>
+                <p>Manage your electronics inventory</p>
+            </div>
+            <div class="prod-header-actions">
+                <button type="button" class="prod-btn-add" onclick="openProductModal()">
+                    <i class="fa-solid fa-plus"></i> Add Product
+                </button>
+                <span class="prod-total"><asp:Literal ID="litTotal" runat="server" /> catalog items</span>
+            </div>
         </div>
-        <div class="text-right">
-             <span class="text-[10px] uppercase tracking-widest text-gray-400 font-bold bg-white px-4 py-2 border border-gray-100"><asp:Literal ID="litTotal" runat="server" /> catalog items</span>
-        </div>
-    </div>
 
-    <div class="flex flex-col lg:flex-row gap-12">
-        <!-- Editor Column -->
-        <div class="w-full lg:w-1/3">
-            <div class="bg-white border border-gray-100 shadow-sm sticky top-28">
-                <div class="px-8 py-6 border-b border-gray-100 bg-off-white/50">
-                    <h3 class="text-xs uppercase tracking-widest font-bold text-text-dark">Management Studio</h3>
+        <div class="prod-layout">
+            <div class="prod-list-col">
+                <div class="prod-card prod-filter-card">
+                    <div class="prod-filter-grid">
+                        <div>
+                            <label>Search Name</label>
+                            <asp:TextBox ID="txtQ" runat="server" CssClass="prod-input" />
+                        </div>
+                        <div>
+                            <label>Category</label>
+                            <asp:DropDownList ID="ddlFilterCat" runat="server" CssClass="prod-input"></asp:DropDownList>
+                        </div>
+                        <div>
+                            <label>Visibility</label>
+                            <asp:DropDownList ID="ddlFilterShow" runat="server" CssClass="prod-input">
+                                <asp:ListItem Text="All Items" Value="" />
+                                <asp:ListItem Text="Live Only" Value="1" />
+                                <asp:ListItem Text="Hidden Archive" Value="0" />
+                            </asp:DropDownList>
+                        </div>
+                        <div>
+                            <label>Ordering</label>
+                            <asp:DropDownList ID="ddlSort" runat="server" CssClass="prod-input">
+                                <asp:ListItem Text="Alpha (A-Z)" Value="name_asc" />
+                                <asp:ListItem Text="Alpha (Z-A)" Value="name_desc" />
+                                <asp:ListItem Text="Value (Low to High)" Value="price_asc" />
+                                <asp:ListItem Text="Value (High to Low)" Value="price_desc" />
+                                <asp:ListItem Text="Stock (Low to High)" Value="stock_asc" />
+                                <asp:ListItem Text="Stock (High to Low)" Value="stock_desc" />
+                            </asp:DropDownList>
+                        </div>
+                    </div>
+
+    <div id="productEditorModal" class="prod-modal hidden">
+        <div class="prod-modal-panel">
+            <div class="prod-card prod-editor-card">
+                <div class="prod-card-head prod-modal-head">
+                    <h3>Add / Edit Product</h3>
+                    <button type="button" class="prod-modal-close" onclick="closeProductModal()"><i class="fa-solid fa-xmark"></i></button>
                 </div>
-                <div class="p-8">
-                    <asp:Label ID="lblMsg" runat="server" CssClass="hidden mb-8 p-4 text-[10px] uppercase tracking-widest font-bold border-l-4" EnableViewState="false"></asp:Label>
+                <div class="prod-card-body">
+                    <asp:Label ID="lblMsg" runat="server" CssClass="prod-alert" EnableViewState="false"></asp:Label>
 
                     <asp:HiddenField ID="hidId" runat="server" />
 
-                    <div class="space-y-6">
+                    <div class="prod-form-grid">
                         <div>
-                            <label class="text-[10px] uppercase tracking-widest font-bold text-gray-400 block mb-2">Category</label>
-                            <asp:DropDownList ID="ddlCat" runat="server" CssClass="w-full bg-white border border-gray-100 px-4 py-3 text-sm focus:border-primary outline-none transition-colors"></asp:DropDownList>
+                            <label>Category</label>
+                            <asp:DropDownList ID="ddlCat" runat="server" CssClass="prod-input"></asp:DropDownList>
                         </div>
 
                         <div>
-                            <label class="text-[10px] uppercase tracking-widest font-bold text-gray-400 block mb-2">Collection Name</label>
-                            <asp:TextBox ID="txtName" runat="server" CssClass="w-full bg-white border border-gray-100 px-4 py-3 text-sm focus:border-primary outline-none transition-colors" placeholder="e.g. Minimalist Oak Chair" />
+                            <label>Product Name</label>
+                            <asp:TextBox ID="txtName" runat="server" CssClass="prod-input" placeholder="e.g. Samsung Galaxy S24" />
                         </div>
 
                         <div>
-                            <label class="text-[10px] uppercase tracking-widest font-bold text-gray-400 block mb-2">Product Essence</label>
-                            <asp:TextBox ID="txtDesc" runat="server" TextMode="MultiLine" Rows="3" CssClass="w-full bg-white border border-gray-100 px-4 py-3 text-sm focus:border-primary outline-none transition-colors resize-none" placeholder="Describe the materials, craftsmanship..." />
+                            <label>Description</label>
+                            <asp:TextBox ID="txtDesc" runat="server" TextMode="MultiLine" Rows="3" CssClass="prod-input prod-textarea" placeholder="Describe features, specs and highlights..." />
                         </div>
 
-                        <div class="grid grid-cols-2 gap-4">
+                        <div class="prod-two-col">
                             <div>
-                                <label class="text-[10px] uppercase tracking-widest font-bold text-gray-400 block mb-2">Availability</label>
-                                <asp:TextBox ID="txtStock" runat="server" TextMode="Number" CssClass="w-full bg-white border border-gray-100 px-4 py-3 text-sm focus:border-primary outline-none transition-colors" />
+                                <label>Availability</label>
+                                <asp:TextBox ID="txtStock" runat="server" TextMode="Number" CssClass="prod-input" />
                             </div>
                             <div>
-                                <label class="text-[10px] uppercase tracking-widest font-bold text-gray-400 block mb-2">Value (RS)</label>
-                                <asp:TextBox ID="txtPrice" runat="server" TextMode="Number" CssClass="w-full bg-white border border-gray-100 px-4 py-3 text-sm focus:border-primary outline-none transition-colors" />
+                                <label>Price (RS)</label>
+                                <asp:TextBox ID="txtPrice" runat="server" TextMode="Number" CssClass="prod-input" />
                             </div>
                         </div>
 
-                        <div class="flex items-center gap-3 py-2">
-                            <asp:CheckBox ID="chkShow" runat="server" CssClass="w-4 h-4 accent-primary" />
-                            <asp:Label runat="server" AssociatedControlID="chkShow" CssClass="text-[10px] uppercase tracking-widest font-bold text-text-dark cursor-pointer">Live on Studio Store</asp:Label>
+                        <div class="prod-checkbox-row">
+                            <asp:CheckBox ID="chkShow" runat="server" CssClass="prod-checkbox" />
+                            <asp:Label runat="server" AssociatedControlID="chkShow" CssClass="prod-check-label">Active</asp:Label>
                         </div>
 
                         <div>
-                            <label class="text-[10px] uppercase tracking-widest font-bold text-gray-400 block mb-2">Image Curating</label>
-                            <div class="border border-dashed border-gray-200 p-4 text-center group hover:border-primary transition-colors cursor-pointer relative">
-                                <asp:FileUpload ID="fuImg" runat="server" CssClass="absolute inset-0 opacity-0 cursor-pointer" />
-                                <i class="fa-solid fa-cloud-upload-alt text-gray-300 group-hover:text-primary mb-2"></i>
-                                <p class="text-[10px] uppercase tracking-widest font-bold text-gray-400">Choose Archive</p>
+                            <label>Image</label>
+                            <div class="prod-upload-box">
+                                <asp:FileUpload ID="fuImg" runat="server" CssClass="prod-upload-input" />
+                                <i class="fa-solid fa-cloud-upload-alt"></i>
+                                <p>Choose Image</p>
                             </div>
-                            <div class="text-[8px] uppercase tracking-widest text-gray-300 mt-2"><asp:Literal ID="litImgHint" runat="server" /></div>
+                            <div class="prod-upload-hint"><asp:Literal ID="litImgHint" runat="server" /></div>
                         </div>
 
-                        <div class="flex gap-4 pt-4">
-                            <asp:Button ID="btnSave" runat="server" CssClass="flex-1 bg-admin-bg text-white text-[10px] uppercase tracking-widest font-bold py-4 hover:bg-primary transition-all cursor-pointer" Text="Save Archive" OnClick="btnSave_Click" />
-                            <asp:Button ID="btnCancel" runat="server" CssClass="px-8 bg-white border border-gray-100 text-gray-400 text-[10px] uppercase tracking-widest font-bold py-4 hover:text-red-500 hover:border-red-100 transition-all cursor-pointer" Text="Discard" OnClick="btnCancel_Click" CausesValidation="false" />
+                        <div class="prod-btn-row">
+                            <asp:Button ID="btnSave" runat="server" CssClass="prod-btn-save" Text="Save Product" OnClick="btnSave_Click" />
+                            <asp:Button ID="btnCancel" runat="server" CssClass="prod-btn-cancel" Text="Cancel" OnClick="btnCancel_Click" CausesValidation="false" />
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+                    <div class="prod-filter-actions">
+                        <asp:Button ID="btnFilter" runat="server" CssClass="prod-btn-search" Text="Search" OnClick="btnFilter_Click" />
+                        <asp:Button ID="btnReset" runat="server" CssClass="prod-btn-reset" Text="Reset" OnClick="btnReset_Click" CausesValidation="false" />
+                    </div>
+                </div>
 
-        <!-- Catalog Column -->
-        <div class="w-full lg:w-2/3 space-y-12">
-            <!-- Filter Section -->
-            <div class="bg-white border border-gray-100 p-8 shadow-sm">
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-                    <div>
-                        <label class="text-[10px] uppercase tracking-widest font-bold text-gray-400 block mb-2">Search Name</label>
-                        <asp:TextBox ID="txtQ" runat="server" CssClass="w-full bg-off-white/50 border border-gray-50 px-4 py-2 text-xs focus:bg-white outline-none transition-all" />
+                <div class="prod-card prod-table-card">
+                    <div class="prod-table-wrap">
+                        <table class="prod-table">
+                            <thead>
+                                <tr>
+                                    <th>Ref</th>
+                                    <th>Product Name</th>
+                                    <th>Collection</th>
+                                    <th class="text-right">Value</th>
+                                    <th class="text-right">Stock</th>
+                                    <th>Live</th>
+                                    <th class="text-right">Settings</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <asp:Literal ID="litRows" runat="server" />
+                            </tbody>
+                        </table>
                     </div>
-                    <div>
-                        <label class="text-[10px] uppercase tracking-widest font-bold text-gray-400 block mb-2">Category</label>
-                        <asp:DropDownList ID="ddlFilterCat" runat="server" CssClass="w-full bg-off-white/50 border border-gray-50 px-4 py-2 text-xs focus:bg-white outline-none transition-all"></asp:DropDownList>
+                    <div class="prod-pager">
+                        <asp:Literal ID="pager" runat="server" />
                     </div>
-                    <div>
-                        <label class="text-[10px] uppercase tracking-widest font-bold text-gray-400 block mb-2">Visibility</label>
-                        <asp:DropDownList ID="ddlFilterShow" runat="server" CssClass="w-full bg-off-white/50 border border-gray-50 px-4 py-2 text-xs focus:bg-white outline-none transition-all">
-                            <asp:ListItem Text="All Items" Value="" />
-                            <asp:ListItem Text="Live Only" Value="1" />
-                            <asp:ListItem Text="Hidden Archive" Value="0" />
-                        </asp:DropDownList>
-                    </div>
-                    <div>
-                        <label class="text-[10px] uppercase tracking-widest font-bold text-gray-400 block mb-2">Ordering</label>
-                        <asp:DropDownList ID="ddlSort" runat="server" CssClass="w-full bg-off-white/50 border border-gray-50 px-4 py-2 text-xs focus:bg-white outline-none transition-all">
-                            <asp:ListItem Text="Alpha (A-Z)" Value="name_asc" />
-                            <asp:ListItem Text="Alpha (Z-A)" Value="name_desc" />
-                            <asp:ListItem Text="Value (Low→High)" Value="price_asc" />
-                            <asp:ListItem Text="Value (High→Low)" Value="price_desc" />
-                            <asp:ListItem Text="Stock (Low→High)" Value="stock_asc" />
-                            <asp:ListItem Text="Stock (High→Low)" Value="stock_desc" />
-                        </asp:DropDownList>
-                    </div>
-                </div>
-                <div class="mt-8 flex gap-4">
-                    <asp:Button ID="btnFilter" runat="server" CssClass="bg-primary text-white text-[10px] uppercase tracking-widest font-bold px-8 py-3 hover:bg-admin-bg transition-all cursor-pointer" Text="Refresh Results" OnClick="btnFilter_Click" />
-                    <asp:Button ID="btnReset" runat="server" CssClass="text-gray-400 text-[10px] uppercase tracking-widest font-bold px-8 py-3 hover:text-primary transition-all cursor-pointer" Text="Reset Logic" OnClick="btnReset_Click" CausesValidation="false" />
-                </div>
-            </div>
-
-            <!-- Data Table -->
-            <div class="bg-white border border-gray-100 shadow-sm overflow-hidden">
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left">
-                        <thead>
-                            <tr class="text-[10px] uppercase tracking-widest font-bold text-gray-400 border-b border-gray-100 bg-off-white/30">
-                                <th class="px-8 py-4">Ref</th>
-                                <th class="px-8 py-4">Masterpiece</th>
-                                <th class="px-8 py-4">Collection</th>
-                                <th class="px-8 py-4 text-right">Value</th>
-                                <th class="px-8 py-4 text-right">Stock</th>
-                                <th class="px-8 py-4">Live</th>
-                                <th class="px-8 py-4 text-right">Settings</th>
-                            </tr>
-                        </thead>
-                        <tbody class="divide-y divide-gray-50">
-                            <asp:Literal ID="litRows" runat="server" />
-                        </tbody>
-                    </table>
-                </div>
-                <!-- Pager -->
-                <div class="px-8 py-6 border-t border-gray-50 bg-off-white/10">
-                    <asp:Literal ID="pager" runat="server" />
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Image preview modal -->
     <div id="imgModal" class="hidden fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 bg-admin-bg/95 backdrop-blur-sm">
         <div class="relative max-w-4xl w-full">
             <button type="button" class="absolute -top-12 right-0 text-white hover:text-primary transition-colors text-2xl" onclick="closeImgModal()">
@@ -160,15 +165,15 @@
 
     <script>
         function openImgModal(src) {
-            const modal = document.getElementById('imgModal');
-            const img = document.getElementById('imgPreview');
+            var modal = document.getElementById('imgModal');
+            var img = document.getElementById('imgPreview');
             img.src = src;
             modal.classList.remove('hidden');
             document.body.style.overflow = 'hidden';
         }
 
         function closeImgModal() {
-            const modal = document.getElementById('imgModal');
+            var modal = document.getElementById('imgModal');
             modal.classList.add('hidden');
             document.body.style.overflow = 'auto';
         }
@@ -181,16 +186,28 @@
             openImgModal(src);
         });
 
-        (function () {
-            var m = document.getElementById('<%= lblMsg.ClientID %>');
-            if (m && m.textContent && m.textContent.trim().length > 0) {
-                m.classList.remove('hidden');
-                m.classList.add('block');
-                const isError = m.textContent.toLowerCase().includes('sorry') || m.textContent.toLowerCase().includes('error');
-                m.classList.add(isError ? 'bg-red-50' : 'bg-green-50');
-                m.classList.add(isError ? 'border-red-500' : 'border-green-500');
-                m.classList.add(isError ? 'text-red-700' : 'text-green-700');
+        function openProductModal() {
+            var modal = document.getElementById('productEditorModal');
+            if (modal) {
+                modal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
             }
+        }
+
+        function closeProductModal() {
+            var modal = document.getElementById('productEditorModal');
+            if (modal) {
+                modal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        (function () {
+            var hid = document.querySelector("[id$='hidId']");
+            var msg = document.querySelector("[id$='lblMsg']");
+            var hasEdit = hid && hid.value && hid.value.length > 0;
+            var hasMsg = msg && msg.textContent && msg.textContent.trim().length > 0;
+            if (hasEdit || hasMsg) openProductModal();
         })();
     </script>
 </asp:Content>

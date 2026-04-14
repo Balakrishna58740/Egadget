@@ -7,7 +7,7 @@
 <asp:Content ID="m" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container mx-auto px-4 py-16">
         <div class="max-w-xl mx-auto">
-            <div class="bg-white border border-gray-100 shadow-2xl p-8 md:p-12">
+            <div class="bg-white border border-gray-100 shadow-2xl p-8 md:p-12 eg-card rounded-2xl">
                 <div class="text-center mb-10">
                     <h2 class="font-serif text-3xl mb-2">Create Account</h2>
                     <p class="text-gray-400 text-sm uppercase tracking-widest">Join the Saja community</p>
@@ -48,6 +48,7 @@
 
                 <div class="pt-4">
                     <asp:Button ID="btnRegister" runat="server" Text="Create Account" 
+                        data-loading-text="Creating Account..."
                         CssClass="w-full bg-primary text-white py-4 text-sm uppercase tracking-widest font-bold hover:bg-primary/90 transition-all cursor-pointer" 
                         OnClick="btnRegister_Click" />
                 </div>

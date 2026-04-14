@@ -61,6 +61,9 @@ namespace serena
             var lnkProfile = FindControl("lnkProfile") as HtmlAnchor;
             var btnLogOut = FindControl("btnLogOut") as LinkButton;
             var lnkNotifications = FindControl("lnkNotifications") as HtmlAnchor;
+            var lnkMobileNotifications = FindControl("lnkMobileNotifications") as HtmlAnchor;
+            var lnkMobileProfile = FindControl("lnkMobileProfile") as HtmlAnchor;
+            var lnkMobileLogin = FindControl("lnkMobileLogin") as HtmlAnchor;
             var notifBadge = FindControl("notifBadge") as HtmlGenericControl;
             var litNotifCount = FindControl("litNotifCount") as Literal;
 
@@ -68,8 +71,24 @@ namespace serena
             if (lnkRegister != null) lnkRegister.Visible = !isMember;
             if (lnkProfile != null) lnkProfile.Visible = isMember;
             if (btnLogOut != null) btnLogOut.Visible = isMember;
+            if (lnkMobileProfile != null) lnkMobileProfile.Visible = isMember;
+            if (lnkMobileLogin != null) lnkMobileLogin.Visible = !isMember;
 
-            if (lnkNotifications != null) lnkNotifications.Visible = isMember;
+            if (lnkNotifications != null)
+            {
+                lnkNotifications.Visible = true;
+                lnkNotifications.HRef = isMember
+                    ? ResolveUrl("~/Account/Notifications.aspx")
+                    : ResolveUrl("~/Account/Login.aspx?returnUrl=" + HttpUtility.UrlEncode("/Account/Notifications.aspx"));
+            }
+
+            if (lnkMobileNotifications != null)
+            {
+                lnkMobileNotifications.Visible = true;
+                lnkMobileNotifications.HRef = isMember
+                    ? ResolveUrl("~/Account/Notifications.aspx")
+                    : ResolveUrl("~/Account/Login.aspx?returnUrl=" + HttpUtility.UrlEncode("/Account/Notifications.aspx"));
+            }
 
             if (isMember && litNotifCount != null)
             {
@@ -94,6 +113,7 @@ namespace serena
             }
             else
             {
+                if (litNotifCount != null) litNotifCount.Text = "0";
                 if (notifBadge != null) notifBadge.Visible = false;
             }
         }

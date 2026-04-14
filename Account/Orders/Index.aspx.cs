@@ -79,7 +79,7 @@ namespace serena.Site.Account.Orders
             var dt = Db.Query(@"
 SELECT
   SUM(CASE WHEN LOWER(LTRIM(RTRIM(status)))='pending'    THEN 1 ELSE 0 END) AS Pending,
-  SUM(CASE WHEN LOWER(LTRIM(RTRIM(status))) IN ('accepted','paid') THEN 1 ELSE 0 END) AS Accepted,
+  SUM(CASE WHEN LOWER(LTRIM(RTRIM(status))) IN ('accepted','paid','processing') THEN 1 ELSE 0 END) AS Accepted,
   SUM(CASE WHEN LOWER(LTRIM(RTRIM(status))) IN ('inprocess','delivering') THEN 1 ELSE 0 END) AS InProcess,
   SUM(CASE WHEN LOWER(LTRIM(RTRIM(status))) IN ('delivered','completed') THEN 1 ELSE 0 END) AS Delivered,
   SUM(CASE WHEN LOWER(LTRIM(RTRIM(status)))='canceled'   THEN 1 ELSE 0 END) AS Canceled
@@ -163,7 +163,7 @@ FROM dbo.orders WHERE member_id=@m";
             if (!string.Equals(_status, "all", StringComparison.OrdinalIgnoreCase))
             {
                 if (string.Equals(_status, "accepted", StringComparison.OrdinalIgnoreCase))
-                    sql += " AND LOWER(LTRIM(RTRIM(status))) IN ('accepted','paid')";
+                    sql += " AND LOWER(LTRIM(RTRIM(status))) IN ('accepted','paid','processing')";
                 else if (string.Equals(_status, "inprocess", StringComparison.OrdinalIgnoreCase))
                     sql += " AND LOWER(LTRIM(RTRIM(status))) IN ('inprocess','delivering')";
                 else if (string.Equals(_status, "delivered", StringComparison.OrdinalIgnoreCase))

@@ -33,7 +33,7 @@
             </div>
 
             <!-- Dashboard / Filters -->
-            <div class="border-b border-gray-100 pb-8 mb-8">
+            <div class="border-b border-gray-100 pb-8 mb-8 eg-card bg-white rounded-2xl p-6 md:p-8">
                 <div class="flex flex-wrap gap-4">
                     <asp:Repeater ID="rptStatus" runat="server">
                         <ItemTemplate>
@@ -51,12 +51,13 @@
 
             <!-- Orders Table -->
             <asp:PlaceHolder ID="phEmpty" runat="server" Visible="false">
-                <div class="bg-off-white p-16 text-center border border-dashed border-gray-200">
+                <div class="bg-off-white p-16 text-center border border-dashed border-gray-200 eg-empty-state">
                     <i class="fa-solid fa-box-open text-4xl text-gray-200 mb-4 block"></i>
                     <p class="text-gray-400 text-sm uppercase tracking-widest">No orders found</p>
                 </div>
             </asp:PlaceHolder>
 
+            <div class="eg-card bg-white rounded-2xl p-6 md:p-8">
             <asp:ListView ID="lvOrders" runat="server">
                 <LayoutTemplate>
                     <div class="overflow-x-auto">
@@ -104,6 +105,7 @@
                     </tr>
                 </ItemTemplate>
             </asp:ListView>
+            </div>
 
             <!-- Pagination -->
             <div class="mt-12 flex justify-center">

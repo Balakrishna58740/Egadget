@@ -37,6 +37,7 @@
 
     <!-- Local CSS -->
     <link runat="server" rel="stylesheet" href="~/Assets/css/custom.css" />
+    <link runat="server" rel="stylesheet" href="~/Assets/css/admin-dashboard-redesign.css" />
 
     <asp:ContentPlaceHolder ID="HeadContent" runat="server"></asp:ContentPlaceHolder>
 </head>
@@ -70,10 +71,6 @@
                     <a id="navOrders" runat="server" href="~/Admin/Orders.aspx" class="admin-nav-link group flex items-center px-4 py-4 text-xs font-bold uppercase tracking-widest text-gray-400">
                         <i class="fa-solid fa-receipt w-8 text-sm group-hover:text-primary transition-colors"></i>
                         Orders
-                    </a>
-                    <a id="navNotifications" runat="server" href="~/Admin/Notifications.aspx" class="admin-nav-link group flex items-center px-4 py-4 text-xs font-bold uppercase tracking-widest text-gray-400">
-                        <i class="fa-regular fa-bell w-8 text-sm group-hover:text-primary transition-colors"></i>
-                        Notifications
                     </a>
                     <a id="navPaymentMethods" runat="server" href="~/Admin/PaymentMethods.aspx" class="admin-nav-link group flex items-center px-4 py-4 text-xs font-bold uppercase tracking-widest text-gray-400">
                         <i class="fa-solid fa-credit-card w-8 text-sm group-hover:text-primary transition-colors"></i>
@@ -116,14 +113,14 @@
                             <div class="text-[10px] uppercase tracking-[0.25em] text-gray-300 font-bold mt-1">Control center</div>
                         </div>
                     </div>
-                    <div class="ml-4 flex items-center md:ml-6 gap-6">
+                    <div class="ml-4 flex items-center md:ml-6 gap-6 rounded-2xl bg-white/10 px-4 py-2 border border-white/10 shadow-sm">
                         <asp:HyperLink ID="lnkAdminNotifications" runat="server" NavigateUrl="~/Admin/Notifications.aspx" CssClass="relative text-white/90 hover:text-white transition-colors" ToolTip="Notifications">
                             <i class="fa-regular fa-bell text-lg"></i>
                             <span class="absolute -top-2 -right-2 min-w-[1.1rem] h-[1.1rem] px-1 rounded-full bg-red-500 text-white text-[9px] leading-[1.1rem] text-center font-bold">
                                 <asp:Literal ID="litAdminNotifCount" runat="server" Text="0" />
                             </span>
                         </asp:HyperLink>
-                        <div class="text-right hidden sm:block">
+                        <div class="text-right hidden sm:block pr-2 border-r border-white/20">
                             <div class="text-xs font-bold text-text-dark"><asp:Literal ID="litDisplayName" runat="server" /></div>
                             <div class="text-[10px] text-gray-400 uppercase tracking-widest font-bold">Administrator</div>
                         </div>

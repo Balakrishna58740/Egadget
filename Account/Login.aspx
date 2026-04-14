@@ -7,7 +7,7 @@
 <asp:Content ID="m" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container mx-auto px-4 py-16 min-h-[60vh] flex items-center justify-center">
         <div class="w-full max-w-md">
-            <div class="bg-white border border-gray-100 shadow-2xl p-8 md:p-12">
+            <div class="bg-white border border-gray-100 shadow-2xl p-8 md:p-12 eg-card rounded-2xl">
                 <div class="text-center mb-10">
                     <h2 class="font-serif text-3xl mb-2">Welcome Back</h2>
                     <p class="text-gray-400 text-sm uppercase tracking-widest">Sign in to your account</p>
@@ -24,13 +24,14 @@
                     <div>
                         <div class="flex justify-between items-center mb-2">
                             <label for="<%= txtPassword.ClientID %>" class="block text-xs uppercase tracking-widest font-bold">Password</label>
-                            <a href="#" class="text-[10px] uppercase tracking-widest text-gray-400 hover:text-primary">Forgot?</a>
+                            <a runat="server" href="~/Account/ForgotPassword.aspx" class="text-[10px] uppercase tracking-widest text-gray-400 hover:text-primary">Forgot?</a>
                         </div>
                         <asp:TextBox ID="txtPassword" runat="server" TextMode="Password" CssClass="w-full border border-gray-200 px-4 py-3 text-sm focus:outline-none focus:border-primary bg-off-white transition-colors" />
                     </div>
 
                     <div class="pt-4">
                         <asp:Button ID="btnLogin" runat="server" Text="Sign In" 
+                            data-loading-text="Signing In..."
                             CssClass="w-full bg-primary text-white py-4 text-sm uppercase tracking-widest font-bold hover:bg-primary/90 transition-all cursor-pointer" 
                             OnClick="btnLogin_Click" />
                     </div>

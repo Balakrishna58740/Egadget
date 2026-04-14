@@ -8,7 +8,7 @@
 
 <asp:Content ID="m" ContentPlaceHolderID="MainContent" runat="server">
     
-    <section class="bg-off-white py-12 mb-12">
+    <section class="eg-surface py-12 mb-12">
         <div class="container mx-auto px-4 lg:px-8">
             <nav class="flex text-xs uppercase tracking-widest text-gray-400 mb-4">
                 <a runat="server" href="~/Default.aspx" class="hover:text-primary transition-colors">Home</a>
@@ -32,11 +32,11 @@
         </asp:Panel>
 
         <asp:Panel ID="pnlProduct" runat="server" Visible="false">
-            <div class="flex flex-col lg:flex-row gap-16">
+            <div class="flex flex-col lg:flex-row gap-16 eg-card bg-white rounded-2xl p-6 md:p-10">
                 <!-- Product Gallery -->
                 <div class="w-full lg:w-1/2">
                     <div class="sticky top-32">
-                        <div class="bg-off-white overflow-hidden aspect-[4/5]">
+                        <div class="bg-off-white overflow-hidden aspect-[4/5] rounded-xl">
                             <img id="imgProduct" runat="server" class="w-full h-full object-cover" alt="Product Image" />
                         </div>
                     </div>

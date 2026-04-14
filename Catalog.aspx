@@ -7,9 +7,9 @@
 <asp:Content ID="m" ContentPlaceHolderID="MainContent" runat="server">
     
     <!-- Hero Header for Catalog -->
-    <section class="bg-off-white py-12 mb-12">
+    <section class="eg-surface py-12 mb-12">
         <div class="container mx-auto px-4 lg:px-8">
-            <h1 class="text-4xl md:text-5xl font-serif font-semibold tracking-tight mb-2">Shop Gadgets</h1>
+            <h1 class="text-4xl md:text-5xl font-serif font-semibold tracking-tight mb-2"><span class="eg-heading-band">Shop Gadgets</span></h1>
             <nav class="flex text-[10px] sm:text-xs uppercase tracking-[0.24em] text-gray-400 font-medium">
                 <a runat="server" href="~/Default.aspx" class="hover:text-primary transition-colors">Home</a>
                 <span class="mx-2">/</span>
@@ -22,7 +22,7 @@
         <div class="flex flex-col lg:flex-row gap-16 lg:gap-20">
 
             <!-- Filters Sidebar -->
-            <aside class="w-full lg:w-80 shrink-0 lg:sticky lg:top-28 h-fit bg-white border border-gray-100 p-8 shadow-sm space-y-10">
+            <aside class="w-full lg:w-80 shrink-0 lg:sticky lg:top-28 h-fit bg-white border border-gray-100 p-8 shadow-sm space-y-10 eg-card">
                 <!-- Search -->
                 <div>
                     <h4 class="text-[10px] uppercase tracking-[0.28em] font-semibold mb-6 text-text-dark">Search</h4>
@@ -89,12 +89,13 @@
                     </LayoutTemplate>
 
                     <ItemTemplate>
-                        <div class="group">
+                        <div class="group eg-card rounded-xl p-3 bg-white">
                             <!-- Image Container -->
-                            <div class="relative aspect-[3/4] overflow-hidden bg-off-white mb-6">
+                            <div class="relative aspect-[3/4] overflow-hidden bg-off-white mb-6 rounded-lg">
                                 <a href='<%# GetProductUrl(Eval("name")) %>'>
                                     <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                                          src='<%# GetProductImageUrl(Eval("image"), Eval("name")) %>'
+                                         loading="lazy" decoding="async"
                                          alt='<%# Html(Eval("name")) %>' />
                                 </a>
                                 

@@ -7,7 +7,7 @@
 <asp:Content ID="m" ContentPlaceHolderID="MainContent" runat="server">
 
     <!-- Hero Section -->
-    <section class="relative py-32 overflow-hidden bg-off-white">
+    <section class="relative py-32 overflow-hidden eg-surface">
         <div class="container mx-auto px-4 lg:px-8 relative z-10">
             <div class="max-w-3xl">
                 <span class="text-primary text-xs uppercase tracking-[0.3em] font-bold mb-6 block">Established 2024</span>
@@ -58,7 +58,7 @@
                         <div class="absolute -inset-4 bg-secondary/20 translate-x-4 translate-y-4 transition-transform group-hover:translate-x-6 group-hover:translate-y-6"></div>
                         <img src="https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?q=80&w=1470&auto=format&fit=crop" 
                              alt="Interior Design" 
-                             class="relative w-full aspect-[4/5] object-cover" />
+                             class="relative w-full aspect-[4/5] object-cover" loading="lazy" decoding="async" />
                     </div>
                 </div>
                 <div class="w-full lg:w-1/2">
@@ -74,7 +74,7 @@
                     </div>
                     <div class="mt-12 pt-12 border-t border-gray-100 flex items-center gap-6">
                         <div class="w-16 h-16 rounded-full overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1374&auto=format&fit=crop" class="w-full h-full object-cover" alt="Founder" />
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1374&auto=format&fit=crop" class="w-full h-full object-cover" alt="Founder" loading="lazy" decoding="async" />
                         </div>
                         <div>
                             <div class="font-serif text-lg italic">Alexander Thorne</div>
@@ -87,7 +87,7 @@
     </section>
 
     <!-- Stand For -->
-    <section class="py-32 bg-off-white">
+    <section class="py-32 eg-surface-alt">
         <div class="container mx-auto px-4 lg:px-8 text-center mb-20">
             <h2 class="text-4xl font-serif mb-6">Our Core Values</h2>
             <div class="w-20 h-px bg-primary mx-auto"></div>
@@ -95,7 +95,7 @@
         <div class="container mx-auto px-4 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <!-- Value 1 -->
-                <div class="bg-white p-12 text-center group hover:-translate-y-2 transition-transform duration-500 shadow-sm">
+                <div class="bg-white p-12 text-center group hover:-translate-y-2 transition-transform duration-500 shadow-sm eg-card rounded-xl">
                     <div class="w-16 h-16 bg-off-white flex items-center justify-center mx-auto mb-8 group-hover:bg-primary group-hover:text-white transition-colors duration-500">
                         <i class="fa-solid fa-gem text-xl"></i>
                     </div>
@@ -103,7 +103,7 @@
                     <p class="text-sm text-gray-500 leading-relaxed">We source only the finest materials, ensuring every piece withstands the test of time.</p>
                 </div>
                 <!-- Value 2 -->
-                <div class="bg-white p-12 text-center group hover:-translate-y-2 transition-transform duration-500 shadow-sm">
+                <div class="bg-white p-12 text-center group hover:-translate-y-2 transition-transform duration-500 shadow-sm eg-card rounded-xl">
                     <div class="w-16 h-16 bg-off-white flex items-center justify-center mx-auto mb-8 group-hover:bg-primary group-hover:text-white transition-colors duration-500">
                         <i class="fa-solid fa-palette text-xl"></i>
                     </div>
@@ -111,7 +111,7 @@
                     <p class="text-sm text-gray-500 leading-relaxed">Every collection is curated with an eye for modern aesthetics and timeless appeal.</p>
                 </div>
                 <!-- Value 3 -->
-                <div class="bg-white p-12 text-center group hover:-translate-y-2 transition-transform duration-500 shadow-sm">
+                <div class="bg-white p-12 text-center group hover:-translate-y-2 transition-transform duration-500 shadow-sm eg-card rounded-xl">
                     <div class="w-16 h-16 bg-off-white flex items-center justify-center mx-auto mb-8 group-hover:bg-primary group-hover:text-white transition-colors duration-500">
                         <i class="fa-solid fa-leaf text-xl"></i>
                     </div>
@@ -119,7 +119,7 @@
                     <p class="text-sm text-gray-500 leading-relaxed">Conscious choices in production and packaging to respect our environment.</p>
                 </div>
                 <!-- Value 4 -->
-                <div class="bg-white p-12 text-center group hover:-translate-y-2 transition-transform duration-500 shadow-sm">
+                <div class="bg-white p-12 text-center group hover:-translate-y-2 transition-transform duration-500 shadow-sm eg-card rounded-xl">
                     <div class="w-16 h-16 bg-off-white flex items-center justify-center mx-auto mb-8 group-hover:bg-primary group-hover:text-white transition-colors duration-500">
                         <i class="fa-solid fa-heart text-xl"></i>
                     </div>

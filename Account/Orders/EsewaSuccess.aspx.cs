@@ -24,6 +24,7 @@ namespace serena.Site.Account.Orders
                 byte[] dataBytes = Convert.FromBase64String(dataB64);
                 string decodedJson = Encoding.UTF8.GetString(dataBytes);
                 string status = ExtractValue(decodedJson, "status");
+                string transactionCode = ExtractValue(decodedJson, "transaction_code");
                 
                 // Example JSON: {"transaction_code":"00010OT","status":"COMPLETE","total_amount":"100.0","transaction_uuid":"SS-20240214-12345","product_code":"EPAYTEST","signature":"..."}
                 // We should parse it properly. For now, we'll extract the UUID (Order Code).
@@ -39,8 +40,8 @@ namespace serena.Site.Account.Orders
                 if (litOrderCode != null) litOrderCode.Text = orderCode;
                 if (lnkOrder != null) lnkOrder.NavigateUrl = "~/Account/Orders/Detail.aspx?code=" + orderCode;
 
-                // Update order status in DB
-                Db.Execute("UPDATE dbo.orders SET status = 'processing', updated_at = GETDATE() WHERE order_code = @code AND status = 'pending'",
+                // Keep order in pending so admin can explicitly accept the order after payment verification.
+                Db.Execute("UPDATE dbo.orders SET updated_at = GETDATE() WHERE order_code = @code",
                             Db.P("@code", orderCode));
 
                 DataTable orderDt = Db.Query(@"
@@ -66,22 +67,44 @@ WHERE o.order_code = @code",
                     customerEmail = Convert.ToString(row["email"]) ?? "";
                 }
                 
-                // Log the payment
-                int anyAdminId = 0;
-                try { anyAdminId = Db.Scalar<int>("SELECT TOP 1 id FROM dbo.admins ORDER BY id ASC"); } catch { }
-                
-                if (orderId > 0 && anyAdminId > 0)
+                // Do not auto-change order workflow here; admin actions control order status transitions.
+
+                EnsurePaymentTransactionsTable();
+                if (orderId > 0)
                 {
-                    Db.Execute("INSERT INTO dbo.order_logs(order_id, status, admin_id) VALUES (@oid, 'processing', @aid)",
-                        Db.P("@oid", orderId), Db.P("@aid", anyAdminId));
+                    int updated = Db.Execute(@"UPDATE dbo.payment_transactions
+SET transaction_ref = @ref,
+    provider_status = @st,
+    amount = @amt,
+    raw_response = @raw,
+    updated_at = GETDATE()
+WHERE order_id = @oid",
+                        Db.P("@ref", string.IsNullOrWhiteSpace(transactionCode) ? orderCode : transactionCode),
+                        Db.P("@st", string.IsNullOrWhiteSpace(status) ? "complete" : status),
+                        Db.P("@amt", totalAmount),
+                        Db.P("@raw", decodedJson),
+                        Db.P("@oid", orderId));
+
+                    if (updated <= 0)
+                    {
+                        Db.Execute(@"INSERT INTO dbo.payment_transactions(order_id, order_code, payment_method, transaction_ref, provider_status, amount, raw_response, created_at, updated_at)
+VALUES (@oid, @code, @method, @ref, @st, @amt, @raw, GETDATE(), GETDATE())",
+                            Db.P("@oid", orderId),
+                            Db.P("@code", orderCode),
+                            Db.P("@method", paymentMethod),
+                            Db.P("@ref", string.IsNullOrWhiteSpace(transactionCode) ? orderCode : transactionCode),
+                            Db.P("@st", string.IsNullOrWhiteSpace(status) ? "complete" : status),
+                            Db.P("@amt", totalAmount),
+                            Db.P("@raw", decodedJson));
+                    }
                 }
 
                 if (!string.IsNullOrWhiteSpace(customerEmail))
                 {
-                    try { EmailService.SendPaymentConfirmationEmail(customerEmail, customerName, orderCode, totalAmount, paymentMethod); } catch { }
+                    try { global::EmailService.SendPaymentConfirmationEmail(customerEmail, customerName, orderCode, totalAmount, paymentMethod); } catch { }
                 }
 
-                try { EmailService.SendPaymentReceivedAlert(orderCode, totalAmount, paymentMethod); } catch { }
+                try { global::EmailService.SendPaymentReceivedAlert(orderCode, totalAmount, paymentMethod); } catch { }
 
                 try { NotificationService.NotifyMemberOrderStatus(Convert.ToInt32(Session["MEMBER_ID"] ?? 0), orderId, orderCode, "paid"); } catch { }
             }
@@ -89,6 +112,27 @@ WHERE o.order_code = @code",
             {
                 Response.Redirect("~/Account/Orders/EsewaFailure.aspx");
             }
+        }
+
+        private void EnsurePaymentTransactionsTable()
+        {
+            Db.Execute(@"
+IF NOT EXISTS (SELECT 1 FROM sys.tables WHERE name='payment_transactions' AND schema_id=SCHEMA_ID('dbo'))
+BEGIN
+  CREATE TABLE dbo.payment_transactions(
+    id INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+    order_id INT NOT NULL,
+    order_code VARCHAR(50) NOT NULL,
+    payment_method VARCHAR(100) NOT NULL,
+    transaction_ref VARCHAR(120) NULL,
+    provider_status VARCHAR(50) NULL,
+    amount DECIMAL(10,2) NULL,
+    raw_response VARCHAR(MAX) NULL,
+    created_at DATETIME2(0) NOT NULL DEFAULT (GETDATE()),
+    updated_at DATETIME2(0) NOT NULL DEFAULT (GETDATE())
+  );
+END;
+");
         }
 
         private string ExtractValue(string json, string key)

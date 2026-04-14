@@ -20,6 +20,9 @@
                     <a href="~/Account/Orders/Index.aspx" runat="server" class="flex items-center gap-2 border border-gray-200 px-6 py-3 text-xs uppercase tracking-widest font-bold hover:bg-off-white transition-all">
                         <i class="fa-solid fa-box-archive"></i> My Orders
                     </a>
+                    <a href="~/Account/Notifications.aspx" runat="server" class="flex items-center gap-2 border border-gray-200 px-6 py-3 text-xs uppercase tracking-widest font-bold hover:bg-off-white transition-all">
+                        <i class="fa-regular fa-bell"></i> Notifications
+                    </a>
                     <a href="~/Account/Logout.aspx" runat="server" class="flex items-center gap-2 bg-text-dark text-white px-6 py-3 text-xs uppercase tracking-widest font-bold hover:bg-black transition-all">
                         <i class="fa-solid fa-right-from-bracket"></i> Logout
                     </a>

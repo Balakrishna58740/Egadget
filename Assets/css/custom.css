@@ -17,6 +17,13 @@ body {
     line-height: 1.7;
 }
 
+body:not(.admin-shell) {
+    background:
+        radial-gradient(circle at top left, rgba(37, 99, 235, 0.08), transparent 32%),
+        radial-gradient(circle at top right, rgba(14, 165, 233, 0.07), transparent 30%),
+        linear-gradient(180deg, #f8fbff 0%, #ffffff 28%, #f8fbff 100%);
+}
+
 body.admin-shell {
     background:
         radial-gradient(circle at top left, rgba(37, 99, 235, 0.20), transparent 30%),
@@ -255,6 +262,34 @@ body.admin-shell .form-select:focus {
     background-color: var(--light);
 }
 
+.eg-surface {
+    background: linear-gradient(180deg, rgba(241, 245, 249, 0.72) 0%, rgba(255, 255, 255, 0.96) 100%);
+}
+
+.eg-surface-alt {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(239, 246, 255, 0.55) 100%);
+}
+
+.eg-card {
+    border: 1px solid rgba(148, 163, 184, 0.14);
+    box-shadow: 0 12px 28px rgba(15, 23, 42, 0.06);
+    transition: transform 0.24s ease, box-shadow 0.24s ease, border-color 0.24s ease;
+}
+
+.eg-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 18px 36px rgba(15, 23, 42, 0.10);
+    border-color: rgba(59, 130, 246, 0.25);
+}
+
+body:not(.admin-shell) input:focus,
+body:not(.admin-shell) select:focus,
+body:not(.admin-shell) textarea:focus {
+    outline: none;
+    border-color: rgba(59, 130, 246, 0.65) !important;
+    box-shadow: 0 0 0 0.2rem rgba(59, 130, 246, 0.14);
+}
+
 /* Custom animations */
 @keyframes fadeIn {
     from {
@@ -279,4 +314,190 @@ body.admin-shell .form-select:focus {
 
 .group:hover .mega-menu {
     display: block;
+}
+
+/* Interaction polish */
+body:not(.admin-shell) a,
+body:not(.admin-shell) button,
+body:not(.admin-shell) .btn,
+body:not(.admin-shell) input[type="submit"] {
+    transition: transform 0.16s ease, box-shadow 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+}
+
+body:not(.admin-shell) button:active,
+body:not(.admin-shell) .btn:active,
+body:not(.admin-shell) input[type="submit"]:active {
+    transform: translateY(1px) scale(0.995);
+}
+
+body:not(.admin-shell) a:focus-visible,
+body:not(.admin-shell) button:focus-visible,
+body:not(.admin-shell) input:focus-visible,
+body:not(.admin-shell) textarea:focus-visible,
+body:not(.admin-shell) select:focus-visible {
+    outline: 2px solid rgba(59, 130, 246, 0.5);
+    outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+.btn-loading {
+    opacity: 0.75;
+    cursor: wait !important;
+    pointer-events: none;
+    filter: saturate(0.85);
+}
+
+.eg-empty-state {
+    border: 1px dashed rgba(148, 163, 184, 0.4);
+    background: linear-gradient(180deg, rgba(248, 250, 252, 0.9) 0%, rgba(255, 255, 255, 1) 100%);
+    border-radius: 1rem;
+}
+
+.eg-timeline-item {
+    position: relative;
+    padding: 0.9rem 1rem 0.9rem 1.1rem;
+    border-left: 3px solid rgba(37, 99, 235, 0.45);
+    background: linear-gradient(180deg, rgba(239, 246, 255, 0.65) 0%, rgba(255, 255, 255, 1) 100%);
+    border-radius: 0.7rem;
+}
+
+.eg-heading-band {
+    display: inline-block;
+    padding: 0.35rem 0.9rem;
+    border-radius: 0.8rem;
+    background: linear-gradient(90deg, rgba(37, 99, 235, 0.14) 0%, rgba(14, 165, 233, 0.14) 45%, rgba(99, 102, 241, 0.14) 100%);
+    border: 1px solid rgba(59, 130, 246, 0.22);
+}
+
+.admin-right-card {
+    border: 1px solid rgba(191, 219, 254, 0.75);
+    border-radius: 1.25rem;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(238, 247, 255, 0.88) 100%);
+    box-shadow: 0 18px 35px rgba(15, 23, 42, 0.08);
+}
+
+/* Admin polish: spacing, hierarchy, action consistency */
+.admin-content-stack {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 1.25rem;
+}
+
+@media (min-width: 1024px) {
+    .admin-content-stack {
+        padding: 1.75rem;
+    }
+}
+
+.admin-card,
+.admin-right-card,
+.admin-surface {
+    border-radius: 1rem;
+}
+
+.admin-table th,
+.admin-table td {
+    white-space: nowrap;
+}
+
+.admin-table th {
+    letter-spacing: 0.08em;
+    font-size: 0.68rem;
+}
+
+.admin-table td {
+    font-size: 0.82rem;
+}
+
+.admin-action-btn {
+    border-radius: 0.65rem;
+    padding: 0.7rem 1rem;
+    font-size: 0.67rem;
+    text-transform: uppercase;
+    letter-spacing: 0.11em;
+    font-weight: 800;
+    border: 1px solid transparent;
+    transition: all 0.18s ease;
+}
+
+.admin-action-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.12);
+}
+
+.admin-action-btn:active {
+    transform: translateY(0);
+}
+
+.admin-action-btn.primary {
+    background: #0f172a;
+    color: #fff;
+}
+
+.admin-action-btn.warning {
+    background: #f59e0b;
+    color: #fff;
+}
+
+.admin-action-btn.success {
+    background: #2563eb;
+    color: #fff;
+}
+
+.admin-action-btn.danger {
+    background: transparent;
+    border-color: #ef4444;
+    color: #ef4444;
+}
+
+.draggable-card {
+    cursor: grab;
+}
+
+.draggable-card.dragging {
+    opacity: 0.65;
+    transform: scale(0.99);
+}
+
+/* Simple admin dashboard mode (cleaner / less clustered) */
+body.admin-shell .admin-surface {
+    background: #ffffff !important;
+    border: 1px solid #e2e8f0 !important;
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.04);
+}
+
+body.admin-shell .admin-card {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 6px 18px rgba(15, 23, 42, 0.05);
+    transform: none !important;
+}
+
+body.admin-shell .admin-card:hover {
+    transform: none !important;
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.07);
+}
+
+body.admin-shell .admin-table th,
+body.admin-shell .admin-table td {
+    padding-top: 0.95rem;
+    padding-bottom: 0.95rem;
+}
+
+body.admin-shell .admin-table th {
+    color: #64748b;
+    letter-spacing: 0.08em;
+}
+
+body.admin-shell .admin-action-btn {
+    min-width: 140px;
+    justify-content: center;
 }

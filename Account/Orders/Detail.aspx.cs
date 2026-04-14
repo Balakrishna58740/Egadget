@@ -59,6 +59,8 @@ namespace serena.Site.Account.Orders
             var litOrderDate = Find<Literal>("litOrderDate");
             var litTotalQty = Find<Literal>("litTotalQty");
             var litTotalAmt = Find<Literal>("litTotalAmt");
+            var litTxnRef = Find<Literal>("litTxnRef");
+            var litTxnStatus = Find<Literal>("litTxnStatus");
             var litShipName = Find<Literal>("litShipName");
             var litShipPhone = Find<Literal>("litShipPhone");
             var litShipAddr = Find<Literal>("litShipAddr");
@@ -84,6 +86,23 @@ namespace serena.Site.Account.Orders
             if (litOrderDate != null) litOrderDate.Text = FmtDate(o["order_date"]);
             if (litTotalQty != null) litTotalQty.Text = SafeInt(o["total_qty"]).ToString(CultureInfo.InvariantCulture);
             if (litTotalAmt != null) litTotalAmt.Text = SafeDec(o["total_amount"]).ToString("N2");
+
+            var txDt = Db.Query(@"SELECT TOP 1 transaction_ref, provider_status
+FROM dbo.payment_transactions
+WHERE order_id=@oid
+ORDER BY id DESC;", new SqlParameter("@oid", _orderId));
+            if (txDt != null && txDt.Rows.Count > 0)
+            {
+                string txRef = SafeStr(txDt.Rows[0]["transaction_ref"], "-");
+                string txStatus = SafeStr(txDt.Rows[0]["provider_status"], "-");
+                if (litTxnRef != null) litTxnRef.Text = Server.HtmlEncode(txRef);
+                if (litTxnStatus != null) litTxnStatus.Text = Server.HtmlEncode(txStatus.ToUpperInvariant());
+            }
+            else
+            {
+                if (litTxnRef != null) litTxnRef.Text = "-";
+                if (litTxnStatus != null) litTxnStatus.Text = "-";
+            }
 
             // Shipping
             var addrDt = Db.Query("SELECT TOP 1 * FROM dbo.order_addresses WHERE order_id=@id ORDER BY id DESC;",
@@ -197,6 +216,7 @@ ORDER BY oi.id ASC;",
         {
             string v = (s ?? "").Trim().ToLowerInvariant();
             if (v == "paid") return "accepted";
+            if (v == "processing") return "accepted";
             if (v == "delivering") return "inprocess";
             if (v == "completed") return "delivered";
             return v;

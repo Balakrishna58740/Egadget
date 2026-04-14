@@ -32,12 +32,12 @@
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 eg-card bg-white rounded-2xl p-6 md:p-8">
                 <!-- Left: Status & Shipping -->
                 <div class="lg:col-span-1 space-y-12">
                     <section>
                         <h3 class="font-serif text-2xl mb-8 border-b border-gray-100 pb-4">Status</h3>
-                        <div class="bg-off-white p-8 border border-gray-100">
+                        <div class="bg-off-white p-8 border border-gray-100 eg-card rounded-xl">
                             <div class="space-y-6">
                                 <div>
                                     <label class="block text-[10px] uppercase tracking-widest text-gray-400 font-bold mb-2">Current Status</label>
@@ -46,6 +46,14 @@
                                 <div>
                                     <label class="block text-[10px] uppercase tracking-widest text-gray-400 font-bold mb-2">Payment Method</label>
                                     <p class="text-sm font-bold text-text-dark uppercase tracking-wider"><asp:Literal ID="litPayment" runat="server" /></p>
+                                </div>
+                                <div>
+                                    <label class="block text-[10px] uppercase tracking-widest text-gray-400 font-bold mb-2">Transaction Ref</label>
+                                    <p class="text-xs font-bold text-text-dark uppercase tracking-wider"><asp:Literal ID="litTxnRef" runat="server" /></p>
+                                </div>
+                                <div>
+                                    <label class="block text-[10px] uppercase tracking-widest text-gray-400 font-bold mb-2">Payment State</label>
+                                    <p class="text-xs font-bold text-text-dark uppercase tracking-wider"><asp:Literal ID="litTxnStatus" runat="server" /></p>
                                 </div>
                             </div>
                         </div>
@@ -97,7 +105,7 @@
                         <div class="space-y-4">
                             <asp:Repeater ID="rptLogs" runat="server">
                                 <ItemTemplate>
-                                    <div class="bg-off-white/50 border-l-4 border-primary p-4 flex justify-between items-center">
+                                    <div class="eg-timeline-item flex justify-between items-center gap-4">
                                         <div class="text-[10px] uppercase tracking-widest font-bold">
                                             <%# Container.Page.GetType().GetMethod("Upper").Invoke(Container.Page, new object[]{ Eval("status") }) %>
                                         </div>

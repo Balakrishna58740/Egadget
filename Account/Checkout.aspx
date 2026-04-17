@@ -1,7 +1,7 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/MasterPages/Site.master" AutoEventWireup="true" CodeFile="Checkout.aspx.cs" Inherits="serena.Site.Account.CheckoutPage" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <div class="container mx-auto px-4 py-12">
+    <div class="container mx-auto px-4 py-12 checkout-page">
         <div class="max-w-6xl mx-auto">
             <h1 class="font-serif text-4xl mb-12 text-center md:text-left">Checkout</h1>
 

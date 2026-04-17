@@ -2,6 +2,7 @@
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Threading.Tasks;
 
 public static class Db
 {
@@ -16,6 +17,13 @@ public static class Db
         return con;
     }
 
+    public static async Task<SqlConnection> OpenAsync()
+    {
+        var con = new SqlConnection(_cs);
+        await con.OpenAsync();
+        return con;
+    }
+
     public static int Execute(string sql, params SqlParameter[] parameters)
     {
         using (var con = Open())
@@ -23,6 +31,16 @@ public static class Db
         {
             if (parameters != null && parameters.Length > 0) cmd.Parameters.AddRange(CloneParameters(parameters));
             return cmd.ExecuteNonQuery();
+        }
+    }
+
+    public static async Task<int> ExecuteAsync(string sql, params SqlParameter[] parameters)
+    {
+        using (var con = await OpenAsync())
+        using (var cmd = new SqlCommand(sql, con))
+        {
+            if (parameters != null && parameters.Length > 0) cmd.Parameters.AddRange(CloneParameters(parameters));
+            return await cmd.ExecuteNonQueryAsync();
         }
     }
 
@@ -38,6 +56,18 @@ public static class Db
         }
     }
 
+    public static async Task<T> ScalarAsync<T>(string sql, params SqlParameter[] parameters)
+    {
+        using (var con = await OpenAsync())
+        using (var cmd = new SqlCommand(sql, con))
+        {
+            if (parameters != null && parameters.Length > 0) cmd.Parameters.AddRange(CloneParameters(parameters));
+            object o = await cmd.ExecuteScalarAsync();
+            if (o == null || o == DBNull.Value) return default(T);
+            return (T)Convert.ChangeType(o, typeof(T));
+        }
+    }
+
     public static DataTable Query(string sql, params SqlParameter[] parameters)
     {
         using (var con = Open())
@@ -48,6 +78,21 @@ public static class Db
             {
                 var dt = new DataTable();
                 da.Fill(dt);
+                return dt;
+            }
+        }
+    }
+
+    public static async Task<DataTable> QueryAsync(string sql, params SqlParameter[] parameters)
+    {
+        using (var con = await OpenAsync())
+        using (var cmd = new SqlCommand(sql, con))
+        {
+            if (parameters != null && parameters.Length > 0) cmd.Parameters.AddRange(CloneParameters(parameters));
+            using (var reader = await cmd.ExecuteReaderAsync())
+            {
+                var dt = new DataTable();
+                dt.Load(reader);
                 return dt;
             }
         }

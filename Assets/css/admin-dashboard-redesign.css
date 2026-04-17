@@ -14,6 +14,43 @@
     background: var(--db-primary);
 }
 
+.admin-shell .admin-control-chip {
+    background: #00B074;
+    border-color: #00B074;
+    color: #ffffff;
+}
+
+.admin-shell .admin-user-chip {
+    background: linear-gradient(135deg, #00B074 0%, #009A64 100%);
+    border-color: #00B074;
+    box-shadow: 0 8px 20px rgba(0, 176, 116, 0.28);
+}
+
+.admin-shell .admin-notif-link {
+    color: #ffffff;
+}
+
+.admin-shell .admin-notif-link:hover {
+    color: #dcfce7;
+}
+
+.admin-shell .admin-logout-btn {
+    color: #ffffff;
+}
+
+.admin-shell .admin-logout-btn:hover {
+    color: #dcfce7;
+}
+
+.admin-shell .admin-user-chip .text-text-dark,
+.admin-shell .admin-user-chip .text-slate-500 {
+    color: #ffffff !important;
+}
+
+.admin-shell .admin-user-chip .border-slate-200 {
+    border-color: rgba(255, 255, 255, 0.35) !important;
+}
+
 /* Sidebar refinements */
 .admin-shell .admin-nav-link {
     border-left: 3px solid transparent;
@@ -37,8 +74,8 @@
 }
 
 .admin-shell .admin-topbar {
-    background: #ffffff;
-    border-bottom: 1px solid #e2e8f0 !important;
+    background: #1E3A5F;
+    border-bottom: 1px solid #284a73 !important;
 }
 
 .admin-shell .admin-content-stack {
@@ -219,6 +256,58 @@
 
 .db-stat-link {
     text-decoration: none;
+}
+
+@media (max-width: 1023px) {
+    .sidebar-drawer {
+        transform: translateX(-100%);
+        transition: transform .22s ease;
+        will-change: transform;
+    }
+
+    .sidebar-drawer.is-open {
+        transform: translateX(0);
+    }
+
+    .sidebar-overlay {
+        background: rgba(15, 23, 42, 0.45);
+    }
+
+    .sidebar-overlay.is-open {
+        display: block !important;
+    }
+
+    .admin-shell .admin-topbar {
+        height: 72px;
+    }
+
+    .admin-shell .admin-control-chip {
+        padding: .55rem .75rem;
+    }
+
+    .admin-shell .admin-control-chip .text-xs {
+        font-size: 10px;
+    }
+
+    .admin-shell .admin-control-chip .text-\[10px\] {
+        font-size: 9px;
+    }
+}
+
+@media (max-width: 640px) {
+    .admin-shell .admin-user-chip {
+        gap: .5rem;
+        padding: .45rem .55rem;
+    }
+
+    .admin-shell .admin-user-chip .text-right {
+        display: none;
+    }
+
+    .admin-shell footer {
+        padding-left: .75rem;
+        padding-right: .75rem;
+    }
 }
 
 .db-stat-note {

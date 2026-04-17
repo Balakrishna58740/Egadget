@@ -32,3 +32,15 @@
 2026-04-13 12:18:11Z Email send failed: The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.7.0 Authentication Required. For more information, go to | To=pukarchalise52@gmail.com | Subject=Order status update - SS-20260413-71862
 2026-04-13 12:18:23Z Email send failed: The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.7.0 Authentication Required. For more information, go to | To=pukarchalise52@gmail.com | Subject=Order status update - SS-20260413-71862
 2026-04-13 12:18:32Z Email send failed: The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.7.0 Authentication Required. For more information, go to | To=pukarchalise52@gmail.com | Subject=Order status update - SS-20260413-71862
+[2026-04-14T19:51:04] 
+To: pukarchalise52@gmail.com
+Subject: Payment received - SS-20260414-62104
+Reason: Failure sending mail.
+Body: A payment has been received.<br/><br/>Order: <b>SS-20260414-62104</b><br/>Amount: <b>RS 1,099.00</b><br/>Payment method: <b>Cash On Delivery</b>
+---
+[2026-04-14T19:51:04] 
+To: pukar.chalishes23@cps.edu.np
+Subject: Payment confirmed - SS-20260414-62104
+Reason: Failure sending mail.
+Body: Hi Pukar Chalise,<br/><br/>We received your payment for order <b>SS-20260414-62104</b>.<br/>Amount: <b>RS 1,099.00</b><br/>Payment method: <b>Cash On Delivery</b><br/><br/>Thank you for shopping with eGadgetHub.
+---

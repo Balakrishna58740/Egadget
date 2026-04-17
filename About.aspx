@@ -2,7 +2,7 @@
     AutoEventWireup="true" CodeFile="About.aspx.cs"
     Inherits="serena.Site.AboutPage" %>
 
-<asp:Content ID="t" ContentPlaceHolderID="TitleContent" runat="server">Our Story | Saja</asp:Content>
+<asp:Content ID="t" ContentPlaceHolderID="TitleContent" runat="server">Our Story | eGadgetHub</asp:Content>
 
 <asp:Content ID="m" ContentPlaceHolderID="MainContent" runat="server">
 

@@ -1,17 +1,17 @@
 ﻿/* ==== Load this AFTER Bootstrap ==== */
 
-/* ==== Dark theme base ==== */
+/* ==== Modern light-green theme base ==== */
 body {
-    background-color: #2B3035 !important;
-    color: #E8EAEE;
+    background-color: #F9FAFB !important;
+    color: #111827;
 }
 
 h1, h2, h3, h4, h5, h6 {
-    color: #E8EAEE;
+    color: #111827;
 }
 
 .text-muted {
-    color: #9AA4AF !important;
+    color: #6B7280 !important;
 }
 
 hr {
@@ -20,11 +20,11 @@ hr {
 }
 
 a {
-    color: #E8EAEE;
+    color: #10B981;
 }
 
     a:hover {
-        color: #fff;
+        color: #059669;
     }
 
 /* ==== Header / Navbar polish ==== */
@@ -80,7 +80,7 @@ a {
 /* Divider between stacked dark navbars */
 .header-divider {
     height: .5px;
-    background: #adb5bd;
+    background: #E5E7EB;
 }
 
 /* Logo sizing */

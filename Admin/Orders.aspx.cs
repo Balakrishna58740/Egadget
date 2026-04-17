@@ -24,9 +24,82 @@ namespace serena.Admin
                 SetText("txtName", Request.QueryString["name"]);
                 SetText("txtFrom", Request.QueryString["from"]);
                 SetText("txtTo", Request.QueryString["to"]);
+                SeedStatusDropdown();
+
+                if (HandleCsvExportRequest()) return;
 
                 BindAll();
             }
+        }
+
+        private void SeedStatusDropdown()
+        {
+            var ddl = Find<DropDownList>("ddlEventStatus");
+            if (ddl == null) return;
+
+            string status = (Request.QueryString["status"] ?? "").Trim().ToLowerInvariant();
+            if (string.IsNullOrEmpty(status)) return;
+
+            var item = ddl.Items.FindByValue(status);
+            if (item != null)
+            {
+                ddl.ClearSelection();
+                item.Selected = true;
+            }
+        }
+
+        private bool HandleCsvExportRequest()
+        {
+            var ex = (Request.QueryString["export"] ?? "").Trim().ToLowerInvariant();
+            if (ex != "csv") return false;
+
+            string code = Request.QueryString["code"];
+            string name = Request.QueryString["name"];
+            string fromStr = Request.QueryString["from"];
+            string toStr = Request.QueryString["to"];
+            string status = (Request.QueryString["status"] ?? "").ToLowerInvariant();
+
+            List<SqlParameter> parms;
+            string where = BuildBaseWhere(code, name, fromStr, toStr, out parms);
+            if (!string.IsNullOrEmpty(status)) AppendStatusFilter(status, parms, ref where);
+
+            var dt = Db.Query(@"
+SELECT o.order_code, o.status, COALESCE(NULLIF(o.ship_name,''), m.full_name, '-') AS client_name,
+       COALESCE(m.email,'-') AS email, COALESCE(o.payment,'-') AS payment,
+       o.total_amount, o.order_date
+FROM orders o
+LEFT JOIN members m ON m.id = o.member_id
+" + where + " ORDER BY o.order_date DESC", parms.ToArray());
+
+            var sb = new StringBuilder();
+            sb.AppendLine("REF,STATUS,CLIENT,EMAIL,FINANCE,MAGNITUDE,EVENT DATE");
+            foreach (DataRow r in dt.Rows)
+            {
+                string date = r["order_date"] == DBNull.Value ? "" : Convert.ToDateTime(r["order_date"]).ToString("yyyy-MM-dd");
+                sb.Append(Csv(r["order_code"])).Append(",")
+                  .Append(Csv(r["status"])).Append(",")
+                  .Append(Csv(r["client_name"])).Append(",")
+                  .Append(Csv(r["email"])).Append(",")
+                  .Append(Csv(r["payment"])).Append(",")
+                  .Append(Csv(r["total_amount"])).Append(",")
+                  .Append(Csv(date))
+                  .AppendLine();
+            }
+
+            Response.Clear();
+            Response.ContentType = "text/csv";
+            Response.AddHeader("content-disposition", "attachment;filename=commerce-history.csv");
+            Response.Write(sb.ToString());
+            Response.End();
+            return true;
+        }
+
+        private static string Csv(object v)
+        {
+            string s = Convert.ToString(v) ?? "";
+            if (s.Contains("\"") || s.Contains(",") || s.Contains("\n") || s.Contains("\r"))
+                return "\"" + s.Replace("\"", "\"\"") + "\"";
+            return s;
         }
 
         // ---- Events ----
@@ -36,7 +109,9 @@ namespace serena.Admin
             string name = GetText("txtName");
             string from = GetText("txtFrom");
             string to = GetText("txtTo");
-            string status = Convert.ToString(Request.QueryString["status"]); // keep selected pill
+            string status = "";
+            var ddl = Find<DropDownList>("ddlEventStatus");
+            if (ddl != null) status = (ddl.SelectedValue ?? "").Trim().ToLowerInvariant();
 
             var qs = HttpUtility.ParseQueryString(string.Empty);
             if (!string.IsNullOrWhiteSpace(code)) qs["code"] = code;
@@ -136,7 +211,7 @@ LEFT JOIN members m ON m.id = o.member_id");
                 var sb = new StringBuilder();
                 if (dt.Rows.Count == 0)
                 {
-                    sb.Append("<tr><td colspan='7' class='px-8 py-12 text-center text-gray-400 text-xs italic'>No transactions recorded matching your search logic.</td></tr>");
+                    sb.Append("<tr><td colspan='8' class='px-8 py-12 text-center text-gray-400 text-xs italic'>No transactions recorded matching your search logic.</td></tr>");
                 }
                 else
                 {
@@ -167,21 +242,40 @@ LEFT JOIN members m ON m.id = o.member_id");
                         decimal totalAmt = 0m;
                         if (r["total_amount"] != DBNull.Value) totalAmt = Convert.ToDecimal(r["total_amount"]);
 
-                        sb.Append("<tr class='hover:bg-off-white/30 transition-colors'>");
+                        sb.Append("<tr class='hover:bg-off-white/30 transition-colors ord-row' data-order-id='").Append(id).Append("' data-status='").Append(Html(st)).Append("' data-code='").Append(codeVal).Append("' data-client='").Append(Html(cust)).Append("' data-magnitude='").Append(totalAmt.ToString(CultureInfo.InvariantCulture)).Append("' data-date='").Append(dtStr).Append("'>");
+                        sb.Append("<td class='px-4 py-5 text-center'>");
+                        sb.Append("<div class='ord-row-tools'>");
+                        sb.Append("<span class='ord-drag-handle' tabindex='0' role='button' aria-label='Drag to reorder'><i class='fa-solid fa-grip-vertical'></i></span>");
+                        sb.Append("<input type='checkbox' class='ord-row-check' aria-label='Select order ").Append(codeVal).Append("' />");
+                        sb.Append("</div>");
+                        sb.Append("</td>");
                         sb.Append("<td class='px-8 py-5 text-[10px] uppercase tracking-widest font-bold text-gray-300'>").Append(codeVal).Append("</td>");
                         sb.Append("<td class='px-8 py-5'>").Append(RenderStatusBadge(st)).Append("</td>");
                         sb.Append("<td class='px-8 py-5'>");
                         sb.Append("<div class='text-sm font-serif text-text-dark'>").Append(cust).Append("</div>");
                         if (!string.IsNullOrEmpty(email))
                         {
-                            sb.Append("<div class='text-[10px] text-gray-400 uppercase tracking-widest font-bold'>").Append(email).Append("</div>");
+                            sb.Append("<div class='text-[10px] text-gray-400 uppercase tracking-widest font-bold' title='").Append(email).Append("'>").Append(email).Append("</div>");
                         }
+                        sb.Append("<div class='ord-inline-details hidden'>");
+                        sb.Append("<div><strong>Phone:</strong> ").Append(string.IsNullOrEmpty(phone) ? "-" : phone).Append("</div>");
+                        sb.Append("<div><strong>Payment:</strong> ").Append(string.IsNullOrEmpty(payment) ? "-" : payment).Append("</div>");
+                        sb.Append("</div>");
                         sb.Append("</td>");
                         sb.Append("<td class='px-8 py-5 text-[10px] uppercase tracking-widest font-bold text-gray-400'>").Append(string.IsNullOrEmpty(payment) ? "-" : payment).Append("</td>");
                         sb.Append("<td class='px-8 py-5 text-right font-bold text-text-dark text-sm'>RS ").Append(totalAmt.ToString("N2")).Append("</td>");
                         sb.Append("<td class='px-8 py-5 text-[10px] uppercase tracking-widest font-bold text-gray-400'>").Append(dtStr).Append("</td>");
                         sb.Append("<td class='px-8 py-5 text-right'>");
-                        sb.Append("<a class='text-primary hover:underline text-[10px] uppercase tracking-widest font-bold' href='OrderView.aspx?id=").Append(id).Append("'>View Details</a>");
+                        sb.Append("<div class='ord-settings-wrap'>");
+                        sb.Append("<button type='button' class='ord-actions-toggle' aria-label='Open actions'><i class='fa-solid fa-ellipsis-vertical'></i></button>");
+                        sb.Append("<div class='ord-quick-actions'>");
+                        sb.Append("<a class='ord-qa-btn' href='OrderView.aspx?id=").Append(id).Append("'>View</a>");
+                        sb.Append("<a class='ord-qa-btn' href='OrderView.aspx?id=").Append(id).Append("'>Edit</a>");
+                        sb.Append("<button type='button' class='ord-qa-btn ord-action-details'>Details</button>");
+                        sb.Append("<button type='button' class='ord-qa-btn js-duplicate' data-order-id='").Append(id).Append("'>Duplicate</button>");
+                        sb.Append("<button type='button' class='ord-qa-btn js-archive' data-order-id='").Append(id).Append("'>Archive</button>");
+                        sb.Append("</div>");
+                        sb.Append("</div>");
                         sb.Append("</td>");
                         sb.Append("</tr>");
                     }
@@ -325,7 +419,7 @@ GROUP BY LOWER(COALESCE(o.status,''));", CloneParams(baseParams));
                 string colorClass = "bg-white text-gray-400 border-gray-100 hover:border-gray-300";
                 if (isActive) colorClass = "bg-primary text-white border-primary shadow-lg shadow-primary/20 scale-105 z-10";
 
-                sb.Append("<a href='").Append(url(k)).Append("' class='flex-shrink-0 flex items-center gap-4 px-6 py-4 border transition-all ").Append(colorClass).Append("'>");
+                sb.Append("<a href='").Append(url(k)).Append("' data-status='").Append(HttpUtility.HtmlAttributeEncode(k)).Append("' class='ord-status-pill flex-shrink-0 flex items-center gap-4 px-6 py-4 border transition-all ").Append(colorClass).Append("'>");
                 sb.Append("<span class='text-[10px] uppercase tracking-widest font-bold'>").Append(label(k)).Append("</span>");
                 sb.Append("<span class='text-[10px] px-2 py-0.5 border ").Append(isActive ? "border-white/30 text-white" : "border-gray-50 text-gray-300").Append(" font-bold'>").Append(count.ToString("N0")).Append("</span>");
                 sb.Append("</a>");
@@ -336,7 +430,7 @@ GROUP BY LOWER(COALESCE(o.status,''));", CloneParams(baseParams));
         private static string RenderStatusBadge(string status)
         {
             string s = (status ?? "").Trim().ToLowerInvariant();
-            if (s.Length == 0) return "<span class='text-[8px] uppercase tracking-widest font-bold px-3 py-1 border border-gray-200 text-gray-300'>Unknown</span>";
+            if (s.Length == 0) return "<span title='Status currently unavailable' class='text-[8px] uppercase tracking-widest font-bold px-3 py-1 border border-gray-200 text-gray-300'>Unknown</span>";
             
             string cls = "border-gray-200 text-gray-300";
             if (s == "pending") cls = "border-orange-200 text-orange-400";
@@ -345,7 +439,7 @@ GROUP BY LOWER(COALESCE(o.status,''));", CloneParams(baseParams));
             else if (s == "delivered" || s == "completed") cls = "border-primary text-primary";
             else if (s == "canceled") cls = "border-red-200 text-red-500";
             
-            return "<span class='text-[8px] uppercase tracking-widest font-bold px-3 py-1 border " + cls + "'>" + HttpUtility.HtmlEncode(s.ToUpperInvariant()) + "</span>";
+            return "<span title='Order status: " + HttpUtility.HtmlAttributeEncode(s) + "' class='text-[8px] uppercase tracking-widest font-bold px-3 py-1 border " + cls + "'>" + HttpUtility.HtmlEncode(s.ToUpperInvariant()) + "</span>";
         }
 
         // ---- Pager ----

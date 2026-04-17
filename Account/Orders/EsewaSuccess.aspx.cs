@@ -70,32 +70,25 @@ WHERE o.order_code = @code",
                 // Do not auto-change order workflow here; admin actions control order status transitions.
 
                 EnsurePaymentTransactionsTable();
+                EnsureOrderLogsTable();
                 if (orderId > 0)
                 {
-                    int updated = Db.Execute(@"UPDATE dbo.payment_transactions
-SET transaction_ref = @ref,
-    provider_status = @st,
-    amount = @amt,
-    raw_response = @raw,
-    updated_at = GETDATE()
-WHERE order_id = @oid",
+                    Db.Execute(@"INSERT INTO dbo.payment_transactions(order_id, order_code, payment_method, transaction_ref, provider_status, amount, raw_response, created_at, updated_at)
+VALUES (@oid, @code, @method, @ref, @st, @amt, @raw, GETDATE(), GETDATE())",
+                        Db.P("@oid", orderId),
+                        Db.P("@code", orderCode),
+                        Db.P("@method", paymentMethod),
                         Db.P("@ref", string.IsNullOrWhiteSpace(transactionCode) ? orderCode : transactionCode),
                         Db.P("@st", string.IsNullOrWhiteSpace(status) ? "complete" : status),
                         Db.P("@amt", totalAmount),
-                        Db.P("@raw", decodedJson),
-                        Db.P("@oid", orderId));
+                        Db.P("@raw", decodedJson));
 
-                    if (updated <= 0)
+                    int anyAdminId = 0;
+                    try { anyAdminId = Db.Scalar<int>("SELECT TOP 1 id FROM dbo.admins ORDER BY id ASC"); } catch { }
+                    if (anyAdminId > 0)
                     {
-                        Db.Execute(@"INSERT INTO dbo.payment_transactions(order_id, order_code, payment_method, transaction_ref, provider_status, amount, raw_response, created_at, updated_at)
-VALUES (@oid, @code, @method, @ref, @st, @amt, @raw, GETDATE(), GETDATE())",
-                            Db.P("@oid", orderId),
-                            Db.P("@code", orderCode),
-                            Db.P("@method", paymentMethod),
-                            Db.P("@ref", string.IsNullOrWhiteSpace(transactionCode) ? orderCode : transactionCode),
-                            Db.P("@st", string.IsNullOrWhiteSpace(status) ? "complete" : status),
-                            Db.P("@amt", totalAmount),
-                            Db.P("@raw", decodedJson));
+                        Db.Execute("INSERT INTO dbo.order_logs(order_id, status, admin_id, created_at, updated_at) VALUES (@oid, 'payment_complete', @aid, GETDATE(), GETDATE())",
+                            Db.P("@oid", orderId), Db.P("@aid", anyAdminId));
                     }
                 }
 
@@ -132,6 +125,31 @@ BEGIN
     updated_at DATETIME2(0) NOT NULL DEFAULT (GETDATE())
   );
 END;
+");
+        }
+
+        private void EnsureOrderLogsTable()
+        {
+            Db.Execute(@"
+IF NOT EXISTS (SELECT 1 FROM sys.tables WHERE name='order_logs' AND schema_id=SCHEMA_ID('dbo'))
+BEGIN
+  CREATE TABLE dbo.order_logs(
+    id INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+    order_id INT NOT NULL,
+    [status] VARCHAR(50) NOT NULL,
+    admin_id INT NOT NULL,
+    created_at DATETIME2(0) NOT NULL DEFAULT (GETDATE()),
+    updated_at DATETIME2(0) NOT NULL DEFAULT (GETDATE())
+  );
+END;
+
+IF NOT EXISTS (SELECT 1 FROM sys.foreign_keys WHERE name='FK_order_logs_orders')
+  ALTER TABLE dbo.order_logs WITH CHECK
+    ADD CONSTRAINT FK_order_logs_orders FOREIGN KEY(order_id) REFERENCES dbo.orders(id);
+
+IF NOT EXISTS (SELECT 1 FROM sys.foreign_keys WHERE name='FK_order_logs_admins')
+  ALTER TABLE dbo.order_logs WITH CHECK
+    ADD CONSTRAINT FK_order_logs_admins FOREIGN KEY(admin_id) REFERENCES dbo.admins(id);
 ");
         }
 

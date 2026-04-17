@@ -41,7 +41,7 @@ namespace serena.Site.Account.Orders
             // Generate full URLs for success and failure
             string baseUrl = Request.Url.GetLeftPart(UriPartial.Authority) + ResolveUrl("~/Account/Orders/");
             success_url.Value = baseUrl + "EsewaSuccess.aspx";
-            failure_url.Value = baseUrl + "EsewaFailure.aspx";
+            failure_url.Value = baseUrl + "EsewaFailure.aspx?code=" + HttpUtility.UrlEncode(orderCode);
 
             // Generate Signature
             signature.Value = EsewaUtil.GenerateSignature(totalAmountStr, orderCode, productCode);

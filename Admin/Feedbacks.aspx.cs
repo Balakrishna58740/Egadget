@@ -14,18 +14,27 @@ namespace serena.Admin
     {
         private const int PAGE_SIZE = 10;
 
-        // used by script to highlight active nav tab
-        protected string ActiveTabCss = "pending";
-
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
 
+            EnsureFeedbackWorkflowSchema();
+
             if (!IsPostBack)
             {
                 // Load counts for tabs (overall)
-                int cntPending = Db.Scalar<int>("SELECT COUNT(*) FROM feedbacks WHERE is_resolved=0");
-                int cntComplete = Db.Scalar<int>("SELECT COUNT(*) FROM feedbacks WHERE is_resolved=1");
+                int cntPending = 0;
+                int cntComplete = 0;
+                try
+                {
+                    cntPending = Db.Scalar<int>("SELECT COUNT(*) FROM feedbacks WHERE (LOWER(ISNULL(status,'')) IN ('open','inprogress') OR (ISNULL(status,'')='' AND ISNULL(is_resolved,0)=0))");
+                    cntComplete = Db.Scalar<int>("SELECT COUNT(*) FROM feedbacks WHERE (LOWER(ISNULL(status,''))='resolved' OR ISNULL(is_resolved,0)=1)");
+                }
+                catch
+                {
+                    cntPending = Db.Scalar<int>("SELECT COUNT(*) FROM feedbacks WHERE ISNULL(is_resolved,0)=0");
+                    cntComplete = Db.Scalar<int>("SELECT COUNT(*) FROM feedbacks WHERE ISNULL(is_resolved,0)=1");
+                }
                 SetLit("litCountPending", cntPending.ToString("N0"));
                 SetLit("litCountComplete", cntComplete.ToString("N0"));
 
@@ -66,14 +75,29 @@ namespace serena.Admin
 
                 Db.Execute(
                     @"UPDATE feedbacks 
+                      SET reply=@r, status='resolved', is_resolved=1, admin_id=@aid, updated_at=GETDATE() 
+                      WHERE id=@id",
+                    Db.P("@r", reply), Db.P("@aid", aid), Db.P("@id", id));
+            }
+            catch
+            {
+                int adminId = GetCurrentAdminId();
+                object aid = adminId > 0 ? (object)adminId : DBNull.Value;
+
+                Db.Execute(
+                    @"UPDATE feedbacks 
                       SET reply=@r, is_resolved=1, admin_id=@aid, updated_at=GETDATE() 
                       WHERE id=@id",
                     Db.P("@r", reply), Db.P("@aid", aid), Db.P("@id", id));
+            }
+
+            try
+            {
+
+                NotifyMemberFeedbackUpdate(id, "resolved");
 
                 Show(lbl, "Reply saved and marked complete.", true);
-
-                // redirect to Complete tab
-                Response.Redirect("~/Admin/Feedbacks.aspx?tab=complete");
+                Response.Redirect("~/Admin/Feedbacks.aspx");
             }
             catch (Exception ex)
             {
@@ -83,9 +107,7 @@ namespace serena.Admin
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-            // stay on the same tab if provided
-            string tab = GetTab();
-            Response.Redirect("~/Admin/Feedbacks.aspx?tab=" + tab);
+            Response.Redirect("~/Admin/Feedbacks.aspx");
         }
 
         // ---------- Data bind ----------
@@ -99,37 +121,31 @@ namespace serena.Admin
 
             try
             {
-                string tab = GetTab();
-                ActiveTabCss = tab;
-
-                bool resolved = (tab == "complete");
+                bool hasStatus = HasColumn("feedbacks", "status");
+                bool hasTicket = HasColumn("feedbacks", "ticket_code");
 
                 // Pagination
                 int page = SafeInt(Request.QueryString["page"]);
                 if (page < 1) page = 1;
 
-                // Count for selected tab
-                var countParams = new List<SqlParameter> { Db.P("@res", resolved) };
-                int total = Db.Scalar<int>("SELECT COUNT(*) FROM feedbacks WHERE is_resolved=@res", countParams.ToArray());
+                int total = Db.Scalar<int>("SELECT COUNT(*) FROM feedbacks");
                 if (litTotal != null) litTotal.Text = "Total: <strong>" + total.ToString("N0") + "</strong>";
 
                 int pageCount = Math.Max(1, (int)Math.Ceiling(total / (double)PAGE_SIZE));
                 if (page > pageCount) page = pageCount;
                 int offset = (page - 1) * PAGE_SIZE;
 
-                // Data query (fresh params)
-                var dataParams = new List<SqlParameter> { Db.P("@res", resolved), Db.P("@offset", offset), Db.P("@limit", PAGE_SIZE) };
+                var dataParams = new List<SqlParameter> { Db.P("@offset", offset), Db.P("@limit", PAGE_SIZE) };
                 var dt = Db.Query(@"
-SELECT id, member_id, admin_id, name, email, title, message, reply, is_resolved, created_at
+SELECT id, " + (hasTicket ? "ticket_code" : "NULL AS ticket_code") + ", " + (hasStatus ? "status" : "NULL AS status") + @", member_id, admin_id, name, email, title, message, reply, is_resolved, created_at
 FROM feedbacks
-WHERE is_resolved=@res
 ORDER BY created_at DESC
 OFFSET @offset ROWS FETCH NEXT @limit ROWS ONLY;", dataParams.ToArray());
 
                 var sb = new StringBuilder();
                 if (dt.Rows.Count == 0)
                 {
-                    sb.Append("<tr><td colspan='6' class='text-center text-muted py-3'>No feedbacks.</td></tr>");
+                    sb.Append("<tr><td colspan='7' class='text-center text-muted py-3'>No feedbacks.</td></tr>");
                 }
                 else
                 {
@@ -140,6 +156,8 @@ OFFSET @offset ROWS FETCH NEXT @limit ROWS ONLY;", dataParams.ToArray());
                         int id = Convert.ToInt32(r["id"]);
                         string name = Html(r["name"]);
                         string email = Html(r["email"]);
+                        string ticket = Html(r["ticket_code"]);
+                        string status = NormalizeStatus(Convert.ToString(r["status"]), Convert.ToBoolean(r["is_resolved"]), Convert.ToString(r["reply"]));
                         string title = Html(r["title"]);
                         DateTime created = Convert.ToDateTime(r["created_at"]);
                         string createdStr = created.ToString("yyyy-MM-dd HH:mm");
@@ -148,12 +166,16 @@ OFFSET @offset ROWS FETCH NEXT @limit ROWS ONLY;", dataParams.ToArray());
                         sb.Append("<td>").Append(i).Append("</td>");
                         sb.Append("<td>").Append(string.IsNullOrEmpty(name) ? "-" : name).Append("</td>");
                         sb.Append("<td>").Append(string.IsNullOrEmpty(email) ? "-" : email).Append("</td>");
-                        sb.Append("<td>").Append(title).Append("</td>");
+                        sb.Append("<td>");
+                        if (!string.IsNullOrWhiteSpace(ticket))
+                            sb.Append("<div class='text-muted small'>").Append(ticket).Append("</div>");
+                        sb.Append(title).Append("</td>");
+                        sb.Append("<td><span class='badge ").Append(StatusBadge(status)).Append("'>").Append(DisplayStatus(status)).Append("</span></td>");
                         sb.Append("<td>").Append(createdStr).Append("</td>");
                         sb.Append("<td class='text-end'>");
-                        sb.Append("<a class='btn btn-sm btn-outline-primary' href='Feedbacks.aspx?tab=").Append(tab)
-                          .Append("&reply=").Append(id).Append("'>")
-                          .Append(resolved ? "View / Edit Reply" : "Reply")
+                        bool isResolved = string.Equals(status, "resolved", StringComparison.OrdinalIgnoreCase);
+                        sb.Append("<a class='btn btn-sm btn-outline-primary' href='Feedbacks.aspx?reply=").Append(id).Append("'>")
+                          .Append(isResolved ? "View / Edit Reply" : "Reply")
                           .Append("</a>");
                         sb.Append("</td>");
                         sb.Append("</tr>");
@@ -161,12 +183,12 @@ OFFSET @offset ROWS FETCH NEXT @limit ROWS ONLY;", dataParams.ToArray());
                 }
                 lit.Text = sb.ToString();
 
-                if (pager != null) pager.Text = BuildPager(total, page, pageCount, tab);
+                if (pager != null) pager.Text = BuildPager(page, pageCount);
             }
             catch (Exception ex)
             {
                 Show(lbl, "Error: " + Server.HtmlEncode(ex.Message), false);
-                if (lit != null) lit.Text = "<tr><td colspan='6' class='text-center text-danger py-3'>Failed to load feedbacks.</td></tr>";
+                if (lit != null) lit.Text = "<tr><td colspan='7' class='text-center text-danger py-3'>Failed to load feedbacks.</td></tr>";
                 var p2 = Find<Literal>("pager"); if (p2 != null) p2.Text = "";
             }
         }
@@ -189,9 +211,95 @@ OFFSET @offset ROWS FETCH NEXT @limit ROWS ONLY;", dataParams.ToArray());
                         SetLit("litMessage", Html(r["message"]));
                         var txt = Find<TextBox>("txtReply");
                         if (txt != null) txt.Text = Convert.ToString(r["reply"]);
+
+                        var lbl = Find<Label>("lblMsg");
+                        if (lbl != null && !string.IsNullOrWhiteSpace(lbl.Text)) lbl.CssClass = (lbl.CssClass ?? "").Replace("d-none", "").Trim();
+
+                        ClientScript.RegisterStartupScript(GetType(), "fbReplyModalOpen",
+                            "(function(){var m=document.getElementById('fbReplyModal'); if(m){m.classList.remove('d-none'); m.setAttribute('aria-hidden','false');}})();", true);
                     }
                 }
             }
+        }
+
+        private void NotifyMemberFeedbackUpdate(int feedbackId, string status)
+        {
+            try
+            {
+                var dt = Db.Query("SELECT TOP 1 member_id, ticket_code, title FROM feedbacks WHERE id=@id", Db.P("@id", feedbackId));
+                if (dt == null || dt.Rows.Count == 0) return;
+
+                int memberId = 0;
+                int.TryParse(Convert.ToString(dt.Rows[0]["member_id"]), out memberId);
+                if (memberId <= 0) return;
+
+                string ticket = Convert.ToString(dt.Rows[0]["ticket_code"] ?? "-");
+                string title = Convert.ToString(dt.Rows[0]["title"] ?? "Feedback");
+                string displayStatus = DisplayStatus((status ?? "").Trim().ToLowerInvariant());
+
+                Db.Execute(@"INSERT INTO dbo.notifications(recipient_member_id, is_admin, order_id, title, body, is_read, created_at)
+VALUES (@mid, 0, NULL, @title, @body, 0, GETDATE())",
+                    Db.P("@mid", memberId),
+                    Db.P("@title", "Feedback status updated"),
+                    Db.P("@body", "Ticket " + ticket + " (" + title + ") is now " + displayStatus + "."));
+            }
+            catch { }
+        }
+
+        private static bool HasColumn(string tableName, string columnName)
+        {
+            try
+            {
+                return Db.Scalar<int>(@"SELECT COUNT(*)
+FROM sys.columns c
+INNER JOIN sys.tables t ON t.object_id = c.object_id
+WHERE t.name=@t AND c.name=@c", Db.P("@t", tableName), Db.P("@c", columnName)) > 0;
+            }
+            catch { return false; }
+        }
+
+        private static void EnsureFeedbackWorkflowSchema()
+        {
+            try
+            {
+                Db.Execute(@"
+IF COL_LENGTH('dbo.feedbacks', 'ticket_code') IS NULL
+    ALTER TABLE dbo.feedbacks ADD ticket_code VARCHAR(40) NULL;
+
+IF COL_LENGTH('dbo.feedbacks', 'status') IS NULL
+    ALTER TABLE dbo.feedbacks ADD [status] VARCHAR(20) NULL;
+
+IF COL_LENGTH('dbo.feedbacks', 'product_id') IS NULL
+    ALTER TABLE dbo.feedbacks ADD product_id INT NULL;
+
+UPDATE dbo.feedbacks
+SET [status] = CASE WHEN ISNULL(is_resolved,0)=1 THEN 'resolved' ELSE 'open' END
+WHERE [status] IS NULL OR LTRIM(RTRIM([status]))='';
+");
+            }
+            catch { }
+        }
+
+        private static string NormalizeStatus(string status, bool isResolved, string reply)
+        {
+            string s = (status ?? "").Trim().ToLowerInvariant();
+            if (string.IsNullOrEmpty(s)) s = isResolved || !string.IsNullOrWhiteSpace(reply) ? "resolved" : "open";
+            if (s == "complete") s = "resolved";
+            return s;
+        }
+
+        private static string DisplayStatus(string status)
+        {
+            if (status == "inprogress") return "In Progress";
+            if (status == "resolved") return "Resolved";
+            return "Open";
+        }
+
+        private static string StatusBadge(string status)
+        {
+            if (status == "resolved") return "text-bg-success";
+            if (status == "inprogress") return "text-bg-warning";
+            return "text-bg-secondary";
         }
 
         // ---------- Small helpers ----------
@@ -215,12 +323,12 @@ OFFSET @offset ROWS FETCH NEXT @limit ROWS ONLY;", dataParams.ToArray());
             catch { return 0; }
         }
 
-        private static string BuildPager(int total, int page, int pageCount, string tab)
+        private static string BuildPager(int page, int pageCount)
         {
             var sb = new StringBuilder();
             sb.Append("<nav aria-label='Feedbacks pagination'><ul class='pagination pagination-sm mb-0'>");
 
-            Func<int, string> url = p => "Feedbacks.aspx?tab=" + tab + "&page=" + p;
+            Func<int, string> url = p => "Feedbacks.aspx?page=" + p;
 
             Action<bool, string, string> add = (enabled, href, inner) =>
             {
@@ -290,7 +398,7 @@ OFFSET @offset ROWS FETCH NEXT @limit ROWS ONLY;", dataParams.ToArray());
         {
             if (lbl == null) return;
             lbl.Text = Server.HtmlEncode(msg);
-            lbl.CssClass = ok ? "alert alert-success" : "alert alert-danger";
+            lbl.CssClass = ok ? "fb-alert alert alert-success" : "fb-alert alert alert-danger";
         }
     }
 }

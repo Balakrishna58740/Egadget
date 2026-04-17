@@ -46,7 +46,7 @@ namespace serena.Admin
 
             if (string.IsNullOrWhiteSpace(full))
             {
-                Show(lbl, "Designation of legal identity is required.", false);
+                Show(lbl, "Full name is required.", false);
                 return;
             }
 
@@ -60,11 +60,11 @@ namespace serena.Admin
                     upd.Parameters.AddWithValue("@id", adminId);
                     upd.ExecuteNonQuery();
                 }
-                Show(lbl, "Your professional dossier has been successfully updated.", true);
+                Show(lbl, "Profile updated successfully.", true);
             }
             catch
             {
-                Show(lbl, "System error encountered while updating your dossier.", false);
+                Show(lbl, "Unable to update profile right now.", false);
             }
         }
 
@@ -79,12 +79,12 @@ namespace serena.Admin
 
             if (string.IsNullOrWhiteSpace(oldPwd) || string.IsNullOrWhiteSpace(newPwd))
             {
-                Show(lbl, "Current and new credentials must be provided for rotation.", false);
+                Show(lbl, "Current and new password are required.", false);
                 return;
             }
             if (!string.Equals(newPwd, confirm, StringComparison.Ordinal))
             {
-                Show(lbl, "New credential mismatch: Verification failed.", false);
+                Show(lbl, "New password and confirm password do not match.", false);
                 return;
             }
 
@@ -101,7 +101,7 @@ namespace serena.Admin
 
                 if (currentHash == null || !string.Equals(currentHash, Sha256Hex(oldPwd), StringComparison.OrdinalIgnoreCase))
                 {
-                    Show(lbl, "Authentication failure: Old credential is incorrect.", false);
+                    Show(lbl, "Current password is incorrect.", false);
                     return;
                 }
 
@@ -115,11 +115,11 @@ namespace serena.Admin
                 }
 
                 SetText("txtOld", ""); SetText("txtNew", ""); SetText("txtConfirm", "");
-                Show(lbl, "Security credentials rotated successfully.", true);
+                Show(lbl, "Password changed successfully.", true);
             }
             catch
             {
-                Show(lbl, "Cryptographic rotation failed due to system error.", false);
+                Show(lbl, "Unable to change password right now.", false);
             }
         }
 
@@ -159,7 +159,7 @@ namespace serena.Admin
         {
             if (lbl == null) return;
             lbl.Text = Server.HtmlEncode(msg);
-            lbl.Visible = true;
+            lbl.CssClass = success ? "st-alert st-alert-success" : "st-alert st-alert-danger";
         }
 
         private static string Sha256Hex(string input)

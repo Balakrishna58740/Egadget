@@ -108,6 +108,10 @@ namespace serena.Site
             // Enable add to cart only if in stock
             btnAdd.Enabled = p.Stock > 0;
 
+            var feedbackLink = FindControl("lnkProductFeedback") as System.Web.UI.WebControls.HyperLink;
+            if (feedbackLink != null)
+                feedbackLink.NavigateUrl = ResolveUrl("~/Feedback.aspx?pid=" + p.Id);
+
             pnlProduct.Visible = true;
             pnlNotFound.Visible = false;
         }
@@ -151,6 +155,18 @@ namespace serena.Site
             Context.ApplicationInstance.CompleteRequest();
         }
 
+        protected void btnWish_Click(object sender, EventArgs e)
+        {
+            if (ProductId <= 0) return;
+
+            var wish = GetWishlist();
+            wish.Add(ProductId);
+            SaveWishlist(wish);
+
+            Response.Redirect(ResolveUrl("~/Wishlist.aspx"), false);
+            Context.ApplicationInstance.CompleteRequest();
+        }
+
         private int GetQty()
         {
             int q;
@@ -169,6 +185,23 @@ namespace serena.Site
         private void SaveCart(System.Collections.Generic.Dictionary<int, int> cart)
         {
             Session["CART_DICT"] = cart;
+        }
+
+        private HashSet<int> GetWishlist()
+        {
+            const string key = "WISHLIST_SET";
+            var set = Session[key] as HashSet<int>;
+            if (set == null)
+            {
+                set = new HashSet<int>();
+                Session[key] = set;
+            }
+            return set;
+        }
+
+        private void SaveWishlist(HashSet<int> set)
+        {
+            Session["WISHLIST_SET"] = set;
         }
 
         // ---------- Helpers ----------

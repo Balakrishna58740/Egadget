@@ -1,0 +1,317 @@
+/* Members redesign consistency with dashboard/products/categories */
+.mem-page {
+    background: #F1F5F9;
+    color: #1E293B;
+    padding: 1.25rem;
+    min-height: calc(100vh - 5rem);
+}
+
+.mem-header h2 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #1E293B;
+    margin: 0;
+}
+
+.mem-header p {
+    margin-top: .4rem;
+    font-size: 13px;
+    color: #64748B;
+    letter-spacing: .03em;
+    font-weight: 500;
+}
+
+.mem-header-actions {
+    display: flex;
+    gap: .55rem;
+    flex-wrap: wrap;
+}
+
+.mem-btn-export,
+.mem-btn-add {
+    border-radius: 8px;
+    padding: 9px 14px;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    font-weight: 700;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: .4rem;
+}
+
+.mem-btn-export {
+    background: #fff;
+    border: 1px solid #E2E8F0;
+    color: #64748B;
+}
+
+.mem-btn-export:hover {
+    border-color: #00B074;
+    color: #00B074;
+}
+
+.mem-btn-add {
+    background: #00B074;
+    border: 1px solid #00B074;
+    color: #fff;
+}
+
+.mem-btn-add:hover {
+    background: #059669;
+}
+
+.mem-card {
+    background: #fff;
+    border: 1px solid #D1FAE5;
+    border-radius: 12px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, .07);
+}
+
+.mem-unified-card {
+    border-left: 4px solid #00B074;
+    overflow: hidden;
+}
+
+.mem-filter-card,
+.mem-unified-card {
+    padding: 1.4rem 1.5rem;
+}
+
+.mem-filter-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr auto;
+    gap: 1rem;
+    align-items: end;
+    padding: 1rem;
+    background: #F8FAFC;
+    border: 1px solid #E5E7EB;
+    border-radius: 10px;
+}
+
+.mem-filter-field {
+    display: flex;
+    flex-direction: column;
+}
+
+.mem-filter-name .mem-input {
+    padding-left: 12px !important;
+}
+
+.mem-filter-actions {
+    display: flex;
+    gap: .65rem;
+    flex-wrap: wrap;
+}
+
+.mem-label {
+    display: block;
+    margin-bottom: .35rem;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    color: #64748B;
+    font-weight: 700;
+}
+
+.mem-input {
+    width: 100%;
+    border: 1px solid #E2E8F0 !important;
+    border-radius: 8px;
+    padding: 10px 12px !important;
+    font-size: 14px !important;
+    color: #1E293B;
+    background: #fff !important;
+    outline: none;
+}
+
+.mem-input:focus {
+    border-color: #00B074 !important;
+    box-shadow: 0 0 0 3px rgba(0, 168, 107, .12);
+}
+
+.mem-btn-search,
+.mem-btn-reset {
+    border-radius: 8px;
+    min-height: 40px;
+    padding: 10px 16px !important;
+    font-size: 12px !important;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.mem-btn-search {
+    min-width: 150px;
+}
+
+.mem-btn-reset {
+    min-width: 130px;
+}
+
+.mem-btn-search {
+    background: #00B074 !important;
+    border: 1px solid #00B074 !important;
+    color: #fff !important;
+}
+
+.mem-btn-reset {
+    background: #fff !important;
+    border: 1px solid #E2E8F0 !important;
+    color: #64748B !important;
+}
+
+.mem-table thead tr {
+    background: #ECFDF5 !important;
+}
+
+.mem-table thead th {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: .07em;
+    color: #065F46;
+    font-weight: 700;
+    padding: .8rem 1rem;
+}
+
+.mem-table tbody tr {
+    border-bottom: 1px solid #F1F5F9 !important;
+    height: 52px;
+}
+
+.mem-table tbody tr:hover {
+    background: #F0FDF4 !important;
+}
+
+.mem-table tbody tr:nth-child(even) {
+    background: #F8FAFC;
+}
+
+.mem-table tbody td {
+    padding: .75rem 1rem;
+    font-size: 14px;
+    color: #1E293B;
+}
+
+.mem-table tbody td:nth-child(1) {
+    color: #94A3B8;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-size: 13px;
+}
+
+.mem-table tbody td:nth-child(5) {
+    color: #00B074;
+    font-weight: 700;
+}
+
+.mem-email-link {
+    color: #64748B;
+    text-decoration: none;
+}
+
+.mem-email-link:hover {
+    color: #00B074;
+    text-decoration: underline;
+}
+
+.mem-pager {
+    padding: .85rem 1rem;
+    border-top: 1px solid #F1F5F9;
+    background: #FAFCFF;
+}
+
+.mem-table-wrap-block {
+    margin-top: .8rem;
+}
+
+.mem-table-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: .8rem;
+}
+
+.mem-results {
+    font-size: 13px;
+    color: #64748B;
+}
+
+.mem-alert {
+    border-color: #D1FAE5;
+    background: #F0FDF4;
+    color: #065F46;
+}
+
+.mem-pager a,
+.mem-pager span {
+    border-radius: 8px;
+}
+
+@media (max-width: 1024px) {
+    .mem-page {
+        padding: .9rem;
+    }
+
+    .mem-filter-card,
+    .mem-unified-card {
+        padding: 1.1rem;
+    }
+
+    .mem-filter-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .mem-filter-actions {
+        grid-column: span 2;
+    }
+
+    .mem-btn-search,
+    .mem-btn-reset {
+        flex: 1;
+    }
+}
+
+@media (max-width: 700px) {
+    .mem-header h2 {
+        font-size: 22px;
+    }
+
+    .mem-header-actions {
+        width: 100%;
+    }
+
+    .mem-btn-export,
+    .mem-btn-add {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .mem-filter-grid {
+        grid-template-columns: 1fr;
+        gap: .8rem;
+        padding: .85rem;
+    }
+
+    .mem-filter-actions {
+        grid-column: auto;
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .mem-btn-search,
+    .mem-btn-reset {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .mem-table-footer {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .mem-table {
+        min-width: 760px;
+    }
+}

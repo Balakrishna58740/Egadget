@@ -61,6 +61,7 @@ namespace serena.Site.Account.Orders
             var litTotalAmt = Find<Literal>("litTotalAmt");
             var litTxnRef = Find<Literal>("litTxnRef");
             var litTxnStatus = Find<Literal>("litTxnStatus");
+            var txnStatusBadge = Find<HtmlGenericControl>("txnStatusBadge");
             var litShipName = Find<Literal>("litShipName");
             var litShipPhone = Find<Literal>("litShipPhone");
             var litShipAddr = Find<Literal>("litShipAddr");
@@ -79,7 +80,7 @@ namespace serena.Site.Account.Orders
             if (lblStatus != null)
             {
                 lblStatus.InnerText = statusUpper;
-                lblStatus.Attributes["class"] = "badge rounded-pill " + StatusBadgeCss(status);
+                lblStatus.Attributes["class"] = "ord-chip " + StatusChipCss(status);
             }
 
             if (litPayment != null) litPayment.Text = Server.HtmlEncode(Convert.ToString(o["payment"]));
@@ -97,11 +98,13 @@ ORDER BY id DESC;", new SqlParameter("@oid", _orderId));
                 string txStatus = SafeStr(txDt.Rows[0]["provider_status"], "-");
                 if (litTxnRef != null) litTxnRef.Text = Server.HtmlEncode(txRef);
                 if (litTxnStatus != null) litTxnStatus.Text = Server.HtmlEncode(txStatus.ToUpperInvariant());
+                if (txnStatusBadge != null) txnStatusBadge.Attributes["class"] = "ord-chip " + PaymentStateChipCss(txStatus);
             }
             else
             {
                 if (litTxnRef != null) litTxnRef.Text = "-";
                 if (litTxnStatus != null) litTxnStatus.Text = "-";
+                if (txnStatusBadge != null) txnStatusBadge.Attributes["class"] = "ord-chip ord-chip-neutral";
             }
 
             // Shipping
@@ -231,6 +234,26 @@ ORDER BY oi.id ASC;",
             if (s.IndexOf("delivered") >= 0 || s.IndexOf("completed") >= 0) return "bg-success";
             if (s.IndexOf("canceled") >= 0) return "bg-danger";
             return "bg-light text-dark";
+        }
+
+        private static string StatusChipCss(string statusObj)
+        {
+            string s = (Convert.ToString(statusObj) ?? "").ToLowerInvariant();
+            if (s.Contains("pending")) return "ord-chip-pending";
+            if (s.Contains("accepted") || s.Contains("paid")) return "ord-chip-accepted";
+            if (s.Contains("inprocess") || s.Contains("delivering")) return "ord-chip-inprocess";
+            if (s.Contains("delivered") || s.Contains("completed")) return "ord-chip-delivered";
+            if (s.Contains("canceled")) return "ord-chip-canceled";
+            return "ord-chip-neutral";
+        }
+
+        private static string PaymentStateChipCss(string paymentState)
+        {
+            string s = (paymentState ?? "").Trim().ToLowerInvariant();
+            if (s.Contains("complete") || s.Contains("success") || s.Contains("paid")) return "ord-chip-paid";
+            if (s.Contains("fail") || s.Contains("cancel") || s.Contains("error")) return "ord-chip-failed";
+            if (s.Contains("pending") || s.Contains("init")) return "ord-chip-pending";
+            return "ord-chip-neutral";
         }
 
         private int SafeInt(object o) { try { return Convert.ToInt32(o); } catch { return 0; } }

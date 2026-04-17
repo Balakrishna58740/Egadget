@@ -19,6 +19,7 @@ namespace serena
         protected void Page_PreRender(object sender, EventArgs e)
         {
             SetCartCount();
+            SetWishlistCount();
             ApplyNoCache();
         }
 
@@ -64,6 +65,8 @@ namespace serena
             var lnkMobileNotifications = FindControl("lnkMobileNotifications") as HtmlAnchor;
             var lnkMobileProfile = FindControl("lnkMobileProfile") as HtmlAnchor;
             var lnkMobileLogin = FindControl("lnkMobileLogin") as HtmlAnchor;
+            var lnkWishlist = FindControl("lnkWishlist") as HtmlAnchor;
+            var lnkMobileWishlist = FindControl("lnkMobileWishlist") as HtmlAnchor;
             var notifBadge = FindControl("notifBadge") as HtmlGenericControl;
             var litNotifCount = FindControl("litNotifCount") as Literal;
 
@@ -80,6 +83,18 @@ namespace serena
                 lnkNotifications.HRef = isMember
                     ? ResolveUrl("~/Account/Notifications.aspx")
                     : ResolveUrl("~/Account/Login.aspx?returnUrl=" + HttpUtility.UrlEncode("/Account/Notifications.aspx"));
+            }
+
+            if (lnkWishlist != null)
+            {
+                lnkWishlist.Visible = true;
+                lnkWishlist.HRef = ResolveUrl("~/Wishlist.aspx");
+            }
+
+            if (lnkMobileWishlist != null)
+            {
+                lnkMobileWishlist.Visible = true;
+                lnkMobileWishlist.HRef = ResolveUrl("~/Wishlist.aspx");
             }
 
             if (lnkMobileNotifications != null)
@@ -158,6 +173,18 @@ namespace serena
 
             if (badge != null) badge.Visible = qty > 0;
             if (lit != null) lit.Text = qty.ToString();
+        }
+
+        private void SetWishlistCount()
+        {
+            int count = 0;
+            var set = Session["WISHLIST_SET"] as HashSet<int>;
+            if (set != null) count = set.Count;
+
+            var badge = FindControl("wishBadge") as HtmlGenericControl;
+            var lit = FindControl("litWishCount") as Literal;
+            if (badge != null) badge.Visible = count > 0;
+            if (lit != null) lit.Text = count.ToString();
         }
 
         private void ApplyNoCache()

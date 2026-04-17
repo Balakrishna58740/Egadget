@@ -178,13 +178,26 @@
             document.body.style.overflow = 'auto';
         }
 
-        document.addEventListener('click', function (e) {
+        var lastTouchTime = 0;
+
+        function onProductActionTap(e) {
+            if (e.type === 'click' && (Date.now() - lastTouchTime) < 500) return;
             var btn = e.target.closest('.view-img');
-            if (!btn) return;
-            e.preventDefault();
-            var src = btn.getAttribute('data-src');
-            openImgModal(src);
-        });
+            if (btn) {
+                e.preventDefault();
+                var src = btn.getAttribute('data-src');
+                openImgModal(src);
+                var wrap2 = btn.closest('.prod-settings-wrap');
+                if (wrap2) wrap2.classList.remove('open');
+                return;
+            }
+        }
+
+        document.addEventListener('click', onProductActionTap);
+        document.addEventListener('touchstart', function (e) {
+            lastTouchTime = Date.now();
+            onProductActionTap(e);
+        }, { passive: false });
 
         function openProductModal() {
             var modal = document.getElementById('productEditorModal');

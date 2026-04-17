@@ -340,22 +340,21 @@ LEFT JOIN categories c ON c.id = p.category_id");
                         sb.Append("<td class='px-8 py-5'>");
                         sb.Append("<span class='text-[8px] uppercase tracking-widest font-bold px-3 py-1 border ").Append(show ? "border-primary text-primary" : "border-gray-200 text-gray-300").Append("'>")
                           .Append(show ? "Live" : "Archived").Append("</span></td>");
-                        sb.Append("<td class='px-8 py-5 text-right flex justify-end gap-3 items-center'>");
-                        
-                        sb.Append("<a class='text-primary hover:underline text-[10px] uppercase tracking-widest font-bold' href='Products.aspx?edit=").Append(id).Append("'>Edit</a>");
-                        
-                        sb.Append("<a class='text-gray-400 hover:text-text-dark text-[10px] uppercase tracking-widest font-bold' href='Products.aspx?toggle=").Append(id).Append("'>");
-                        sb.Append(show ? "Hide" : "Show").Append("</a>");
-                        
+                        sb.Append("<td class='px-8 py-5 text-right'>");
+                        sb.Append("<div class='prod-settings-wrap'>");
+                        sb.Append("<button type='button' class='prod-actions-toggle' aria-label='Open product settings'><i class='fa-solid fa-ellipsis-vertical'></i></button>");
+                        sb.Append("<div class='prod-quick-actions'>");
+                        sb.Append("<a class='prod-qa-btn' href='Products.aspx?edit=").Append(id).Append("'>Edit</a>");
+                        sb.Append("<a class='prod-qa-btn' href='Products.aspx?toggle=").Append(id).Append("'>").Append(show ? "Hide" : "Show").Append("</a>");
                         if (!string.IsNullOrEmpty(imgUrl))
                         {
-                            sb.Append("<a href='#' class='text-accent hover:underline text-[10px] uppercase tracking-widest font-bold view-img' data-src='")
+                            sb.Append("<a href='#' class='prod-qa-btn view-img' data-src='")
                               .Append(Html(imgUrl)).Append("'>View</a>");
                         }
-                        
-                        sb.Append("<a class='text-gray-200 hover:text-red-500 text-[10px] uppercase tracking-widest font-bold' href='Products.aspx?del=").Append(id).Append("' ");
-                        sb.Append("onclick=\"return confirm('Purge this masterpiece from history?');\"><i class='fa-solid fa-trash-can'></i></a>");
-                        
+                        sb.Append("<a class='prod-qa-btn prod-qa-btn-danger' href='Products.aspx?del=").Append(id).Append("' ");
+                        sb.Append("onclick=\"return confirm('Purge this masterpiece from history?');\">Archive</a>");
+                        sb.Append("</div>");
+                        sb.Append("</div>");
                         sb.Append("</td>");
                         sb.Append("</tr>");
                     }

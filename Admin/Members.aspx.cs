@@ -57,7 +57,7 @@ namespace serena.Admin
         private void BindTable()
         {
             var lit = Find<Literal>("litRows");
-            var litStats = Find<Literal>("litTopStats");
+            var litMeta = Find<Literal>("litResultsMeta");
             var pager = Find<Literal>("pager");
             var lbl = Find<Label>("lblMsg");
             if (lit == null) return;
@@ -78,20 +78,7 @@ namespace serena.Admin
 
                 // Count (filtered)
                 int total = Db.Scalar<int>("SELECT COUNT(*) FROM members m" + where, countParams.ToArray());
-                
-                if (litStats != null)
-                {
-                    litStats.Text = string.Format(@"
-                        <div class='bg-white border border-gray-100 px-6 py-4 shadow-sm flex items-center gap-4'>
-                            <div class='w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center text-primary'>
-                                <i class='fa-solid fa-users'></i>
-                            </div>
-                            <div>
-                                <span class='text-[10px] uppercase tracking-widest text-gray-400 font-bold block'>Patron Threshold</span>
-                                <span class='text-lg font-bold text-text-dark'>{0:N0}</span>
-                            </div>
-                        </div>", total);
-                }
+                if (litMeta != null) litMeta.Text = "Showing " + total.ToString("N0") + " customers";
 
                 int pageCount = Math.Max(1, (int)Math.Ceiling(total / (double)PAGE_SIZE));
                 if (page > pageCount) page = pageCount;
@@ -116,7 +103,7 @@ FROM members m");
                 var sb = new StringBuilder();
                 if (dt.Rows.Count == 0)
                 {
-                    sb.Append("<tr><td colspan='5' class='px-8 py-12 text-center text-gray-400 text-xs italic'>The community repository currently houses no records matching your criteria.</td></tr>");
+                    sb.Append("<tr><td colspan='5' class='px-8 py-12 text-center text-gray-400 text-xs italic'>No customers found matching your filter.</td></tr>");
                 }
                 else
                 {
@@ -128,12 +115,15 @@ FROM members m");
                         string email = Html(r["email"]);
                         string phone = Html(r["phone"]);
                         DateTime created = Convert.ToDateTime(r["created_at"]);
-                        string createdStr = created.ToString("dd MMM, yyyy · HH:mm");
+                        string createdStr = created.ToString("MMM dd, yyyy");
 
                         sb.Append("<tr class='hover:bg-off-white/30 transition-colors'>");
                         sb.Append("<td class='px-8 py-5 text-[10px] uppercase tracking-widest font-bold text-gray-400'>").Append(i.ToString("D3")).Append("</td>");
                         sb.Append("<td class='px-8 py-5 text-sm font-serif text-text-dark font-bold'>").Append(fullName).Append("</td>");
-                        sb.Append("<td class='px-8 py-5 text-sm text-text-dark underline decoration-primary/20'>").Append(email).Append("</td>");
+                        if (!string.IsNullOrEmpty(email) && email != "-")
+                            sb.Append("<td class='px-8 py-5 text-sm text-text-dark'><a href='mailto:").Append(email).Append("' class='mem-email-link'>").Append(email).Append("</a></td>");
+                        else
+                            sb.Append("<td class='px-8 py-5 text-sm text-gray-300'>—</td>");
                         sb.Append("<td class='px-8 py-5 text-[10px] uppercase tracking-widest font-bold text-gray-400'>").Append(string.IsNullOrEmpty(phone) ? "—" : phone).Append("</td>");
                         sb.Append("<td class='px-8 py-5 text-[10px] uppercase tracking-widest font-bold text-primary'>").Append(createdStr).Append("</td>");
                         sb.Append("</tr>");
@@ -147,7 +137,7 @@ FROM members m");
             catch (Exception ex)
             {
                 if (lbl != null) { lbl.Text = "Architectural disruption: " + HttpUtility.HtmlEncode(ex.Message); lbl.Visible = true; }
-                if (lit != null) lit.Text = "<tr><td colspan='5' class='px-8 py-12 text-center text-red-400 text-xs'>Failed to retrieve community dossier.</td></tr>";
+                if (lit != null) lit.Text = "<tr><td colspan='5' class='px-8 py-12 text-center text-red-400 text-xs'>Failed to retrieve customer records.</td></tr>";
             }
         }
 

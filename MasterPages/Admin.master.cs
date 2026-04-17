@@ -30,16 +30,21 @@ namespace serena
             string display = Session["AdminFullName"] as string;
             if (string.IsNullOrEmpty(display))
             {
-                string username = Context.User.Identity.Name ?? "";
-                using (var con = Db.Open())
-                using (var cmd = new SqlCommand("SELECT TOP 1 full_name FROM admins WHERE username=@u", con))
+                string username = Context.User != null && Context.User.Identity != null ? (Context.User.Identity.Name ?? "") : "";
+                if (!string.IsNullOrWhiteSpace(username))
                 {
-                    cmd.Parameters.AddWithValue("@u", username);
-                    var o = cmd.ExecuteScalar();
-                    display = (o == null || o == DBNull.Value || string.IsNullOrWhiteSpace(Convert.ToString(o)))
-                              ? username        // fallback so it's never blank
-                              : Convert.ToString(o);
+                    using (var con = Db.Open())
+                    using (var cmd = new SqlCommand("SELECT TOP 1 full_name FROM admins WHERE username=@u", con))
+                    {
+                        cmd.Parameters.AddWithValue("@u", username);
+                        var o = cmd.ExecuteScalar();
+                        display = (o == null || o == DBNull.Value || string.IsNullOrWhiteSpace(Convert.ToString(o)))
+                                  ? username
+                                  : Convert.ToString(o);
+                    }
                 }
+
+                if (string.IsNullOrWhiteSpace(display)) display = "Admin User";
                 Session["AdminFullName"] = display; // cache for this session
             }
 
@@ -54,7 +59,13 @@ namespace serena
 
             try
             {
-                int count = Db.Scalar<int>("SELECT COUNT(*) FROM dbo.notifications WHERE is_admin=1 AND is_read=0");
+                int count = Db.Scalar<int>(@"
+IF OBJECT_ID('dbo.notifications','U') IS NULL
+    SELECT 0;
+ELSE IF COL_LENGTH('dbo.notifications','is_admin') IS NULL
+    SELECT COUNT(*) FROM dbo.notifications WHERE recipient_member_id IS NULL AND ISNULL(is_read,0)=0;
+ELSE
+    SELECT COUNT(*) FROM dbo.notifications WHERE is_admin=1 AND ISNULL(is_read,0)=0;");
                 lit.Text = count.ToString();
                 if (link != null)
                 {

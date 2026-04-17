@@ -23,7 +23,7 @@
         </div>
     </section>
 
-    <div class="container mx-auto px-4 lg:px-8 pb-24">
+    <div class="container mx-auto px-4 lg:px-8 pb-24 product-page">
         <asp:Panel ID="pnlNotFound" runat="server" Visible="false" CssClass="py-24 text-center">
             <i class="fa-solid fa-circle-exclamation text-6xl text-gray-100 mb-6"></i>
             <h2 class="text-3xl font-serif mb-4">Product Not Found</h2>
@@ -77,6 +77,16 @@
                             <asp:LinkButton ID="btnAdd" runat="server" CssClass="flex-grow h-16 bg-text-dark text-white text-xs uppercase tracking-[0.3em] font-bold flex items-center justify-center hover:bg-primary transition-all duration-500 disabled:opacity-50 disabled:cursor-not-allowed" OnClick="btnAdd_Click">
                                 <i class="fa-solid fa-cart-shopping mr-3"></i> Add to cart
                             </asp:LinkButton>
+
+                            <asp:LinkButton ID="btnWish" runat="server" CssClass="h-16 px-6 border border-gray-200 text-text-dark text-xs uppercase tracking-[0.2em] font-bold flex items-center justify-center hover:bg-off-white transition-all" OnClick="btnWish_Click">
+                                <i class="fa-regular fa-heart mr-2"></i> Wishlist
+                            </asp:LinkButton>
+                        </div>
+
+                        <div>
+                            <asp:HyperLink ID="lnkProductFeedback" runat="server" CssClass="inline-flex items-center text-[10px] uppercase tracking-widest font-bold text-primary hover:underline">
+                                <i class="fa-regular fa-comment-dots mr-2"></i> Give feedback on this product
+                            </asp:HyperLink>
                         </div>
                     </div>
 

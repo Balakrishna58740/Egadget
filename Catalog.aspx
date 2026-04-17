@@ -115,6 +115,12 @@
                                               Enabled='<%# Convert.ToInt32(Eval("stock")) > 0 %>'>
                                             <i class="fa-solid fa-cart-shopping mr-2"></i> Add To Cart
                                         </asp:LinkButton>
+                                        <asp:LinkButton ID="btnWish" runat="server"
+                                              CommandName="AddToWishlist" CommandArgument='<%# Eval("id") %>'
+                                              CssClass="w-10 h-10 border border-gray-200 text-text-dark flex items-center justify-center hover:bg-off-white transition-colors"
+                                              ToolTip="Add to wishlist">
+                                            <i class="fa-regular fa-heart"></i>
+                                        </asp:LinkButton>
                                     </div>
                                 </div>
 

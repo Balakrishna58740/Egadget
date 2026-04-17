@@ -41,7 +41,7 @@
                             <div class="space-y-6">
                                 <div>
                                     <label class="block text-[10px] uppercase tracking-widest text-gray-400 font-bold mb-2">Current Status</label>
-                                    <span id="lblStatus" runat="server" class="text-[10px] uppercase tracking-widest font-bold px-4 py-2 rounded-full inline-block"></span>
+                                    <span id="lblStatus" runat="server" class="ord-chip"></span>
                                 </div>
                                 <div>
                                     <label class="block text-[10px] uppercase tracking-widest text-gray-400 font-bold mb-2">Payment Method</label>
@@ -53,7 +53,7 @@
                                 </div>
                                 <div>
                                     <label class="block text-[10px] uppercase tracking-widest text-gray-400 font-bold mb-2">Payment State</label>
-                                    <p class="text-xs font-bold text-text-dark uppercase tracking-wider"><asp:Literal ID="litTxnStatus" runat="server" /></p>
+                                    <p class="text-xs font-bold text-text-dark uppercase tracking-wider"><span id="txnStatusBadge" runat="server" class="ord-chip ord-chip-neutral"><asp:Literal ID="litTxnStatus" runat="server" /></span></p>
                                 </div>
                             </div>
                         </div>
@@ -126,6 +126,27 @@
     </div>
 
     <style>
+        .ord-chip {
+            display: inline-flex;
+            align-items: center;
+            border-radius: 999px;
+            padding: .28rem .7rem;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: .08em;
+            font-weight: 700;
+            border: 1px solid transparent;
+        }
+
+        .ord-chip-pending { background: #FFFBEB; color: #92400E; border-color: #FDE68A; }
+        .ord-chip-accepted { background: #ECFDF5; color: #065F46; border-color: #A7F3D0; }
+        .ord-chip-inprocess { background: #EFF6FF; color: #1D4ED8; border-color: #BFDBFE; }
+        .ord-chip-delivered { background: #ECFDF5; color: #047857; border-color: #6EE7B7; }
+        .ord-chip-canceled { background: #FEF2F2; color: #991B1B; border-color: #FCA5A5; }
+        .ord-chip-neutral { background: #F3F4F6; color: #374151; border-color: #E5E7EB; }
+        .ord-chip-paid { background: #ECFDF5; color: #047857; border-color: #A7F3D0; }
+        .ord-chip-failed { background: #FEF2F2; color: #991B1B; border-color: #FCA5A5; }
+
         /* Table overrides for litItemsTable if it generates standard markup */
         table { width: 100%; border-collapse: collapse; }
         th { padding: 1.5rem 0; text-align: left; font-size: 10px; text-transform: uppercase; letter-spacing: 0.2em; color: #9ca3af; font-weight: 700; border-bottom: 1px solid #f3f4f6; }

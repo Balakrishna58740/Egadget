@@ -191,14 +191,17 @@ WHERE o.id=@id;", Db.P("@id", id));
             string status = NormalizeStatus(Convert.ToString(r["status"]));
             string statusUpper = status.Length > 0 ? status.ToUpperInvariant() : "UNKNOWN";
 
-            SetText("litTitleCode", code);
+            SetText("litBreadcrumbCode", code);
             SetText("litOrderCode", code);
 
-            string od = r["order_date"] != DBNull.Value ? Convert.ToDateTime(r["order_date"]).ToString("dd MMM, yyyy · HH:mm") : "-";
+            string od = r["order_date"] != DBNull.Value ? FormatDateTime(Convert.ToDateTime(r["order_date"])) : "-";
             SetText("litOrderDate", od);
 
-            SetText("litPayment", Convert.ToString(r["payment"] ?? "-"));
+            SetText("litPayment", FormatPaymentMethod(Convert.ToString(r["payment"] ?? "-")));
             SetText("litTotalQty", Convert.ToString(r["total_qty"] ?? "0"));
+            int qtyDisplay = 0;
+            int.TryParse(Convert.ToString(r["total_qty"] ?? "0"), out qtyDisplay);
+            SetText("litQtyDisplay", FormatQtyLabel(qtyDisplay));
 
             decimal amt = r["total_amount"] != DBNull.Value ? Convert.ToDecimal(r["total_amount"]) : 0m;
             SetText("litTotalAmount", amt.ToString("N2"));
@@ -226,13 +229,13 @@ ORDER BY id DESC", Db.P("@oid", id));
             var badge = Find<HtmlGenericControl>("badgeStatus");
             if (badge != null)
             {
-                string cls = "text-[8px] uppercase tracking-widest font-bold px-3 py-1 border ";
-                if (status == "pending") cls += "border-orange-200 text-orange-400";
-                else if (status == "accepted") cls += "border-green-200 text-green-500";
-                else if (status == "inprocess") cls += "border-blue-200 text-blue-400";
-                else if (status == "delivered") cls += "border-primary text-primary";
-                else if (status == "canceled") cls += "border-red-200 text-red-500";
-                else cls += "border-gray-200 text-gray-300";
+                string cls = "text-[8px] uppercase tracking-widest font-bold px-3 py-1 border ov-status-badge ";
+                if (status == "pending") cls += "ov-status-pending";
+                else if (status == "accepted") cls += "ov-status-accepted";
+                else if (status == "inprocess") cls += "ov-status-processing";
+                else if (status == "delivered") cls += "ov-status-delivered";
+                else if (status == "canceled") cls += "ov-status-canceled";
+                else cls += "ov-status-unknown";
 
                 badge.Attributes["class"] = cls;
                 badge.InnerText = statusUpper;
@@ -246,8 +249,9 @@ ORDER BY id DESC", Db.P("@oid", id));
             if (string.IsNullOrWhiteSpace(custPhone)) custPhone = Convert.ToString(r["phone"]);
 
             SetText("litCustName", string.IsNullOrWhiteSpace(custName) ? "-" : custName);
-            SetText("litCustEmail", string.IsNullOrWhiteSpace(custEmail) ? "-" : custEmail);
-            SetText("litCustPhone", string.IsNullOrWhiteSpace(custPhone) ? "-" : custPhone);
+            SetText("litHeaderCustomer", "Customer: " + (string.IsNullOrWhiteSpace(custName) ? "-" : custName));
+            SetCustomerEmail(custEmail);
+            SetText("litCustPhone", string.IsNullOrWhiteSpace(custPhone) ? "-" : FormatPhone(custPhone));
 
             ViewState["status"] = status;
         }
@@ -318,9 +322,9 @@ ORDER BY oi.id ASC;", Db.P("@id", id));
 
                     sb.Append("<tr class='hover:bg-off-white/30 transition-colors'>");
                     sb.Append("<td class='px-8 py-5 text-sm font-serif text-text-dark'>").Append(name).Append("</td>");
-                    sb.Append("<td class='px-8 py-5 text-right text-[10px] uppercase tracking-widest font-bold text-gray-400'>RS ").Append(unit.ToString("N2")).Append("</td>");
+                    sb.Append("<td class='px-8 py-5 text-right text-[10px] uppercase tracking-widest font-bold text-gray-400'>₨ ").Append(unit.ToString("N2")).Append("</td>");
                     sb.Append("<td class='px-8 py-5 text-center font-bold text-text-dark text-sm'>").Append(qty).Append("</td>");
-                    sb.Append("<td class='px-8 py-5 text-right font-bold text-primary text-sm'>RS ").Append(amount.ToString("N2")).Append("</td>");
+                    sb.Append("<td class='px-8 py-5 text-right font-bold text-primary text-sm'>₨ ").Append(amount.ToString("N2")).Append("</td>");
                     sb.Append("</tr>");
                 }
             }
@@ -349,7 +353,7 @@ ORDER BY l.created_at DESC;", Db.P("@id", id));
                 foreach (DataRow r in dt.Rows)
                 {
                     string date = r["created_at"] != DBNull.Value
-                        ? Convert.ToDateTime(r["created_at"]).ToString("dd MMM, yyyy · HH:mm")
+                        ? FormatDateTime(Convert.ToDateTime(r["created_at"]))
                         : "-";
                     string by = Html(r["admin_name"]);
                     if (string.IsNullOrEmpty(by)) by = "System Architecture";
@@ -445,6 +449,50 @@ ORDER BY l.created_at DESC;", Db.P("@id", id));
             if (lbl == null) return;
             lbl.Text = HttpUtility.HtmlEncode(msg);
             lbl.Visible = true;
+        }
+
+        private void SetCustomerEmail(string email)
+        {
+            var link = Find<HyperLink>("lnkCustEmail");
+            if (link == null) return;
+
+            if (string.IsNullOrWhiteSpace(email))
+            {
+                link.Text = "-";
+                link.NavigateUrl = "#";
+                return;
+            }
+
+            string e = email.Trim();
+            link.Text = Server.HtmlEncode(e);
+            link.NavigateUrl = "mailto:" + e;
+        }
+
+        private static string FormatDateTime(DateTime dt)
+        {
+            return dt.ToString("MMM dd, yyyy 'at' h:mm tt");
+        }
+
+        private static string FormatPaymentMethod(string raw)
+        {
+            string p = (raw ?? "").Trim();
+            if (string.Equals(p, "CashOnDelivery", StringComparison.OrdinalIgnoreCase) ||
+                string.Equals(p, "Cash On Delivery", StringComparison.OrdinalIgnoreCase))
+                return "Cash on Delivery (COD)";
+            return string.IsNullOrWhiteSpace(p) ? "-" : p;
+        }
+
+        private static string FormatPhone(string raw)
+        {
+            string d = (raw ?? "").Replace(" ", "").Replace("-", "");
+            if (d.Length == 10 && d.StartsWith("9"))
+                return "+977 " + d.Substring(0, 3) + "-" + d.Substring(3, 3) + "-" + d.Substring(6);
+            return raw;
+        }
+
+        private static string FormatQtyLabel(int qty)
+        {
+            return qty == 1 ? "1 unit" : qty.ToString() + " units";
         }
 
         private int GetAdminId()

@@ -79,6 +79,8 @@ namespace serena.Admin
                 // Clear form & refresh list
                 if (hid != null) hid.Value = "";
                 if (txt != null) txt.Text = "";
+                var btnSave = Find<Button>("btnSave");
+                if (btnSave != null) btnSave.Text = "SAVE CATEGORY";
                 BindTable();
             }
             catch
@@ -108,7 +110,7 @@ namespace serena.Admin
                         if (txt != null) txt.Text = Convert.ToString(r["name"]);
                         
                         var btnSave = Find<Button>("btnSave");
-                        if (btnSave != null) btnSave.Text = "Update Taxonomy";
+                        if (btnSave != null) btnSave.Text = "UPDATE CATEGORY";
                     }
                 }
             }
@@ -116,7 +118,7 @@ namespace serena.Admin
 
         private void DeleteCategory(int id)
         {
-            var lbl = Find<Label>("lblMsg");
+            var lbl = Find<Label>("lblListMsg");
 
             try
             {

@@ -139,6 +139,20 @@ IF NOT EXISTS (SELECT 1 FROM sys.foreign_keys WHERE name='FK_feedbacks_admins')
   ALTER TABLE dbo.feedbacks WITH CHECK ADD CONSTRAINT FK_feedbacks_admins FOREIGN KEY(admin_id) REFERENCES dbo.admins(id);
 IF NOT EXISTS (SELECT 1 FROM sys.foreign_keys WHERE name='FK_feedbacks_members')
   ALTER TABLE dbo.feedbacks WITH CHECK ADD CONSTRAINT FK_feedbacks_members FOREIGN KEY(member_id) REFERENCES dbo.members(id);
+
+IF COL_LENGTH('dbo.feedbacks', 'ticket_code') IS NULL
+  ALTER TABLE dbo.feedbacks ADD ticket_code VARCHAR(40) NULL;
+IF COL_LENGTH('dbo.feedbacks', 'status') IS NULL
+  ALTER TABLE dbo.feedbacks ADD [status] VARCHAR(20) NULL;
+IF COL_LENGTH('dbo.feedbacks', 'product_id') IS NULL
+  ALTER TABLE dbo.feedbacks ADD product_id INT NULL;
+
+UPDATE dbo.feedbacks
+SET [status] = CASE WHEN ISNULL(is_resolved,0)=1 THEN 'resolved' ELSE 'open' END
+WHERE [status] IS NULL OR LTRIM(RTRIM([status]))='';
+
+IF NOT EXISTS (SELECT 1 FROM sys.foreign_keys WHERE name='FK_feedbacks_products')
+  ALTER TABLE dbo.feedbacks WITH CHECK ADD CONSTRAINT FK_feedbacks_products FOREIGN KEY(product_id) REFERENCES dbo.products(id);
 ");
         }
         catch { /* best-effort schema bootstrap */ }

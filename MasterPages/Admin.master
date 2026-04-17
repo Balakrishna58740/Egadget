@@ -19,12 +19,12 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: '#2563eb',
-                        secondary: '#f8fafc',
-                        accent: '#3b82f6',
-                        'text-dark': '#0f172a',
-                        'off-white': '#f1f5f9',
-                        'admin-bg': '#0f172a',
+                        primary: '#10B981',
+                        secondary: '#1F2937',
+                        accent: '#F59E0B',
+                        'text-dark': '#111827',
+                        'off-white': '#F9FAFB',
+                        'admin-bg': '#1F2937',
                     },
                     fontFamily: {
                         serif: ['Manrope', 'sans-serif'],
@@ -38,6 +38,7 @@
     <!-- Local CSS -->
     <link runat="server" rel="stylesheet" href="~/Assets/css/custom.css" />
     <link runat="server" rel="stylesheet" href="~/Assets/css/admin-dashboard-redesign.css" />
+    <link runat="server" rel="stylesheet" href="~/Assets/css/responsive-global.css" />
 
     <asp:ContentPlaceHolder ID="HeadContent" runat="server"></asp:ContentPlaceHolder>
 </head>
@@ -82,7 +83,7 @@
                     </a>
                     <a id="navMembers" runat="server" href="~/Admin/Members.aspx" class="admin-nav-link group flex items-center px-4 py-4 text-xs font-bold uppercase tracking-widest text-gray-400">
                         <i class="fa-solid fa-users w-8 text-sm group-hover:text-primary transition-colors"></i>
-                        Members
+                        Customers
                     </a>
                     <a id="navReports" runat="server" href="~/Admin/Reports.aspx" class="admin-nav-link group flex items-center px-4 py-4 text-xs font-bold uppercase tracking-widest text-gray-400">
                         <i class="fa-solid fa-chart-line w-8 text-sm group-hover:text-primary transition-colors"></i>
@@ -108,23 +109,23 @@
                 </button>
                 <div class="flex-1 flex justify-between px-4 sm:px-6 lg:px-8">
                     <div class="flex-1 flex items-center">
-                        <div class="inline-flex flex-col rounded-2xl bg-white/10 px-4 py-3 border border-white/10 shadow-sm">
-                            <div class="text-xs uppercase tracking-[0.2em] font-bold text-gray-400">System Dashboard</div>
-                            <div class="text-[10px] uppercase tracking-[0.25em] text-gray-300 font-bold mt-1">Control center</div>
+                        <div class="admin-control-chip inline-flex flex-col rounded-2xl px-4 py-3 border shadow-sm">
+                            <div class="text-xs uppercase tracking-[0.2em] font-bold">System Dashboard</div>
+                            <div class="text-[10px] uppercase tracking-[0.25em] font-bold mt-1">Control center</div>
                         </div>
                     </div>
-                    <div class="ml-4 flex items-center md:ml-6 gap-6 rounded-2xl bg-white/10 px-4 py-2 border border-white/10 shadow-sm">
-                        <asp:HyperLink ID="lnkAdminNotifications" runat="server" NavigateUrl="~/Admin/Notifications.aspx" CssClass="relative text-white/90 hover:text-white transition-colors" ToolTip="Notifications">
+                    <div class="admin-user-chip ml-4 flex items-center md:ml-6 gap-6 rounded-2xl px-4 py-2 border shadow-sm">
+                        <asp:HyperLink ID="lnkAdminNotifications" runat="server" NavigateUrl="~/Admin/Notifications.aspx" CssClass="admin-notif-link relative transition-colors" ToolTip="Notifications">
                             <i class="fa-regular fa-bell text-lg"></i>
                             <span class="absolute -top-2 -right-2 min-w-[1.1rem] h-[1.1rem] px-1 rounded-full bg-red-500 text-white text-[9px] leading-[1.1rem] text-center font-bold">
                                 <asp:Literal ID="litAdminNotifCount" runat="server" Text="0" />
                             </span>
                         </asp:HyperLink>
-                        <div class="text-right hidden sm:block pr-2 border-r border-white/20">
+                        <div class="text-right pr-2 border-r border-slate-200">
                             <div class="text-xs font-bold text-text-dark"><asp:Literal ID="litDisplayName" runat="server" /></div>
-                            <div class="text-[10px] text-gray-400 uppercase tracking-widest font-bold">Administrator</div>
+                            <div class="text-[10px] text-slate-500 uppercase tracking-widest font-bold">Administrator</div>
                         </div>
-                        <asp:LinkButton ID="btnLogout" runat="server" CssClass="text-gray-400 hover:text-white transition-colors" OnClick="btnLogout_Click">
+                        <asp:LinkButton ID="btnLogout" runat="server" CssClass="admin-logout-btn transition-colors" OnClick="btnLogout_Click">
                             <i class="fa-solid fa-power-off text-lg"></i>
                         </asp:LinkButton>
                     </div>
@@ -132,22 +133,100 @@
             </header>
 
             <!-- Main Scrollable Content -->
-            <main class="flex-1 bg-gradient-to-br from-blue-50 via-white to-blue-50 p-0 overflow-x-hidden">
+            <main class="flex-1 bg-off-white p-0 overflow-x-hidden">
                 <asp:ContentPlaceHolder ID="MainContent" runat="server"></asp:ContentPlaceHolder>
             </main>
 
             <!-- Copyright -->
-            <footer class="py-6 px-8 text-center bg-gradient-to-r from-blue-50 to-white border-t border-blue-100 mt-auto">
+            <footer class="py-6 px-8 text-center bg-off-white border-t border-[#E5E7EB] mt-auto">
                 <p class="text-[10px] uppercase tracking-widest text-gray-300 font-bold">&copy; <%= DateTime.Now.Year %> eGadgetHub Electronics. Admin Access Only.</p>
             </footer>
         </div>
     </form>
 
     <script>
-        // Simple mobile toggle
-        const overlay = document.getElementById('mobileOverlay');
-        const sidebar = document.querySelector('div.lg\\:flex-col');
-        // Add listeners for mobile interaction if needed
+        (function () {
+            function initAdminSidebar() {
+                var overlay = document.getElementById('mobileOverlay');
+                var drawer = document.getElementById('sidebarDrawer');
+                var toggle = document.getElementById('sidebarToggle');
+
+                if (!overlay || !drawer || !toggle) return;
+
+                function closeDrawer() {
+                    drawer.classList.remove('is-open');
+                    overlay.classList.remove('is-open');
+                    document.body.style.overflow = '';
+                    toggle.setAttribute('aria-expanded', 'false');
+                }
+
+                function openDrawer() {
+                    drawer.classList.add('is-open');
+                    overlay.classList.add('is-open');
+                    document.body.style.overflow = 'hidden';
+                    toggle.setAttribute('aria-expanded', 'true');
+                }
+
+                toggle.addEventListener('click', function () {
+                    if (drawer.classList.contains('is-open')) closeDrawer();
+                    else openDrawer();
+                });
+
+                overlay.addEventListener('click', closeDrawer);
+
+                drawer.querySelectorAll('a').forEach(function (link) {
+                    link.addEventListener('click', function () {
+                        if (window.innerWidth < 1024) closeDrawer();
+                    });
+                });
+
+                document.addEventListener('keydown', function (e) {
+                    if (e.key === 'Escape') closeDrawer();
+                });
+
+                window.addEventListener('resize', function () {
+                    if (window.innerWidth >= 1024) closeDrawer();
+                });
+            }
+
+            function initAdminQuickMenus() {
+                function closeQuickMenus() {
+                    document.querySelectorAll('.ord-settings-wrap.open, .prod-settings-wrap.open').forEach(function (el) {
+                        el.classList.remove('open');
+                    });
+                }
+
+                document.addEventListener('pointerup', function (e) {
+                    var toggle = e.target.closest('.ord-actions-toggle, .prod-actions-toggle');
+                    if (toggle) {
+                        e.preventDefault();
+                        var wrap = toggle.closest('.ord-settings-wrap, .prod-settings-wrap');
+                        if (!wrap) return;
+                        var willOpen = !wrap.classList.contains('open');
+                        closeQuickMenus();
+                        if (willOpen) wrap.classList.add('open');
+                        return;
+                    }
+
+                    if (e.target.closest('.ord-quick-actions, .prod-quick-actions')) return;
+                    closeQuickMenus();
+                });
+
+                document.addEventListener('keydown', function (e) {
+                    if (e.key === 'Escape') closeQuickMenus();
+                });
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', function () {
+                    initAdminSidebar();
+                    initAdminQuickMenus();
+                });
+            } else {
+                initAdminSidebar();
+                initAdminQuickMenus();
+            }
+        })();
     </script>
 </body>
 </html>

@@ -10,7 +10,7 @@
             <div class="bg-white border border-gray-100 shadow-2xl p-8 md:p-12 eg-card rounded-2xl">
                 <div class="text-center mb-10">
                     <h2 class="font-serif text-3xl mb-2">Create Account</h2>
-                    <p class="text-gray-400 text-sm uppercase tracking-widest">Join the Saja community</p>
+                    <p class="text-gray-400 text-sm uppercase tracking-widest">Join the eGadgetHub community</p>
                 </div>
 
                 <asp:Label ID="lblMessage" runat="server" CssClass="text-red-500 text-sm block mb-6 text-center" />

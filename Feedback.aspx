@@ -17,7 +17,7 @@
         </div>
     </section>
 
-    <div class="container mx-auto px-4 lg:px-8 pb-32">
+    <div class="container mx-auto px-4 lg:px-8 pb-32 feedback-page">
         <!-- page alert -->
         <div id="alertMsg" runat="server" class="hidden mb-12 p-6 text-sm uppercase tracking-widest font-bold"></div>
 
@@ -65,10 +65,14 @@
 
                     <!-- Filters -->
                     <div class="bg-off-white p-8 mb-10 space-y-6 eg-card rounded-xl">
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
                             <div>
                                 <label class="text-[10px] uppercase tracking-widest font-bold text-gray-400 mb-2 block" for="txtFilterQ">Keyword</label>
                                 <input id="txtFilterQ" runat="server" type="text" class="w-full bg-white border border-gray-100 px-4 py-3 text-xs focus:border-primary focus:outline-none transition-all" placeholder="Search name/title..." />
+                            </div>
+                            <div>
+                                <label class="text-[10px] uppercase tracking-widest font-bold text-gray-400 mb-2 block" for="txtFilterTicket">Track Ticket</label>
+                                <input id="txtFilterTicket" runat="server" type="text" class="w-full bg-white border border-gray-100 px-4 py-3 text-xs focus:border-primary focus:outline-none transition-all" placeholder="e.g. FB-20260414-12345" />
                             </div>
                             <div>
                                 <label class="text-[10px] uppercase tracking-widest font-bold text-gray-400 mb-2 block" for="ddlStatus">Status</label>

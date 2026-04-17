@@ -337,13 +337,18 @@ VALUES (@oid, @addr, @town, @zip, @city, @state, @country)",
                     Db.P("@country", (txtCountry.Value ?? "").Trim())
                 );
 
-                // 4) First log (optional, only if an admin exists)
+                // 4) Timeline logs (best effort, if an admin identity exists)
                 int anyAdminId = 0;
                 try { anyAdminId = Db.Scalar<int>("SELECT TOP 1 id FROM dbo.admins ORDER BY id ASC"); } catch { }
                 if (anyAdminId > 0)
                 {
                     Db.Execute("INSERT INTO dbo.order_logs(order_id, status, admin_id) VALUES (@oid, 'pending', @aid)",
                         Db.P("@oid", orderId), Db.P("@aid", anyAdminId));
+
+                    Db.Execute("INSERT INTO dbo.order_logs(order_id, status, admin_id) VALUES (@oid, @st, @aid)",
+                        Db.P("@oid", orderId),
+                        Db.P("@st", paymentName.Equals("eSewa", StringComparison.OrdinalIgnoreCase) ? "payment_initiated" : "payment_pending"),
+                        Db.P("@aid", anyAdminId));
                 }
 
                 // 5) Decrement stock

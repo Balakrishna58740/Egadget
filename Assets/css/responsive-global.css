@@ -1,0 +1,109 @@
+/* Global responsive baseline for eGadgetHub (admin + client) */
+
+:root {
+    --tap-min: 44px;
+}
+
+/* Better horizontal scroll behavior for data-heavy UI */
+.table-responsive,
+.overflow-x-auto {
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+}
+
+/* Touch-friendly controls */
+button,
+input[type="button"],
+input[type="submit"],
+.btn,
+a[class*="btn-"] {
+    min-height: var(--tap-min);
+}
+
+/* Global admin quick-menu touch target and stacking */
+.ord-actions-toggle,
+.prod-actions-toggle {
+    min-width: 40px;
+    min-height: 40px;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.ord-actions-toggle i,
+.prod-actions-toggle i {
+    pointer-events: none;
+}
+
+.ord-quick-actions,
+.prod-quick-actions {
+    z-index: 1200 !important;
+}
+
+/* ADMIN baseline */
+@media (max-width: 1024px) {
+    .admin-shell main {
+        overflow-x: hidden;
+    }
+
+    .admin-shell .admin-content-stack,
+    .admin-shell .ord-page,
+    .admin-shell .prod-page,
+    .admin-shell .mem-page,
+    .admin-shell .pay-page,
+    .admin-shell .cat-page,
+    .admin-shell .fb-page,
+    .admin-shell .rp-wrap,
+    .admin-shell .st-wrap,
+    .admin-shell .ov-page {
+        padding-left: .75rem !important;
+        padding-right: .75rem !important;
+    }
+
+    .admin-shell table {
+        min-width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .admin-shell .admin-topbar {
+        padding-right: .25rem;
+    }
+
+    .admin-shell .admin-user-chip {
+        border-radius: 12px;
+    }
+
+    .admin-shell .pagination,
+    .admin-shell .pager-wrap {
+        flex-wrap: wrap;
+    }
+}
+
+/* CLIENT baseline */
+@media (max-width: 992px) {
+    #siteHeader .container > div {
+        min-height: 72px;
+    }
+
+    #mobileMenu {
+        max-height: calc(100vh - 72px);
+        overflow-y: auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .eg-card {
+        border-radius: 14px;
+    }
+
+    .container {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+    }
+
+    input,
+    select,
+    textarea {
+        font-size: 16px !important;
+    }
+}

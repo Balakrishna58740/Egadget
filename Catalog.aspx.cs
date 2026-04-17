@@ -297,6 +297,12 @@ LEFT JOIN categories c ON c.id = p.category_id");
                 Response.Redirect(ResolveUrl("~/Cart.aspx"), false);
                 Context.ApplicationInstance.CompleteRequest();
             }
+            else if (e.CommandName == "AddToWishlist")
+            {
+                AddToWishlist(productId);
+                Response.Redirect(Request.RawUrl, false);
+                Context.ApplicationInstance.CompleteRequest();
+            }
         }
 
         private void AddToCart(int productId, int qty)
@@ -307,6 +313,13 @@ LEFT JOIN categories c ON c.id = p.category_id");
             else
                 cart[productId] = qty;
             SaveCart(cart);
+        }
+
+        private void AddToWishlist(int productId)
+        {
+            var set = GetWishlist();
+            set.Add(productId);
+            Session["WISHLIST_SET"] = set;
         }
 
         private Dictionary<int, int> GetCart()
@@ -320,6 +333,18 @@ LEFT JOIN categories c ON c.id = p.category_id");
         private void SaveCart(Dictionary<int, int> cart)
         {
             Session["CART_DICT"] = cart;
+        }
+
+        private HashSet<int> GetWishlist()
+        {
+            const string key = "WISHLIST_SET";
+            var set = Session[key] as HashSet<int>;
+            if (set == null)
+            {
+                set = new HashSet<int>();
+                Session[key] = set;
+            }
+            return set;
         }
 
         private T Find<T>(string id) where T : Control
